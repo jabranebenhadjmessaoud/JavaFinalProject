@@ -1,1 +1,23 @@
-<p>loginform works!</p>
+
+
+
+<div>
+
+    <p>loginform works!</p>
+
+
+    <form (ngSubmit)="authenticate()">
+        <p *ngIf="errMessage" class="error" style="color: red; text-align: center;">{{errMessage.msg}}</p>
+        <div class="form-group">
+            <label for="email">Email : </label>
+            <input type="text" name="email" class="form-control" [(ngModel)]="data.email">
+        </div>
+        <div class="form-group">
+            <label for="password">Password : </label>
+            <input type="password" name="password" class="form-control" [(ngModel)]="data.password" >
+        </div>
+        <div class="text-center">
+            <input type="submit" class="btn-my" value="Login">
+        </div>
+    </form>
+</div>
