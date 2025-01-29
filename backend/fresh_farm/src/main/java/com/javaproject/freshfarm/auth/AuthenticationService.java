@@ -56,8 +56,10 @@ public class AuthenticationService {
             var role = user.getRole();
             var fullName = user.getFullName();
             var email = user.getEmail();
+            var id=user.getId();
             return new ResponseEntity<>(AuthenticationResponse.builder().role(role)
                     .fullName(fullName)
+                    .id(id)
                     .email(email).token(jwtToken).build(), HttpStatus.OK);
         }
     }
@@ -82,8 +84,10 @@ public class AuthenticationService {
         var role = user.getRole();
         var fullName = user.getFullName();
         var email = user.getEmail();
+        var id=user.getId();
         return AuthenticationResponse.builder().role(role)
                 .fullName(fullName)
+                .id(id)
                 .email(email).token(jwtToken).build();
     }
 

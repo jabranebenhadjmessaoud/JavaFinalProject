@@ -37,8 +37,8 @@ public class AuthenticationController {
      * @param request the authentication request containing credentials
      * @return a ResponseEntity containing the authentication result, including the authentication token
      */
-    @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
+    @PostMapping("/authenticate" )
+    public ResponseEntity<AuthenticationResponse> authenticate( @RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 

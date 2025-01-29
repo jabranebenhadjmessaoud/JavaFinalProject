@@ -17,6 +17,7 @@ public class AuthenticationResponse {
      * Represents the response returned after successful authentication.
      * Contains a JWT token and the user's role, fullName and email.
      */
+	private Long id;
     private String token;
     private String fullName;
     private String email;

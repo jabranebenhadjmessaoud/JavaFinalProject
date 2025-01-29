@@ -25,7 +25,7 @@ export class LoginformComponent {
         localStorage.setItem('token', res.token);
         localStorage.setItem('user_id', res.id);    
         localStorage.setItem('role', res.role);
-        // console.log(res)
+        console.log(res)
         verif=true
         console.log(verif)
         if(localStorage.getItem('role')=='ROLE_FARMER'){
