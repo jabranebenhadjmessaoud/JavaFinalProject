@@ -3,25 +3,36 @@ import { NavbarComponent } from "../navbar/navbar.component";
 import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-allproducts',
-  imports: [NavbarComponent, CommonModule],
+  standalone: true,
+  imports: [NavbarComponent, CommonModule, FormsModule],
   templateUrl: './allproducts.component.html',
   styleUrl: './allproducts.component.css'
 })
 export class AllproductsComponent {
-  products: any = [];
+  products: any[] = [];
+  filteredProducts: any[] = [];
+  searchQuery: string = '';
+
   constructor(private apiService: ApiService) { }
 
-  // This method will be called when the component is initialized
-  // It will fetch all products from the API
   ngOnInit() {
     this.apiService.getallproducts().subscribe((data) => {
-      console.log(data);
       this.products = data;
+      this.filteredProducts = data; // Initially show all products
     });
   }
 
+  filterProducts() {
+    const query = this.searchQuery.toLowerCase().trim();
+    this.filteredProducts = this.products.filter(product =>
+      product.product_title.toLowerCase().includes(query) ||
+      product.category.toLowerCase().includes(query) ||
+      product.farming_method?.toLowerCase().includes(query) ||
+      product.price.toString().includes(query)
+    );
+  }
 }
