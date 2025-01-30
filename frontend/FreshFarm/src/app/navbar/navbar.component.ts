@@ -24,6 +24,7 @@ import { ApiService } from '../api.service';
 export class NavbarComponent {
   constructor(private apiService: ApiService, private router: Router) { }
   userRole = localStorage.getItem('role');
+  userId = localStorage.getItem('user_id');
 
 
 }

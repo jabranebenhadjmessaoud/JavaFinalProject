@@ -30,7 +30,7 @@ export class ApiService {
   }
 
   getallproducts(): Observable<any> {
-    return this.http.get(this.baseUrl + "/allproducts").pipe(
+    return this.http.get(this.baseUrl + "/farmer/allproducts").pipe(
       catchError(this.handleError));
   }
 
@@ -40,7 +40,7 @@ export class ApiService {
     return throwError(() => err.error)
   }
   getallusers(): Observable<any> {
-    return this.http.get(this.baseUrl + "/allusers").pipe(
+    return this.http.get(this.baseUrl + "/admin/allusers").pipe(
       catchError(this.handleError));
   }
 

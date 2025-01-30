@@ -3,13 +3,16 @@
         <span class="logo">Fresh Farm</span>
         <span class="spacer"></span>
         <a href="/homepage" mat-button>Home</a>
-        <a href="/all-products" mat-button>All Products</a>
+        <div *ngIf="userId !== null">
+            <a href="/all-products" mat-button>All Products</a>
+        </div>
         <div *ngIf="userRole === 'ROLE_FARMER'">
             <a href="/farmer-form" mat-button>Create Product</a>
         </div>
         <div *ngIf="userRole === 'ROLE_ADMIN'">
             <a href="/admin" mat-button>Admin</a>
         </div>
+
         <span class="spacer"></span>
         <mat-form-field class="search-field mt-4" appearance="outline">
             <mat-label>Search</mat-label>
@@ -17,7 +20,13 @@
             <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
         <button mat-icon-button>
-            <a href=""><mat-icon>account_circle</mat-icon></a>
+            <a href="" class="text-dark"><mat-icon>account_circle</mat-icon></a>
         </button>
+        <div *ngIf="userId !== null">
+            <a class="text-danger" href="/logout" mat-button>Logout</a>
+        </div>
+        <div *ngIf="userId == null">
+            <a class="text-success" href="/authenticate" mat-button>Login</a>
+        </div>
     </mat-toolbar-row>
 </mat-toolbar>

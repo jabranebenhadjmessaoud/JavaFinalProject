@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { User } from '../user';
+import { NavbarComponent } from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-registerform',
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, NavbarComponent],
   templateUrl: './registerform.component.html',
   styleUrl: './registerform.component.css'
 })

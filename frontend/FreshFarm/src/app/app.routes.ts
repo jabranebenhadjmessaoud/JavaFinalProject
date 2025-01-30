@@ -9,10 +9,10 @@ import { AdminGuard } from './guards/admin.guard';
 import { AllproductsComponent } from './allproducts/allproducts.component';
 
 export const routes: Routes = [
-    { path: "homepage", component: HomepageComponent, canActivate: [AuthGuard] },
-    { path: "all-products", component: AllproductsComponent, canActivate: [AuthGuard] },
-    { path: "admin", component: AdmindashboardComponent, canActivate: [AdminGuard] },
+    { path: "homepage", component: HomepageComponent },
     { path: "authenticate", component: LoginformComponent },
     { path: "register", component: RegisterformComponent },
-    { path: "farmer-form", component: FarmerformComponent },
+    { path: "admin", component: AdmindashboardComponent, canActivate: [AdminGuard] },
+    { path: "all-products", component: AllproductsComponent, canActivate: [AuthGuard] },
+    { path: "farmer-form", component: FarmerformComponent, canActivate: [AuthGuard] },
 ];
