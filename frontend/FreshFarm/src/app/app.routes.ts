@@ -6,9 +6,11 @@ import { FarmerformComponent } from './farmerform/farmerform.component';
 import { AuthGuard } from './auth.guard';
 import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
 import { AdminGuard } from './guards/admin.guard';
+import { AllproductsComponent } from './allproducts/allproducts.component';
 
 export const routes: Routes = [
     { path: "homepage", component: HomepageComponent, canActivate: [AuthGuard] },
+    { path: "all-products", component: AllproductsComponent, canActivate: [AuthGuard] },
     { path: "admin", component: AdmindashboardComponent, canActivate: [AdminGuard] },
     { path: "authenticate", component: LoginformComponent },
     { path: "register", component: RegisterformComponent },
