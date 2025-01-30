@@ -1,0 +1,23 @@
+<mat-toolbar color="primary" class="toolbar">
+    <mat-toolbar-row>
+        <span class="logo">Fresh Farm</span>
+        <span class="spacer"></span>
+        <a href="/homepage" mat-button>Home</a>
+        <a mat-button>All Products</a>
+        <div *ngIf="userRole === 'ROLE_FARMER'">
+            <a mat-button>Create Product</a>
+        </div>
+        <div *ngIf="userRole === 'ROLE_ADMIN'">
+            <a mat-button>Admin</a>
+        </div>
+        <span class="spacer"></span>
+        <mat-form-field class="search-field mt-4" appearance="outline">
+            <mat-label>Search</mat-label>
+            <input matInput>
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+        <button mat-icon-button>
+            <mat-icon>account_circle</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>

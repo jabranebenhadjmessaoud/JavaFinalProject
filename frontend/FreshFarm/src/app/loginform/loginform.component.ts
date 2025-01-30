@@ -29,10 +29,10 @@ export class LoginformComponent {
         verif = true
         console.log(verif)
         if (localStorage.getItem('role') == 'ROLE_FARMER') {
-          this.router.navigate(['/farmerhome'])
+          this.router.navigate(['/homepage'])
         }
         if (localStorage.getItem('role') == 'ROLE_ADMIN') {
-          this.router.navigate(['/admin'])
+          this.router.navigate(['/homepage'])
         }
         if (localStorage.getItem('role') == 'ROLE_CLIENT') {
           this.router.navigate(['/homepage'])
