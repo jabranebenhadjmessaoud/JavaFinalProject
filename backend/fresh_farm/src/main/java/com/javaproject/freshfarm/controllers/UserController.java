@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.javaproject.freshfarm.dtos.ProductDTO;
 import com.javaproject.freshfarm.dtos.UserDTO;
 import com.javaproject.freshfarm.models.Role;
+import com.javaproject.freshfarm.services.ProductService;
 import com.javaproject.freshfarm.services.UserService;
 
 import java.util.List;
@@ -20,6 +22,7 @@ import java.util.List;
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class UserController {
+	
 
     private final UserService userService;
 
@@ -32,6 +35,8 @@ public class UserController {
     public List<UserDTO> getAllUsersDTO() {
         return userService.getAllUsers();
     }
+    
+    
 
     /**
      * Endpoint to retrieve users filtered by their role.
