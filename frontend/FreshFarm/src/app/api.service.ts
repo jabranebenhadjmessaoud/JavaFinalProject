@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable,throwError} from 'rxjs';
 import { User } from './user';
+import { Product } from './product';
 
 
 @Injectable({
@@ -20,6 +21,10 @@ export class ApiService {
 
   register(data: User): Observable<any> {
     return this.http.post(this.baseUrl+"/auth/register",data).pipe(
+      catchError(this.handleError));
+  }
+  createproduct(data:Product):Observable<any>{
+    return this.http.post(this.baseUrl+"/farmer/newproduct",data).pipe(
       catchError(this.handleError));
   }
 

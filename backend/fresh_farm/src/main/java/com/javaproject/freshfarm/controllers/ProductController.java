@@ -36,9 +36,9 @@ public class ProductController {
     
     
     @PostMapping("/newproduct")
-    public ProductDTO createPost(@RequestBody Product product,
+    public ProductDTO createProduct(@RequestBody Product product,
     							HttpServletRequest request
-    							){
+    							){    
         // Extract token from Authorization header
         String authHeader = request.getHeader("Authorization");
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
