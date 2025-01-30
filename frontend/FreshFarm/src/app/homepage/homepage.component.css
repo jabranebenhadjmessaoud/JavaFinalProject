@@ -12,73 +12,167 @@
     background-size: cover;
 }
 
+/* Slider Container */
 .slider {
     position: relative;
     width: 100%;
-    height: 400px;
-    /* Adjust height as needed */
+    height: 500px;
+    /* Increased height for better visibility */
     overflow: hidden;
+    border-radius: 15px;
+    /* Rounded corners for the slider */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    /* Add a shadow for depth */
 }
 
+/* Slide Base Styles */
 .slide {
     position: absolute;
     width: 100%;
     height: 100%;
     background-size: cover;
-    border-radius: 15px;
     background-position: center;
     opacity: 0;
-    animation: slideShow 9s infinite;
+    animation: slideShow 12s infinite;
+    /* Increased animation duration */
+    border-radius: 15px;
+    /* Rounded corners for each slide */
+    transition: opacity 1.5s ease-in-out;
+    /* Smooth fade transition */
 }
 
+/* Individual Slide Backgrounds */
 .slide1 {
-    background-image: url('../../../public/images/bg-01.jpg');
+    background-image: url('../../../public/images/image1.jpg');
     animation-delay: 0s;
 }
 
 .slide2 {
     background-image: url('../../../public/images/bg.jpg');
-    animation-delay: 3s;
+    animation-delay: 4s;
+    /* Adjusted delay for smoother transitions */
 }
 
 .slide3 {
-    background-image: url('../../../public/images/blog-2.jpg');
-    animation-delay: 6s;
+    background-image: url('../../../public/images/image2.jpg');
+    animation-delay: 8s;
+    /* Adjusted delay for smoother transitions */
+}
+
+/* Keyframes for Smooth Animation */
+@keyframes slideShow {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    33.33% {
+        opacity: 1;
+    }
+
+    43.33% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Optional: Add Overlay for Better Text Readability */
+.slide::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    /* Dark overlay for better contrast */
+    border-radius: 15px;
+}
+
+/* Optional: Add Captions to Slides */
+.slide::before {
+    content: attr(data-caption);
+    /* Add captions dynamically */
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.slide:hover::before {
+    opacity: 1;
+    /* Show caption on hover */
 }
 
 .slide4 {
-    background-image: url('../../../public/images/feature.png');
-    animation-delay: 6s;
+    background-image: url('../../../public/images/image3.jpg');
+    animation-delay: 6.5s;
 }
 
+/* About Us Section */
 .about {
     padding: 80px 0;
-    text-align: center;
+    background-color: #f9f9f9;
+    /* Light background for contrast */
 }
 
-.about h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.about p {
-    font-size: 18px;
-    margin-bottom: 30px;
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    /* Space between image and text */
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Card-like shadow */
 }
 
-/* Responsive Image */
 .about-image {
-    width: 100%;
-    max-width: 600px;
+    width: 50%;
+    /* Image takes up half the width */
     height: 300px;
-    /* Set a fixed height or use min-height for flexibility */
-    background-image: url('../../../public/images/blog-2.jpg');
+    /* Fixed height */
+    background-image: url('../../../public/images/image7.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 10px;
-    margin: 0 auto;
-    /* Centering */
+}
+
+.about-text {
+    width: 50%;
+    /* Text takes up half the width */
+    text-align: left;
+}
+
+.about-text h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.about-text p {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
 }
 
 /* Animation */
@@ -180,7 +274,7 @@ header nav ul li a:hover {
 
 /* Hero Section */
 .hero {
-    background: url('https://via.placeholder.com/1200x800') no-repeat center center/cover;
+    background: url('../../../public/images/image3.jpg') no-repeat center center/cover;
     color: white;
     padding: 100px 0;
     text-align: center;
@@ -232,30 +326,65 @@ header nav ul li a:hover {
 
 /* Services Section */
 .services {
-    background: #f9f9f9;
     padding: 80px 0;
     text-align: center;
+    background: #f9f9f9;
+}
+
+.services h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: #333;
 }
 
 .service-cards {
-    display: flex;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 columns */
     gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
+    /* Space between cards */
+    max-width: 950px;
+    /* Adjust as needed */
+    margin: 0 auto;
+    /* Center the grid */
 }
 
 .card {
     background: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: transform 0.3s ease-in-out;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .card:hover {
-    transform: scale(1.05);
+    background: #4CAF50;
+    /* Green background on hover */
+    transform: translateY(-10px);
+    /* Lift effect */
+}
+
+.card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+    /* Default text color */
+    transition: color 0.3s ease;
+}
+
+.card p {
+    font-size: 16px;
+    color: #666;
+    /* Default text color */
+    transition: color 0.3s ease;
+}
+
+/* Change text color on hover for better contrast */
+.card:hover h3,
+.card:hover p {
+    color: white;
 }
 
 /* Contact Section */
@@ -296,7 +425,7 @@ header nav ul li a:hover {
 
 /* Footer Section */
 footer {
-    background: #333;
+    background: #4CAF50;
     color: white;
     text-align: center;
     padding: 20px 0;
@@ -389,7 +518,7 @@ footer p {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('../../../public/images/farmerformbg.jpg');
+    background-image: url('../../../public/images/farmer-with-tablet-close-up.jpg');
     /* Background image */
     background-size: cover;
     /* Ensures the image covers the whole area */

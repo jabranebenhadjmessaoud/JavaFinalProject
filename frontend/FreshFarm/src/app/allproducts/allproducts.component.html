@@ -3,7 +3,7 @@
 <body>
     <header>
         <h1>Our Agricultural Products</h1>
-        <p>High-quality, fresh, and sustainable products straight from our farms.</p>
+        <p>High-quality, fresh, and sustainable products straight from our farms just for you.</p>
     </header>
     <div *ngIf="products.length == 0" class="product-container d-flex  align-items-center">
 
@@ -21,7 +21,7 @@
                     keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0"></animate>
             </circle>
         </svg>
-        <h2 class="alert alert-danger mt-3">Products Load</h2>
+        <h2 class="alert alert-danger mt-3">Products are Loading</h2>
     </div>
 
     <div>
@@ -29,9 +29,9 @@
             <!-- Product Card 1 -->
             <div class="product-card">
                 <img src="../../assets/vegetable.png" alt="Product 1">
-                <h2>{{product.product_title}}</h2>
-                <p>{{product.category}}</p>
-                <span class="price">${{product.price}}/kg</span>
+                <h2>Product: {{product.product_title}}</h2>
+                <p>Category: {{product.category}}</p>
+                <span class="price">Price: TND{{product.price}}/kg</span>
                 <button>Add to Cart</button>
             </div>
         </div>

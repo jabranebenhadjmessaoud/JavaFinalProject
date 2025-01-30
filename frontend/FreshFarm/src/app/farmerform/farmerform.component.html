@@ -1,53 +1,30 @@
 <app-navbar></app-navbar>
 <div class="content">
-    <div class="container">
+    <div class="container mt-5 p-5">
         <div class="row">
             <div class="col-lg-7 mx-auto">
-                <div class="card mt-2 mx-auto p-4 bg-light">
-                    <div class="card-body bg-light">
+                <div style="background-color: #E6D6BD;" class="card mt-2 mx-auto p-4 ">
+                    <div style="background-color: #E6D6BD;" class="card-body ">
                         <div class="container">
                             <form id="contact-form" role="form" (ngSubmit)="createProduct()">
                                 <div class="controls">
                                     <div class="row">
-                                        <div class="text-center mt-5">
-                                            <h1>Welcome, CHANGEME</h1>
-                                            <h1 class="text-3xl font-bold underline">Hello world!</h1>
+                                        <div class="text-center  mb-4 ">
+                                            <h1 style="color: green;">Welcome, {{userName}}</h1>
+                                            <h2>Create a new product</h2>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="product_title">Prodcut Title *</label>
-                                                <input [(ngModel)]="data.product_title" id="product_title" type="text" name="product_title"
-                                                    class="form-control" placeholder="Please enter your Product Title *"
-                                                    required="required" data-error="Product Title is required.">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="price">Price *</label>
-                                                <input [(ngModel)]="data.price" id="price" type="text" name="price" class="form-control"
-                                                    placeholder="Please enter your price *" required="required"
-                                                    data-error="price is required.">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="location">Location *</label>
-                                                <input [(ngModel)]="data.location" id="location" type="text" name="location" class="form-control"
-                                                    placeholder="Please enter the product location *"
-                                                    required="required" data-error="Valid location is required.">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="form_need">Please specify the product category</label>
-                                                <select [ngModelOptions]="{standalone: true}" [(ngModel)]="data.category" id="form_need" name="category" class="form-control"
-                                                    required="required"
+                                                <label for="form_need"><strong>Specify the product category *</strong>
+                                                </label>
+                                                <select [ngModelOptions]="{standalone: true}"
+                                                    [(ngModel)]="data.category" id="form_need" name="category"
+                                                    class="form-control border border-success" required="required"
                                                     data-error="Please specify the product category.">
-                                                    <option value="" selected disabled>--Select Product Category--
+                                                    <option value="--Select Product Category--" selected disabled>
+                                                        --Select Product Category--
                                                     </option>
-                                                    <option name="Vegetables" value="Vegetables" >Vegetables</option>
+                                                    <option name="Vegetables" value="Vegetables">Vegetables</option>
                                                     <option name="Fruits" value="Fruits">Fruits</option>
                                                     <option name="Meat" value="Meat">Meat</option>
                                                     <option name="Dairy" value="Dairy">Dairy</option>
@@ -56,15 +33,21 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 mt-2">
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="farming_method">Please specify the Farming Method</label>
-                                                <select [ngModelOptions]="{standalone: true}" [(ngModel)]="data.farming_method" id="farming_method" name="farming_method" class="form-control"
+                                                <label for="farming_method"><strong>Please specify the Farming Method
+                                                        *</strong></label>
+                                                <select [ngModelOptions]="{standalone: true}"
+                                                    [(ngModel)]="data.farming_method" id="farming_method"
+                                                    name="farming_method" class="form-control border border-success"
                                                     required="required" data-error="Please specify the Farming Method.">
-                                                    <option value="" selected disabled>--Select Your Farming Method--
+                                                    <option value="--Select Your Farming Method--" selected disabled>
+                                                        --Select Your Farming Method--
                                                     </option>
-                                                    <option name="Subsistence" value="Subsistence">Subsistence Farming</option>
-                                                    <option name="Plantation" value="Plantation">Plantation Farming</option>
+                                                    <option name="Subsistence" value="Subsistence">Subsistence Farming
+                                                    </option>
+                                                    <option name="Plantation" value="Plantation">Plantation Farming
+                                                    </option>
                                                     <option name="Dryland" value="Dryland">Dryland Farming</option>
                                                     <option name="Wetland" value="Wetland">Wetland Farming</option>
                                                     <option name="Mixed" value="Mixed">Mixed Farming</option>
@@ -73,15 +56,48 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="col-md-6 mt-2">
+                                            <div class="form-group">
+                                                <label for="product_title"><strong>Prodcut Title *</strong></label>
+                                                <input [(ngModel)]="data.product_title" id="product_title" type="text"
+                                                    name="product_title" class="form-control border border-success"
+                                                    placeholder="Please enter your Product Title " required="required"
+                                                    data-error="Product Title is required.">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mt-2">
+                                            <div class="form-group">
+                                                <label for="price"><strong>Price TND/Kg *</strong></label>
+                                                <input [(ngModel)]="data.price" id="price" type="double" name="price"
+                                                    class="form-control border border-success"
+                                                    placeholder="Please enter your price " required="required"
+                                                    data-error="price is required.">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mt-2">
+                                            <div class="form-group">
+                                                <label for="location"><strong>Location *</strong></label>
+                                                <input [(ngModel)]="data.location" id="location" type="text"
+                                                    name="location" class="form-control border border-success"
+                                                    placeholder="Please enter the product location" required="required"
+                                                    data-error="Valid location is required.">
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 mt-2">
                                             <div class="form-group">
-                                                <label for="description">Description *</label>
-                                                <textarea [(ngModel)]="data.description" id="description" name="description" class="form-control"
+                                                <label for="description"><strong>More Details About the product
+                                                        *</strong></label>
+                                                <textarea [(ngModel)]="data.description" id="description"
+                                                    name="description" class="form-control border border-success"
                                                     placeholder="Write your description here." rows="4"
                                                     required="required"
-                                                    data-error="Please, leave us a description."></textarea>
+                                                    data-error="Please, leave us more details"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
