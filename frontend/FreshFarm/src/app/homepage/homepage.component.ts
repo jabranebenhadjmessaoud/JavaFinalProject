@@ -1,21 +1,27 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from "../navbar/navbar.component";
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-import { faMapMarkerAlt, faEnvelopeOpen, faPhone } from '@fortawesome/free-solid-svg-icons';
-
-
-
+import { User } from '../user';
+import { ApiService } from '../api.service';
+import { Router, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-homepage',
-  imports: [NavbarComponent, FontAwesomeModule],
+  imports: [NavbarComponent],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css'
 })
 export class HomepageComponent {
-  faCoffee = faCoffee;
-  faMapMarkerAlt = faMapMarkerAlt;
-  faEnvelopeOpen = faEnvelopeOpen;
-  faPhone = faPhone;
+  constructor(private router: Router) { }
+
+  ngOnInit() {
+    console.log("ngOnInit called"); // Check if ngOnInit is called
+
+    const userId = localStorage.getItem('user_id');
+    console.log("userId from localStorage:", userId); // Log the retrieved userId
+
+    if (!userId) {
+      console.log("Redirecting to login page");
+      this.router.navigate(['/authentication']);
+    }
+  }
 
 }

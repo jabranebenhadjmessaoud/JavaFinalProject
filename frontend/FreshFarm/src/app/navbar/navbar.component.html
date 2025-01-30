@@ -5,7 +5,7 @@
         <a href="/homepage" mat-button>Home</a>
         <a mat-button>All Products</a>
         <div *ngIf="userRole === 'ROLE_FARMER'">
-            <a mat-button>Create Product</a>
+            <a href="/farmer-form" mat-button>Create Product</a>
         </div>
         <div *ngIf="userRole === 'ROLE_ADMIN'">
             <a mat-button>Admin</a>
@@ -17,7 +17,7 @@
             <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
         <button mat-icon-button>
-            <mat-icon>account_circle</mat-icon>
+            <a href=""><mat-icon>account_circle</mat-icon></a>
         </button>
     </mat-toolbar-row>
 </mat-toolbar>
