@@ -20,19 +20,6 @@ export class AppComponent {
 
   title = 'FreshFarm';
 
-  onLogout(): void {
-      this.apiService.logout().subscribe({
-        next: () => {
-          console.log('User logged out successfully');
-          localStorage.removeItem('user_id');
-          localStorage.removeItem('token');
-          localStorage.removeItem('role');
-          this.router.navigate(['/authenticate']);
-          window.location.reload()
-        },
-        error: (err) => {
-          console.error('Error during logout:', err);
-        }
-      });
+  
 
-}}
+}

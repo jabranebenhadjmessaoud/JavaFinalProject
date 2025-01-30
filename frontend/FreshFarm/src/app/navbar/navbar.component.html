@@ -23,7 +23,7 @@
             <a href="" class="text-dark"><mat-icon>account_circle</mat-icon></a>
         </button>
         <div *ngIf="userId !== null">
-            <a class="text-danger" href="/logout" mat-button>Logout</a>
+            <button (click)="logout()" class="btn btn-danger"> Logout </button>
         </div>
         <div *ngIf="userId == null">
             <a class="text-success" href="/authenticate" mat-button>Login</a>

@@ -44,13 +44,6 @@ export class ApiService {
       catchError(this.handleError));
   }
 
-  logout(): Observable<any> {
-    return this.http.get(this.baseUrl + "/logout").pipe(
-      catchError((err) => {
-        console.error('Error during logout:', err);
-        return throwError(() => err);
-      })
-    );
-  }
+  
 
 }
