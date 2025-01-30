@@ -44,6 +44,18 @@ public class User implements UserDetails {
 	@NotEmpty(message = "Password is required!")
 	@Size(min=8, max=128, message ="Password must be between 8 and 128 characters")
 	private String password;
+	
+	@OneToMany(mappedBy = "postedBy", fetch = FetchType.LAZY)
+	private List<Product> createdProducts;
+	
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "cart",
+				joinColumns = @JoinColumn(name = "user_id"),
+				inverseJoinColumns = @JoinColumn(name = "product_id"))  
+	private List<Product> addedproductstocart;
+	
+	
 
 	@Enumerated(EnumType.STRING)
 	private Role role;

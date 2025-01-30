@@ -37,6 +37,10 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers("/api/v1/auth/**")
                 .permitAll() // Allows unrestricted access to authentication endpoints
+                .requestMatchers("/api/v1/**")
+                .permitAll()
+                .requestMatchers("/api/v1/farmer/**")
+                .hasRole("FARMER")
                 .anyRequest()
                 .authenticated() // Requires authentication for all other requests
                 .and()
