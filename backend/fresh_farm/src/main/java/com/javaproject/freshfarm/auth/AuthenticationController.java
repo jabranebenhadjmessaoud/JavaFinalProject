@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Provides endpoints for user registration, authentication, password management, and password reset.
  */
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class AuthenticationController {
 
@@ -26,7 +26,7 @@ public class AuthenticationController {
      * @param request the registration request containing user details
      * @return a ResponseEntity containing the result of the registration operation
      */
-    @PostMapping("/register")
+    @PostMapping("/auth/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
         return authenticationService.register(request);
     }
@@ -37,7 +37,7 @@ public class AuthenticationController {
      * @param request the authentication request containing credentials
      * @return a ResponseEntity containing the authentication result, including the authentication token
      */
-    @PostMapping("/authenticate" )
+    @PostMapping("/auth/authenticate" )
     public ResponseEntity<AuthenticationResponse> authenticate( @RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }

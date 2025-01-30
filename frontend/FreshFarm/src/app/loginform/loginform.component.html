@@ -1,23 +1,37 @@
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-form-title" style="background-image: url(images/bg-01.jpg);">
+                <span class="login100-form-title-1">
+                </span>
+            </div>
 
+            <form class="login100-form validate-form" (ngSubmit)="authenticate()">
+                <div class="wrap-input100">
+                    <span class="label-input100">Email</span>
+                    <input class="input100" type="text" name="email" placeholder="Enter your email"
+                        [(ngModel)]="data.email">
+                    <span class="focus-input100"></span>
+                </div>
 
+                <div class="wrap-input100 ">
+                    <span class="label-input100">Password</span>
+                    <input class="input100" type="password" name="password" placeholder="Enter password"
+                        [(ngModel)]="data.password">
+                    <span class="focus-input100"></span>
+                </div>
 
-<div class="testss">
-
-    <p>loginform works!</p>
-
-
-    <form (ngSubmit)="authenticate()">
-        <p *ngIf="errMessage" class="error" style="color: red; text-align: center;">{{errMessage.msg}}</p>
-        <div class="form-group">
-            <label for="email">Email : </label>
-            <input type="text" name="email" class="form-control" [(ngModel)]="data.email">
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn">
+                        Login
+                    </button>
+                    <p *ngIf="errMessage" class="error" style="color: red; text-align: center;">{{errMessage.msg}}
+                    </p>
+                </div>
+                <div>
+                    <a href="/register"> You don't have an account?</a>
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="password">Password : </label>
-            <input type="password" name="password" class="form-control" [(ngModel)]="data.password" >
-        </div>
-        <div class="text-center">
-            <input type="submit" class="btn-my" value="Login">
-        </div>
-    </form>
+    </div>
 </div>
