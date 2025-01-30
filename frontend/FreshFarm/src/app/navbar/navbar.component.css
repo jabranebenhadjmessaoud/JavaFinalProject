@@ -1,0 +1,45 @@
+:host {
+    display: block;
+}
+
+
+.toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: all 0.3s ease-in-out;
+    z-index: 2;
+}
+
+.toolbar:hover {
+    background-color: #34ff7e;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.toolbar:hover .logo {
+    transform: scale(1.1);
+}
+
+.search-field {
+    width: 150px;
+    transition: width 0.3s ease-in-out;
+}
+
+.search-field:focus-within {
+    width: 200px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.content {
+    padding-top: 64px;
+    /* Height of the toolbar */
+}
