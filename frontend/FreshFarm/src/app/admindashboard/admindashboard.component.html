@@ -3,9 +3,12 @@
 <body>
     <div class="dashboard">
         <main class="dashboard-content">
-            <!-- All Users Table -->
+
+            <!-- Users Table -->
             <section class="card users">
                 <h2>All Users</h2>
+                <input type="text" [(ngModel)]="userSearchQuery" (input)="filterUsers()"
+                    placeholder="Search users by ID, Name, Email, or Role..." class="search-bar">
                 <table>
                     <thead>
                         <tr>
@@ -17,7 +20,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let user of users">
+                        <tr *ngFor="let user of filteredUsers">
                             <td>{{user.id}}</td>
                             <td>{{user.fullName}}</td>
                             <td>{{user.email}}</td>
@@ -32,9 +35,11 @@
                 </table>
             </section>
 
-            <!-- All Products Table -->
+            <!-- Products Table -->
             <section class="card products">
                 <h2>All Products</h2>
+                <input type="text" [(ngModel)]="productSearchQuery" (input)="filterProducts()"
+                    placeholder="Search products by ID, Name, Price, Category, or Farming Method..." class="search-bar">
                 <table>
                     <thead>
                         <tr>
@@ -47,7 +52,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let product of products">
+                        <tr *ngFor="let product of filteredProducts">
                             <td>{{product.id}}</td>
                             <td>{{product.product_title}}</td>
                             <td>${{product.price}}/Kg</td>
