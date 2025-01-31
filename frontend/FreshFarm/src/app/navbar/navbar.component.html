@@ -1,16 +1,22 @@
 <mat-toolbar color="primary" class="toolbar">
     <mat-toolbar-row>
-        <span class="logo">Fresh Farm</span>
+        <span class="logo">Freshka</span>
         <span class="spacer"></span>
-        <a style="margin-left: 100px;" href="/homepage" mat-button>Home</a>
+        <a style="margin-left: 100px;" href="/homepage" mat-button>🏠 Home</a>
         <div *ngIf="userId !== null">
-            <a href="/all-products" mat-button>All Products</a>
+            <a href="/all-products" mat-button>📦 All Products</a>
         </div>
         <div *ngIf="userRole === 'ROLE_FARMER'">
-            <a href="/farmer-form" mat-button>Create Product</a>
+            <a href="/all-posts" mat-button>🌍 Farmers Community</a>
+        </div>
+        <div *ngIf="userRole === 'ROLE_FARMER'">
+            <a href="/farmer-form" mat-button>➕ Create Product</a>
+        </div>
+        <div *ngIf="userRole === 'ROLE_FARMER'">
+            <a href="/community-form" mat-button>➕ Create Post</a>
         </div>
         <div *ngIf="userRole === 'ROLE_ADMIN'">
-            <a href="/admin" mat-button>Admin</a>
+            <a href="/admin" mat-button>🛡️ Admin</a>
         </div>
 
         <span class="spacer"></span>
@@ -18,7 +24,7 @@
             <a href="" class="text-dark"><mat-icon>account_circle</mat-icon></a>
         </button>
         <div *ngIf="userId !== null">
-            <button (click)="logout()" class="btn btn-danger"> Logout </button>
+            <a (click)="logout()" class="text-danger" mat-button> Logout </a>
         </div>
         <div *ngIf="userId == null">
             <a class="text-success" href="/authenticate" mat-button>Login</a>

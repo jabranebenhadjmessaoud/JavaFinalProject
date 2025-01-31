@@ -6,6 +6,23 @@
         <p>High-quality, fresh, and sustainable products straight from our farms just for you.</p>
     </header>
 
+    <div class="search-container mt-5">
+        <input type="text" [(ngModel)]="searchQuery" (input)="filterProducts()"
+            placeholder="Search by Prodcut Name, Category, Method, or Price...">
+    </div>
+    <!-- Product Grid -->
+    <div class="product-container">
+        <div *ngFor="let product of filteredProducts" class="product-card">
+            <img src="../../assets/vegetable.png" alt="{{product.product_title}}">
+            <h2>{{product.product_title}}</h2>
+            <p>Category: {{product.category}}</p>
+            <p>Farming Method: {{product.farming_method}}</p>
+            <span class="price">Price: TND{{product.price}}/kg</span>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+
+
     <!-- Loading Animation -->
     <div *ngIf="products.length == 0" class="product-container d-flex align-items-center justify-content-center">
         <svg style="height: 50px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
@@ -25,22 +42,9 @@
         <h2 class="alert alert-danger mt-3">Products are Loading</h2>
     </div>
 
-    <div class="search-container mt-5">
-        <input type="text" [(ngModel)]="searchQuery" (input)="filterProducts()"
-            placeholder="Search by Prodcut Name, Category, Method, or Price...">
-    </div>
 
-    <!-- Product Grid -->
-    <div class="product-container">
-        <div *ngFor="let product of filteredProducts" class="product-card">
-            <img src="../../assets/vegetable.png" alt="{{product.product_title}}">
-            <h2>{{product.product_title}}</h2>
-            <p>Category: {{product.category}}</p>
-            <p>Farming Method: {{product.farming_method}}</p>
-            <span class="price">Price: TND{{product.price}}/kg</span>
-            <button>Add to Cart</button>
-        </div>
-    </div>
+
+
     <!-- /add message if there is no product in the filtred -->
     <div *ngIf="filteredProducts.length == 0"
         class="product-container d-flex align-items-center justify-content-center">
