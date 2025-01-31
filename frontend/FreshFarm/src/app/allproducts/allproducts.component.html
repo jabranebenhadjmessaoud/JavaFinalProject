@@ -6,10 +6,39 @@
         <p>High-quality, fresh, and sustainable products straight from our farms just for you.</p>
     </header>
 
+    <!-- Search & Filter Section -->
     <div class="search-container mt-5">
         <input type="text" [(ngModel)]="searchQuery" (input)="filterProducts()"
-            placeholder="Search by Prodcut Name, Category, Method, or Price...">
+            placeholder="Search by Product Name or Price...">
+
+        <!-- Main Filter Dropdown -->
+        <select [(ngModel)]="selectedFilter" (change)="filterProducts()">
+            <option value="all">All</option>
+            <option value="category">Category</option>
+            <option value="farming_method">Farming Method</option>
+            <option value="location">Location</option>
+        </select>
+
+        <!-- Category Filter -->
+        <select *ngIf="selectedFilter === 'category'" [(ngModel)]="categoryQuery" (change)="filterProducts()">
+            <option value="">All</option>
+            <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+        </select>
+
+        <!-- Farming Method Filter -->
+        <select *ngIf="selectedFilter === 'farming_method'" [(ngModel)]="farmingMethodQuery"
+            (change)="filterProducts()">
+            <option value="">All</option>
+            <option *ngFor="let method of farmingMethods" [value]="method">{{ method }}</option>
+        </select>
+
+        <!-- Location Filter -->
+        <select *ngIf="selectedFilter === 'location'" [(ngModel)]="locationQuery" (change)="filterProducts()">
+            <option value="">All</option>
+            <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
+        </select>
     </div>
+
     <!-- Product Grid -->
     <div class="product-container">
         <div *ngFor="let product of filteredProducts" class="product-card">
@@ -17,35 +46,32 @@
             <h2>{{product.product_title}}</h2>
             <p>Category: {{product.category}}</p>
             <p>Farming Method: {{product.farming_method}}</p>
+            <p>Location: {{product.location}}</p>
             <span class="price">Price: TND{{product.price}}/kg</span>
             <button>Add to Cart</button>
         </div>
     </div>
 
-
     <!-- Loading Animation -->
     <div *ngIf="products.length == 0" class="product-container d-flex align-items-center justify-content-center">
         <svg style="height: 50px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
             <circle fill="#4CAF50" stroke="#4CAF50" stroke-width="15" r="15" cx="40" cy="100">
-                <animate attributeName="opacity" calcMode="spline" dur="2" values="1;0;1;"
-                    keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4"></animate>
+                <animate attributeName="opacity" calcMode="spline" dur="2" values="1;0;1;" keySplines=".5 0 .5 1"
+                    repeatCount="indefinite" begin="-.4"></animate>
             </circle>
             <circle fill="#4CAF50" stroke="#4CAF50" stroke-width="15" r="15" cx="100" cy="100">
-                <animate attributeName="opacity" calcMode="spline" dur="2" values="1;0;1;"
-                    keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2"></animate>
+                <animate attributeName="opacity" calcMode="spline" dur="2" values="1;0;1;" keySplines=".5 0 .5 1"
+                    repeatCount="indefinite" begin="-.2"></animate>
             </circle>
             <circle fill="#4CAF50" stroke="#4CAF50" stroke-width="15" r="15" cx="160" cy="100">
-                <animate attributeName="opacity" calcMode="spline" dur="2" values="1;0;1;"
-                    keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0"></animate>
+                <animate attributeName="opacity" calcMode="spline" dur="2" values="1;0;1;" keySplines=".5 0 .5 1"
+                    repeatCount="indefinite" begin="0"></animate>
             </circle>
         </svg>
         <h2 class="alert alert-danger mt-3">Products are Loading</h2>
     </div>
 
-
-
-
-    <!-- /add message if there is no product in the filtred -->
+    <!-- No Products Found Message -->
     <div *ngIf="filteredProducts.length == 0"
         class="product-container d-flex align-items-center justify-content-center">
         <svg style="height: 55px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150">

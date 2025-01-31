@@ -189,3 +189,66 @@ header p {
     border-color: #45a049;
     box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
+
+
+.search-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Input and Select Box Styling */
+.search-container input,
+.search-container select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Input Field */
+.search-container input {
+    width: 50%;
+}
+
+.search-container input:focus {
+    border-color: #45a049;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Select Dropdowns */
+.search-container select {
+    background: white;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto;
+    min-width: 150px;
+}
+
+/* Select Dropdown Hover & Focus Effects */
+.search-container select:hover,
+.search-container select:focus {
+    border-color: #45a049;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .search-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search-container input {
+        width: 90%;
+    }
+
+    .search-container select {
+        width: 90%;
+    }
+}

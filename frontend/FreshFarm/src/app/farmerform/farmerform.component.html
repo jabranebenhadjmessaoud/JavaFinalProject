@@ -76,16 +76,54 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6 mt-2">
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="location"><strong>Location *</strong></label>
-                                                <input [(ngModel)]="data.location" id="location" type="text"
-                                                    name="location" class="form-control border border-success"
-                                                    placeholder="Please enter the product location" required="required"
-                                                    data-error="Valid location is required.">
+                                                <label for="farming_method"><strong>Please specify the Location
+                                                        *</strong></label>
+                                                <select [ngModelOptions]="{standalone: true}"
+                                                    [(ngModel)]="data.location" id="location" name="location"
+                                                    class="form-control border border-success" required="required"
+                                                    data-error="Please specify the location.">
+                                                    <option value="--Select location--" selected disabled>
+                                                        --location--
+                                                    </option>
+                                                    <option name="Tunis" value="Tunis">Tunis
+                                                    </option>
+                                                    <option name="Sfax" value="Sfax">Sfax
+                                                    </option>
+                                                    <option name="Sousse" value="Sousse">Sousse</option>
+                                                    <option name="Ettadhamen" value="Ettadhamen">Ettadhamen</option>
+                                                    <option name="Kairouan" value="Kairouan">Kairouan</option>
+                                                    <option name="Gabès" value="Gabès">Gabès</option>
+                                                    <option name="Bizerte" value="Bizerte">Bizerte</option>
+                                                    <option name="Ariana" value="Ariana">Ariana</option>
+                                                    <option name="Gafsa" value="Gafsa">Gafsa</option>
+                                                    <option name="Monastir" value="Monastir">Monastir</option>
+                                                    <option name="Ben Arous
+                                                    " value="Ben Arous
+                                                    ">Ben Arous
+                                                    </option>
+                                                    <option name="La_Marsa
+                                                " value="La_Marsa
+                                                ">La Marsa
+                                                    </option>
+                                                    <option name="Medenine" value="Medenine">Medenine</option>
+                                                    <option name="Nabeul" value="Medenine">Nabeul</option>
+                                                    <option name="Tataouine" value="Tataouine">Tataouine</option>
+                                                    <option name="Tozeur" value="Tozeur">Tozeur</option>
+                                                    <option name="Zarzis" value="Zarzis">Zarzis</option>
+                                                    <option name="Hammamet" value="Hammamet">Hammamet</option>
+                                                    <option name="Kelibia" value="Kelibia">Kelibia</option>
+                                                    <option name="Beja
+                                                    " value="Beja
+                                                    ">Beja
+                                                    </option>
+                                                    <option name="Jendouba" value="Jendouba">Jendouba</option>
+                                                    <option name="Kebili" value="Kebili">Kebili</option>
+                                                    <option name="Siliana" value="Siliana">Siliana</option>
+                                                </select>
                                             </div>
                                         </div>
-
 
                                     </div>
                                     <div class="row">
