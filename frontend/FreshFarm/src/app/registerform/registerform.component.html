@@ -1,59 +1,52 @@
 <app-navbar></app-navbar>
-<div class="limiter">
-    <div class="container-login100">
-        <div class="wrap-login100">
-            <div class="login100-form-title" style="background-image: url(images/bg-01.jpg);">
-                <span class="login100-form-title-1">
-                </span>
+
+<body>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-form-title">
+                    <span class="login100-form-title-1">Create Account</span>
+                </div>
+
+                <form class="login100-form validate-form" (ngSubmit)="register()">
+                    <div class="wrap-input100">
+                        <input [(ngModel)]="data.fullName" class="input100" type="text" name="fullName" placeholder=" ">
+                        <span class="label-input100">Full Name</span>
+                    </div>
+
+                    <div class="wrap-input100">
+                        <input [(ngModel)]="data.email" class="input100" type="text" name="email" placeholder=" ">
+                        <span class="label-input100">Email</span>
+                    </div>
+
+                    <div class="wrap-input100">
+                        <input [(ngModel)]="data.password" class="input100" type="password" name="password"
+                            placeholder=" ">
+                        <span class="label-input100">Password</span>
+                    </div>
+
+                    <div class="wrap-input100">
+                        <input [(ngModel)]="data.confirmPassword" class="input100" type="password"
+                            name="confirmPassword" placeholder=" ">
+                        <span class="label-input100">Confirm Password</span>
+                    </div>
+
+                    <div class="wrap-input100">
+                        <select [ngModelOptions]="{standalone: true}" [(ngModel)]="data.role" class="input100">
+                            <option name="ROLE_CLIENT" value="ROLE_CLIENT">Client</option>
+                            <option name="ROLE_FARMER" value="ROLE_FARMER">Farmer</option>
+                        </select>
+                        <span class="label-input100">Account Type</span>
+                    </div>
+
+                    <div>
+                        <button type="submit" class="login100-form-btn">Sign Up</button>
+                        <div class="register-link">
+                            <a href="/authenticate">Already have an account? Login</a>
+                        </div>
+                    </div>
+                </form>
             </div>
-
-            <form class="login100-form validate-form" (ngSubmit)="register()">
-                <div class="wrap-input100 validate-input m-b-26" data-validate="Full Name is required">
-                    <span class="label-input100">Full Name</span>
-                    <input [(ngModel)]="data.fullName" class="input100" type="text" name="firstName"
-                        placeholder="Enter your First Name">
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                    <span class="label-input100">Email</span>
-                    <input [(ngModel)]="data.email" class="input100" type="text" name="email"
-                        placeholder="Enter your email">
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
-                    <span class="label-input100">Password</span>
-                    <input [(ngModel)]="data.password" class="input100" type="password" name="pass"
-                        placeholder="Enter password">
-                    <span class="focus-input100"></span>
-                </div>
-
-
-                <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
-                    <span class="label-input100">Confirm Password</span>
-                    <input [(ngModel)]="data.confirmPassword" class="input100" type="password" name="pass"
-                        placeholder="Confirm password">
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="d-flex  wrap-input100 validate-input m-b-18" data-validate="Password is required">
-                    <span class="label-input100">Account Type</span>
-                    <select [ngModelOptions]="{standalone: true}" [(ngModel)]="data.role">
-                        <option name="ROLE_CLIENT" value="ROLE_CLIENT">Client</option>
-                        <option name="ROLE_FARMER" value="ROLE_FARMER">Farmer</option>
-                    </select>
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="container-login100-form-btn">
-                    <button class="login100-form-btn">
-                        Sign Up
-                    </button>
-                </div>
-                <div>
-                    <a href="/authenticate">You already have an account?</a>
-                </div>
-            </form>
         </div>
     </div>
-</div>
+</body>

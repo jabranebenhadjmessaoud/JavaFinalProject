@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,6 +27,8 @@ public class ProductDTO {
     private Double price;
     
     private String description;
+
+    private Date createdAt;
 
 
 }

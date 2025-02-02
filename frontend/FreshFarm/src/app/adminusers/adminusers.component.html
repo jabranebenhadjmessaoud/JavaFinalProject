@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+
+<body>
+    <div class="dashboard">
+        <main class="dashboard-content">
+
+            <!-- Users Table -->
+            <section class="card users">
+                <h2> All Users: {{filteredUsers.length}}</h2>
+                <input type="text" [(ngModel)]="userSearchQuery" (input)="filterUsers()"
+                    placeholder="Search users by ID, Name, Email, or Role..." class="search-bar">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of filteredUsers">
+                            <td>{{user.id}}</td>
+                            <td>{{user.fullName}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.role}}</td>
+                            <td>
+                                <button class="btn-view">View</button>
+                                <button class="btn-edit">Edit</button>
+                                <button class="btn-delete">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+</body>

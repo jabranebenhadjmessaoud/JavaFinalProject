@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+
+<body>
+    <div class="dashboard">
+        <main class="dashboard-content">
+            <!-- Products Table -->
+            <section class="card products">
+                <h2>All Products: {{filteredProducts.length}} </h2>
+                <input type="text" [(ngModel)]="productSearchQuery" (input)="filterProducts()"
+                    placeholder="Search products by ID, Name, Price, Category, or Farming Method..." class="search-bar">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Category</th>
+                            <th>Farming Method</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of filteredProducts">
+                            <td>{{product.id}}</td>
+                            <td>{{product.product_title}}</td>
+                            <td>${{product.price}}/Kg</td>
+                            <td>{{product.category}}</td>
+                            <td>{{product.farming_method}}</td>
+                            <td>
+                                <button class="btn-view">View</button>
+                                <button class="btn-edit">Edit</button>
+                                <button class="btn-delete">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+</body>
