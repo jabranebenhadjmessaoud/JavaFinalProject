@@ -1,38 +1,32 @@
 <app-navbar></app-navbar>
-<div class="limiter">
-    <div class="container-login100">
-        <div class="wrap-login100">
-            <div class="login100-form-title" style="background-image: url(images/bg-01.jpg);">
-                <span class="login100-form-title-1">
-                </span>
+
+<body>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-form-title">
+                    <span class="login100-form-title-1">Welcome Back</span>
+                </div>
+                <form class="login100-form validate-form" (ngSubmit)="authenticate()">
+                    <div class="wrap-input100">
+                        <input [(ngModel)]="data.email" class="input100" type="text" name="email" placeholder=" ">
+                        <span class="label-input100">Email</span>
+                    </div>
+                    <div class="wrap-input100">
+                        <input [(ngModel)]="data.password" class="input100" type="password" name="password"
+                            placeholder=" ">
+                        <span class="label-input100">Password</span>
+                    </div>
+                    <div>
+                        <button type="submit" class="login100-form-btn">
+                            Login
+                        </button>
+                        <div class="register-link">
+                            <a href="/register">Don't have an account? Sign Up</a>
+                        </div>
+                    </div>
+                </form>
             </div>
-
-            <form class="login100-form validate-form" (ngSubmit)="authenticate()">
-                <div class="wrap-input100">
-                    <span class="label-input100">Email</span>
-                    <input class="input100" type="text" name="email" placeholder="Enter your email"
-                        [(ngModel)]="data.email">
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 ">
-                    <span class="label-input100">Password</span>
-                    <input class="input100" type="password" name="password" placeholder="Enter password"
-                        [(ngModel)]="data.password">
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="container-login100-form-btn">
-                    <button class="login100-form-btn">
-                        Login
-                    </button>
-                    <p *ngIf="errMessage" class="error" style="color: red; text-align: center;">{{errMessage.msg}}
-                    </p>
-                </div>
-                <div>
-                    <a href="/register"> You don't have an account?</a>
-                </div>
-            </form>
         </div>
     </div>
-</div>
+</body>

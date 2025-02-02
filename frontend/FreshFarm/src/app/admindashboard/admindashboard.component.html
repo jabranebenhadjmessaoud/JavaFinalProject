@@ -2,11 +2,17 @@
 
 <body>
     <div class="dashboard">
+        <nav class="navbar">
+            <a href="/admin-users">Users</a>
+            <a href="/admin-products">Products</a>
+            <a href="#posts">Posts</a>
+            <a href="#reports">Reports</a>
+        </nav>
         <main class="dashboard-content">
 
             <!-- Users Table -->
             <section class="card users">
-                <h2>All Users</h2>
+                <h2>All Users: {{filteredUsers.length}} </h2>
                 <input type="text" [(ngModel)]="userSearchQuery" (input)="filterUsers()"
                     placeholder="Search users by ID, Name, Email, or Role..." class="search-bar">
                 <table>
@@ -37,7 +43,7 @@
 
             <!-- Products Table -->
             <section class="card products">
-                <h2>All Products</h2>
+                <h2>All Products: {{filteredProducts.length}} </h2>
                 <input type="text" [(ngModel)]="productSearchQuery" (input)="filterProducts()"
                     placeholder="Search products by ID, Name, Price, Category, or Farming Method..." class="search-bar">
                 <table>
@@ -55,7 +61,7 @@
                         <tr *ngFor="let product of filteredProducts">
                             <td>{{product.id}}</td>
                             <td>{{product.product_title}}</td>
-                            <td>${{product.price}}/Kg</td>
+                            <td>TND {{product.price}}/Kg</td>
                             <td>{{product.category}}</td>
                             <td>{{product.farming_method}}</td>
                             <td>

@@ -39,9 +39,14 @@ export class AllproductsComponent {
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+
     this.apiService.getallproducts().subscribe((data) => {
       this.products = data;
+      //i want to sort the products by date of creation latest is first
+      this.products.sort((a, b) => { return <any>new Date(b.createdAt) - <any>new Date(a.createdAt) });
       this.filteredProducts = data; // Initially show all products
+      //checi if the products are holding the created_at
+      console.log(this.products);
     });
   }
 
