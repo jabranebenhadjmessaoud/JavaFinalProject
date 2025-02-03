@@ -25,8 +25,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
      */
     Optional<User> findByEmail(String email);
     
-    @Query(value="SELECT * FROM freshfarm.users where id=?1", nativeQuery=true)
-    Optional  <UserDTO> findAllfromUser(Long id);
+    //@Query(value="SELECT * FROM freshfarm.users where id=?1", nativeQuery=true)
+   // UserDTO findAllfromUser(Long id);
     
     
     /**

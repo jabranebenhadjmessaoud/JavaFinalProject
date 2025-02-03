@@ -62,12 +62,8 @@ public class UserService {
     
     
     public UserDTO getUserById(Long id) {
-		Optional<UserDTO> u=userRepository.findAllfromUser(id);
-		if(u.isEmpty()) {
-            System.out.println("emptyyyyy user service");
-			return null;
-		}
-		return u.get();   
+    	return userRepository.findById(id).map(this::convertEntityToDto) .orElseThrow(() ->new RuntimeException("Doctor not found"));
+
 	}
     
     
