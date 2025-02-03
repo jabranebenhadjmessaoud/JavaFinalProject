@@ -52,7 +52,7 @@ public class UserController {
     
     
     @GetMapping("/user/showprofile/{id}")
-    public Optional<UserDTO> displayUser(@PathVariable("id")Long id) {    
+    public UserDTO displayUser(@PathVariable("id")Long id) {    
 		return userService.getUserById(id);       
 	}
     
