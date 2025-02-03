@@ -1,6 +1,7 @@
 package com.javaproject.freshfarm.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.javaproject.freshfarm.dtos.UserDTO;
 import com.javaproject.freshfarm.models.Role;
-import com.javaproject.freshfarm.models.User;
 import com.javaproject.freshfarm.services.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -52,9 +52,10 @@ public class UserController {
     
     
     @GetMapping("/user/showprofile/{id}")
-    public User displayUser(@PathVariable("id")Long id) {    
-		return userService.getUserById(id);
+    public Optional<UserDTO> displayUser(@PathVariable("id")Long id) {    
+		return userService.getUserById(id);       
 	}
+    
     
     
 }

@@ -61,13 +61,14 @@ public class UserService {
     }
     
     
-    public User getUserById(Long id) {
-		Optional<User> u=userRepository.findById(id);
+    public UserDTO getUserById(Long id) {
+		Optional<UserDTO> u=userRepository.findAllfromUser(id);
 		if(u.isEmpty()) {
 			return null;
 		}
 		return u.get();
 	}
+    
     
     
     
