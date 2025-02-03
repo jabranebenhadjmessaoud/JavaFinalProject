@@ -70,6 +70,25 @@ textarea {
     /* Very light green background */
 }
 
+.post_title {
+    width: 420px;
+    padding: 1rem;
+    border: 2px solid #d1e7dd;
+    /* Light green border */
+    border-radius: 8px;
+    font-size: 1rem;
+    resize: none;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f8faf8;
+}
+
+.post_title:focus {
+    border-color: #4caf50;
+    /* Bright green */
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
 textarea:focus {
     border-color: #4caf50;
     /* Bright green */
@@ -90,6 +109,7 @@ textarea:focus {
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
 }
 
 .cancel-btn {

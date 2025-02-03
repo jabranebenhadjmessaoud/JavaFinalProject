@@ -45,7 +45,7 @@ export class ApiService {
       catchError(this.handleError));
   }
 
-  getallposts():Observable <any>{
+  getallposts(): Observable<any> {
     return this.http.get(this.baseUrl + "/farmer/posts/allposts").pipe(
       catchError(this.handleError));
   }
@@ -55,6 +55,16 @@ export class ApiService {
       catchError(this.handleError));
   }
 
-  
+  //fetch post details
+  showpostdetails(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + `/farmer/posts/showpost/${id}`).pipe(
+      catchError(this.handleError));
+  }
 
+
+  //get user by id
+  getuserbyid(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + `/user/showprofile/${id}`).pipe(
+      catchError(this.handleError));
+  }
 }

@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+
+<body>
+    <div class="post-details-container">
+        <!-- Post Header -->
+        <div class="post-header">
+            <!-- <img class="post-author-avatar" src="../../assets/farmer-avatar.png" alt="Farmer Avatar"> -->
+            <div class="post-author-info">
+                <span class="post-author">Title: {{post.post_title}}</span>
+                <span class="post-date">{{ getTimeAgo() }}</span>
+            </div>
+        </div>
+
+        <!-- Post Content -->
+        <div class="post-content">
+            <p>Description: {{post.description}}</p>
+            <img class="post-image" src="../../assets/vegetable.png" alt="Organic Tomatoes">
+        </div>
+
+        <!-- Post Interactions -->
+        <div class="post-interactions">
+            <button class="comment-button">💬 3 Comments</button>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="comments-section">
+            <h3>Comments</h3>
+            <div class="comment">
+                <!-- <img class="comment-author-avatar" src="../../assets/user-avatar.png" alt="User Avatar"> -->
+                <div class="comment-content">
+                    <span class="comment-author">Jane Smith</span>
+                    <span class="comment-text">Wow, those tomatoes look amazing! Great job!</span>
+                    <span class="comment-date">1 hour ago</span>
+                </div>
+            </div>
+            <!-- Add Comment Form -->
+            <form class="add-comment-form">
+                <textarea placeholder="Add a comment..." rows="3"></textarea>
+                <button type="submit">Post Comment</button>
+            </form>
+        </div>
+    </div>
+</body>
