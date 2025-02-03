@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,5 +19,7 @@ public class PostDTO {
     private String post_title;
 
     private String description;
+
+    private Date createdAt;
 
 }

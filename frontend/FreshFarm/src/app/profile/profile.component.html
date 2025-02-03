@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+
+<body>
+    <div style="margin-top: 65px;">
+        <div class="profile-container">
+            <!-- Profile Header -->
+            <div class="profile-header" style="margin-top: 150px;">
+                <div class="profile-info">
+                    <!-- <img class="profile-picture" src="../../assets/farmer-avatar.png" alt="Profile Picture"> -->
+                    <h1>John Doe</h1>
+                    <p class="profile-bio">Organic farmer passionate about sustainable agriculture and community growth.
+                        🌱
+                    </p>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <span class="stat-number">120</span>
+                            <span class="stat-label">Posts</span>
+                        </div>
+                    </div>
+                    <button class="edit-profile-button">Edit Profile</button>
+                </div>
+            </div>
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Posts Tab -->
+                <div id="posts" class="tab-pane active">
+                    <div class="posts-container">
+                        <!-- Single Post Card -->
+                        <div class="post">
+                            <!-- *ngFor="let post of posts" -->
+                            <div class="post-content">
+                                <p></p>
+                                <!-- {{ post.content }} -->
+                            </div>
+                            <img class="post-image" alt="Post Image">
+                            <!-- [src]="post.imageUrl" -->
+                            <div class="post-footer">
+                                <span class="post-date">123</span>
+                                <!-- {{ getTimeAgo(post) }} -->
+                                <button class="comment-button">💬 123</button>
+                                <!-- {{ post.comments }} -->
+                            </div>
+                        </div>
+                        <!-- Repeat for more posts -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

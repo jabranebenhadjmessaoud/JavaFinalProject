@@ -12,6 +12,8 @@ import { AllpostsComponent } from './allposts/allposts.component';
 import { AdminusersComponent } from './adminusers/adminusers.component';
 import { AdminproductsComponent } from './adminproducts/adminproducts.component';
 import { AdminpostsComponent } from './adminposts/adminposts.component';
+import { ShowpostdetailsComponent } from './showpostdetails/showpostdetails.component';
+import { ProfileComponent } from './profile/profile.component';
 
 export const routes: Routes = [
     { path: "homepage", component: HomepageComponent },
@@ -25,4 +27,6 @@ export const routes: Routes = [
     { path: "farmer-form", component: FarmerformComponent, canActivate: [AuthGuard] },
     { path: "community-form", component: ComunityformComponent, canActivate: [AuthGuard] },
     { path: "all-posts", component: AllpostsComponent, canActivate: [AuthGuard] },
+    { path: "post-details/:id", component: ShowpostdetailsComponent, canActivate: [AuthGuard] },
+    { path: "profile/:id", component: ProfileComponent, canActivate: [AuthGuard] },
 ];

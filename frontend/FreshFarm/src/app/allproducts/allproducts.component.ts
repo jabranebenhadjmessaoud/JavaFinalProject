@@ -4,6 +4,7 @@ import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { differenceInMinutes, differenceInHours, differenceInDays } from 'date-fns';
 
 @Component({
   selector: 'app-allproducts',
@@ -66,4 +67,25 @@ export class AllproductsComponent {
     });
   }
 
+
+  getTimeAgo(product: any): string {
+    if (!product || !product.createdAt) return 'Unknown';
+
+    const now = new Date();
+    const postDate = new Date(product.createdAt);
+    const minutesAgo = differenceInMinutes(now, postDate);
+    const hoursAgo = differenceInHours(now, postDate);
+    const daysAgo = differenceInDays(now, postDate);
+
+    if (minutesAgo < 1) {
+      return 'Just now';
+    } else if (minutesAgo < 60) {
+      return `${minutesAgo} minute${minutesAgo > 1 ? 's' : ''} ago`;
+    } else if (hoursAgo < 24) {
+      const remainingMinutes = minutesAgo % 60;
+      return `${hoursAgo} hour${hoursAgo > 1 ? 's' : ''} ${remainingMinutes > 0 ? remainingMinutes + ' minute' + (remainingMinutes > 1 ? 's' : '') : ''} ago`;
+    } else {
+      return `${daysAgo} day${daysAgo > 1 ? 's' : ''} ago`;
+    }
+  }
 }

@@ -48,6 +48,7 @@
             <p>Farming Method: {{product.farming_method}}</p>
             <p>Location: {{product.location}}</p>
             <span class="price">Price: TND{{product.price}}/kg</span>
+            <p>Posted: {{ getTimeAgo(product) }}</p>
             <button>Add to Cart</button>
         </div>
     </div>
