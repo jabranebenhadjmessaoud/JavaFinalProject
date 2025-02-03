@@ -1,6 +1,7 @@
 package com.javaproject.freshfarm.models;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,6 +12,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -43,6 +46,15 @@ public class Post {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id")
 	private User postUploadedBy;    
+	
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "comments",
+    			joinColumns = @JoinColumn(name = "post_id"),
+    			inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<User> usersCommentedOnPost;
+	
+	
 	
 	
 	@Column(updatable = false)

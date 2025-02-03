@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { User } from './user';
 import { Product } from './product';
+import { Post } from './post';
 
 
 @Injectable({
@@ -41,6 +42,16 @@ export class ApiService {
   }
   getallusers(): Observable<any> {
     return this.http.get(this.baseUrl + "/admin/allusers").pipe(
+      catchError(this.handleError));
+  }
+
+  getallposts():Observable <any>{
+    return this.http.get(this.baseUrl + "/farmer/posts/allposts").pipe(
+      catchError(this.handleError));
+  }
+
+  createpost(data: Post): Observable<any> {
+    return this.http.post(this.baseUrl + "/farmer/posts/newpost", data).pipe(
       catchError(this.handleError));
   }
 

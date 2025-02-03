@@ -59,6 +59,14 @@ public class User implements UserDetails {
 	private List<Product> addedproductstocart;
 	
 	
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "comments",
+				joinColumns = @JoinColumn(name = "user_id"),
+				inverseJoinColumns = @JoinColumn(name = "post_id"))  
+	private List<Post> postsCommentedByUser;
+	
+	
 
 	@Enumerated(EnumType.STRING)
 	private Role role;

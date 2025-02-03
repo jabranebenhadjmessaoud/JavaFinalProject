@@ -8,7 +8,19 @@
         <!-- Post Feed -->
         <div class="post-feed">
             <!-- Example Post 1 -->
-            <div class="post">
+
+            <div class="post-container">
+                <div *ngFor="let post of posts" class="post-card">
+                    <img src="../../assets/vegetable.png" alt="{{post.post_title}}">
+                    <h2>{{post.post_title}}</h2>
+                    <p>Description: {{post.description}}</p>
+
+                </div>
+            </div>
+
+
+
+            <!-- <div class="post">
                 <div class="post-content">
                     <p>Just harvested my first batch of organic tomatoes this season! 🍅🌱 #OrganicFarming</p>
                 </div>
@@ -20,7 +32,7 @@
                     <span class="post-author">John Doe</span>
                     <span class="post-date">October 10, 2023</span>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </body>
