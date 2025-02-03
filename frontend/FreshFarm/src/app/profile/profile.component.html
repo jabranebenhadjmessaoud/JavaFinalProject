@@ -7,10 +7,10 @@
             <div class="profile-header" style="margin-top: 150px;">
                 <div class="profile-info">
                     <!-- <img class="profile-picture" src="../../assets/farmer-avatar.png" alt="Profile Picture"> -->
-                    <h1>John Doe</h1>
-                    <p class="profile-bio">Organic farmer passionate about sustainable agriculture and community growth.
-                        🌱
-                    </p>
+                    <h1>{{profile.fullName}}</h1>
+                    <h3 *ngIf="profile.role == 'ROLE_ADMIN'">Account Type: Admin</h3>
+                    <h3 *ngIf="profile.role == 'ROLE_CLIENT'">Account Type: Client</h3>
+                    <h3 *ngIf="profile.role == 'ROLE_FARMER'">Account Type: Farmer</h3>
                     <div class="profile-stats">
                         <div class="stat">
                             <span class="stat-number">120</span>
@@ -25,8 +25,8 @@
                 <div id="posts" class="tab-pane active">
                     <div class="posts-container">
                         <!-- Single Post Card -->
-                        <div class="post">
-                            <!-- *ngFor="let post of posts" -->
+                        <div class="post" *ngFor="let post of created_posts">
+
                             <div class="post-content">
                                 <p></p>
                                 <!-- {{ post.content }} -->

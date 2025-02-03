@@ -17,7 +17,6 @@
 
                     <div class="col-md-6 mt-2">
                         <div class="form-group">
-                            <label for="post_title"><strong>Post Title *</strong></label>
                             <input [(ngModel)]="data.post_title" id="post_title" type="text" name="post_title"
                                 class="form-control border border-success post_title"
                                 placeholder="Please enter your post Title " required="required"
@@ -27,7 +26,7 @@
                     <textarea [(ngModel)]="data.description" id="postContent" name="description"
                         placeholder="What's growing in your field?"></textarea>
                     <div class="form-actions">
-                        <a type="button" class="cancel-btn">Cancel</a>
+                        <a href="/" type="button" class="cancel-btn">Cancel</a>
                         <button type="submit" class="submit-btn">Post</button>
                     </div>
 

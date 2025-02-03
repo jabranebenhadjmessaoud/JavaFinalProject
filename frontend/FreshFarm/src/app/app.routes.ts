@@ -14,11 +14,13 @@ import { AdminproductsComponent } from './adminproducts/adminproducts.component'
 import { AdminpostsComponent } from './adminposts/adminposts.component';
 import { ShowpostdetailsComponent } from './showpostdetails/showpostdetails.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NoAuthGuard } from './guards/no-auth.guard';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export const routes: Routes = [
     { path: "", component: HomepageComponent },
-    { path: "authenticate", component: LoginformComponent },
-    { path: "register", component: RegisterformComponent },
+    { path: "authenticate", component: LoginformComponent, canActivate: [NoAuthGuard] },
+    { path: "register", component: RegisterformComponent, canActivate: [NoAuthGuard] },
     { path: "admin", component: AdmindashboardComponent, canActivate: [AdminGuard] },
     { path: "admin-users", component: AdminusersComponent, canActivate: [AdminGuard] },
     { path: "admin-products", component: AdminproductsComponent, canActivate: [AdminGuard] },
@@ -29,4 +31,5 @@ export const routes: Routes = [
     { path: "all-posts", component: AllpostsComponent, canActivate: [AuthGuard] },
     { path: "post-details/:id", component: ShowpostdetailsComponent, canActivate: [AuthGuard] },
     { path: "profile/:id", component: ProfileComponent, canActivate: [AuthGuard] },
+    { path: '**', component: NotFoundComponent },
 ];

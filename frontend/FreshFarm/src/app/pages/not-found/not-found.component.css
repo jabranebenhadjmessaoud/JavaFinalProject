@@ -1,0 +1,28 @@
+.not-found-container {
+    text-align: center;
+    margin-top: 100px;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #e74c3c;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.back-home {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #27ae60;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.back-home:hover {
+    background-color: #219150;
+}

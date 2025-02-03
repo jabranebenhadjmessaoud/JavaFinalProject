@@ -13,13 +13,16 @@ import { User } from '../user';
 })
 export class ProfileComponent {
   profile: User = {};
-  user_id : any| null=null
+  user_id: any | null = null
+  created_posts: any = [];
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     this.user_id = localStorage.getItem('user_id');
     this.apiService.getuserbyid(this.user_id).subscribe((data) => {
       this.profile = data;
+      this.created_posts = data.createdPosts;
+      console.log(this.created_posts);
       console.log(this.profile);
     });
   }

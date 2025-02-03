@@ -26,7 +26,7 @@ export class NavbarComponent {
   userRole = localStorage.getItem('role');
   userId = localStorage.getItem('user_id');
 
-async  logout():Promise<void>{
+  async logout(): Promise<void> {
 
     await localStorage.clear();
     this.router.navigate(['/authenticate']);
