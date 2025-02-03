@@ -1,8 +1,8 @@
 package com.javaproject.freshfarm.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,8 +52,9 @@ public class UserController {
     
     
     @GetMapping("/user/showprofile/{id}")
-    public UserDTO displayUser(@PathVariable("id")Long id) {    
-		return userService.getUserById(id);       
+    public  ResponseEntity<UserDTO> displayUser(@PathVariable("id")Long id) {  
+    	UserDTO user=userService.getUserById(id);
+		return ResponseEntity.ok(user) ;      
 	}
     
     
