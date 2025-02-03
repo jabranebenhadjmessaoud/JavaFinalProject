@@ -252,3 +252,184 @@ header p {
         width: 90%;
     }
 }
+
+
+/* Section Header */
+section h2 {
+    font-size: 2rem;
+    margin: 20px 0;
+    text-align: center;
+    color: #2E7D32;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Fresh & Promotion Product Containers */
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* Larger product cards */
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: auto;
+    background: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Fresh Product Section */
+.fresh-products {
+    background: linear-gradient(145deg, #66bb6a, #388e3c);
+    color: white;
+    padding: 30px 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.fresh-products h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Promotion Product Section */
+.promotion-products {
+    background: linear-gradient(145deg, #ff9800, #f57c00);
+    color: white;
+    padding: 30px 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.promotion-products h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Product Card */
+.product-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.product-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+.product-card h2 {
+    font-size: 1.5rem;
+    margin: 15px 0 5px;
+    color: #2E7D32;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.product-card p {
+    font-size: 1rem;
+    color: #666;
+    padding: 0 15px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.product-card .price {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: bold;
+    display: block;
+    margin: 10px 0;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.product-card button {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 25px;
+    margin: 15px 0;
+    transition: background 0.3s ease, transform 0.3s ease;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.product-card button:hover {
+    background: linear-gradient(135deg, #45a049, #1b5e20);
+    transform: scale(1.05);
+}
+
+/* Cool Button for Switch View */
+button {
+    background: #388e3c;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    transition: background 0.3s ease;
+    margin-top: 20px;
+}
+
+button:hover {
+    background: #2E7D32;
+}
+
+/* Loading and No Products Found Styling */
+.alert {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #d32f2f;
+}
+
+/* Keyframe Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

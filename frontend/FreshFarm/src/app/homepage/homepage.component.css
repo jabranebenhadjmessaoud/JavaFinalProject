@@ -150,7 +150,7 @@
     /* Image takes up half the width */
     height: 300px;
     /* Fixed height */
-    background-image: url('../../../public/images/image7.jpg');
+    background-image: url('/assets/pexels-akilmazumder-1072824.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

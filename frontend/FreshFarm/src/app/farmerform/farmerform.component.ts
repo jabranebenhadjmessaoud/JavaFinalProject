@@ -31,7 +31,7 @@ export class FarmerformComponent implements OnInit {
   createProduct(): void {
     this.apiService.createproduct(this.data).subscribe({
       next: (res) => {
-        this.router.navigate(['/homepage']);
+        this.router.navigate(['/']);
       },
       error: err => this.errMessage = err
     });

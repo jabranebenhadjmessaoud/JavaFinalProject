@@ -15,27 +15,27 @@ import { CommonModule } from '@angular/common';
   styleUrl: './comunityform.component.css'
 })
 export class ComunityformComponent {
-  
-    data: Post = {};
-    errMessage: any = {};
-    userName: string | null = '';
+
+  data: Post = {};
+  errMessage: any = {};
+  userName: string | null = '';
 
 
   constructor(private apiService: ApiService, private router: Router) { }
-  
-    ngOnInit(): void {
-      // Retrieve the username when the component initializes
-      this.userName = localStorage.getItem('userName');
-    }
 
-    createPost():void{
-      this.apiService.createpost(this.data).subscribe({
-        next: (res) => {
-          this.router.navigate(['/homepage']);
-        },
-        error: err => this.errMessage = err
-      })
-    }
+  ngOnInit(): void {
+    // Retrieve the username when the component initializes
+    this.userName = localStorage.getItem('userName');
+  }
+
+  createPost(): void {
+    this.apiService.createpost(this.data).subscribe({
+      next: (res) => {
+        this.router.navigate(['/']);
+      },
+      error: err => this.errMessage = err
+    })
+  }
 
 
 

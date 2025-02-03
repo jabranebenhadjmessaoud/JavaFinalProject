@@ -5,7 +5,9 @@
         <main class="dashboard-content">
             <!-- All Posts Table -->
             <section class="card posts">
-                <h2>All Posts</h2>
+                <h2>All Posts: {{filteredPosts.length}} </h2>
+                <input type="text" [(ngModel)]="postSearchQuery" (input)="filterPosts()"
+                    placeholder="Search products by ID, Title, Author..." class="search-bar">
                 <table>
                     <thead>
                         <tr>
@@ -17,22 +19,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Introduction to HTML</td>
+                        <tr *ngFor="let post of filteredPosts">
+                            <td>{{post.id}}</td>
+                            <td><a style="text-decoration: none;"
+                                    href="/post-details/{{post.id}}">{{post.post_title}}</a></td>
                             <td>John Doe</td>
-                            <td>2023-10-01</td>
-                            <td>
-                                <button class="btn-view">View</button>
-                                <button class="btn-edit">Edit</button>
-                                <button class="btn-delete">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>CSS Animations</td>
-                            <td>Jane Smith</td>
-                            <td>2023-10-05</td>
+                            <td>{{ getTimeAgo(post) }}</td>
                             <td>
                                 <button class="btn-view">View</button>
                                 <button class="btn-edit">Edit</button>
@@ -41,6 +33,19 @@
                         </tr>
                     </tbody>
                 </table>
+                <!-- No Posts Found Message -->
+                <div *ngIf="filteredPosts.length == 0"
+                    class="product-container d-flex align-items-center justify-content-center">
+                    <svg style="height: 55px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150">
+                        <path fill="none" stroke="#368B3A" stroke-width="15" stroke-linecap="round"
+                            stroke-dasharray="300 385" stroke-dashoffset="0"
+                            d="M275 75c0 31-27 50-50 50-58 0-92-100-150-100-28 0-50 22-50 50s23 50 50 50c58 0 92-100 150-100 24 0 50 19 50 50Z">
+                            <animate attributeName="stroke-dashoffset" calcMode="spline" dur="2" values="685;-685"
+                                keySplines="0 0 1 1" repeatCount="indefinite"></animate>
+                        </path>
+                    </svg>
+                    <h2 class="alert alert-danger mt-3">No Posts Found</h2>
+                </div>
             </section>
         </main>
     </div>

@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { NavbarComponent } from "../navbar/navbar.component";
 import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { differenceInMinutes, differenceInHours, differenceInDays } from 'date-fns';
+import { differenceInDays, differenceInMinutes, differenceInHours } from 'date-fns';
 
 @Component({
   selector: 'app-allproducts',
@@ -16,15 +15,15 @@ import { differenceInMinutes, differenceInHours, differenceInDays } from 'date-f
 export class AllproductsComponent {
   products: any[] = [];
   filteredProducts: any[] = [];
+  olderProducts: any[] = [];  // New array to store products older than 3 days
   searchQuery: string = '';
+  searchQueryOld: string = '';  // Search query for older products
 
-  // ✅ Add filter properties
-  selectedFilter: string = 'all'; // Default filter is "all"
+  selectedFilter: string = 'all';
   categoryQuery: string = '';
   farmingMethodQuery: string = '';
   locationQuery: string = '';
 
-  // ✅ Define categories, farming methods, and locations dynamically
   categories: string[] = ["Vegetables", "Fruits", "Meat", "Dairy", "Herbs", "Other"];
   farmingMethods: string[] = ["Subsistence", "Plantation", "Dryland", "Wetland", "Mixed", "Organic", "Others"];
   locations: string[] = [
@@ -34,27 +33,37 @@ export class AllproductsComponent {
     "Kelibia", "Beja", "Jendouba", "Kebili", "Siliana"
   ];
 
-
-
+  // Track whether to show older products or fresh products
+  showOlderProducts: boolean = false;
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-
     this.apiService.getallproducts().subscribe((data) => {
       this.products = data;
-      //i want to sort the products by date of creation latest is first
-      this.products.sort((a, b) => { return <any>new Date(b.createdAt) - <any>new Date(a.createdAt) });
-      this.filteredProducts = data; // Initially show all products
-      //checi if the products are holding the created_at
       console.log(this.products);
+      this.products.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      this.filterProducts(); // Filter products to show initially
     });
+  }
+
+  // Toggle between fresh and older products
+  toggleProductView() {
+    this.showOlderProducts = !this.showOlderProducts;
   }
 
   filterProducts() {
     const query = this.searchQuery.toLowerCase().trim();
+    const queryOld = this.searchQueryOld.toLowerCase().trim();
 
+    // Filter fresh products (created within the last 3 days)
     this.filteredProducts = this.products.filter(product => {
+      const productDate = new Date(product.createdAt);
+      const daysAgo = differenceInDays(new Date(), productDate);
+
+      // Matches search query and ensures the product was created in the last 3 days
+      const matchesFreshProducts = daysAgo <= 3;
+
       const matchesSearch =
         product.product_title.toLowerCase().includes(query) ||
         product.price.toString().includes(query);
@@ -63,14 +72,25 @@ export class AllproductsComponent {
       const matchesFarmingMethod = this.selectedFilter !== 'farming_method' || this.farmingMethodQuery === '' || product.farming_method === this.farmingMethodQuery;
       const matchesLocation = this.selectedFilter !== 'location' || this.locationQuery === '' || product.location === this.locationQuery;
 
-      return matchesSearch && matchesCategory && matchesFarmingMethod && matchesLocation;
+      return matchesSearch && matchesCategory && matchesFarmingMethod && matchesLocation && matchesFreshProducts;
+    });
+
+    // Filter products that are older than 3 days but not older than 6 days
+    this.olderProducts = this.products.filter(product => {
+      const productDate = new Date(product.createdAt);
+      const daysAgo = differenceInDays(new Date(), productDate);
+      const matchesOldSearch =
+        product.product_title.toLowerCase().includes(queryOld) ||
+        product.price.toString().includes(queryOld);
+
+      // Ensure the product is older than 3 days and not older than 6 days
+      return daysAgo > 3 && daysAgo <= 6 && matchesOldSearch;
     });
   }
 
 
-  getTimeAgo(product: any): string {
-    if (!product || !product.createdAt) return 'Unknown';
 
+  getTimeAgo(product: any): string {
     const now = new Date();
     const postDate = new Date(product.createdAt);
     const minutesAgo = differenceInMinutes(now, postDate);

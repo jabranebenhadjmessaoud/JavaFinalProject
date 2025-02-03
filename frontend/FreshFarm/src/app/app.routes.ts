@@ -16,7 +16,7 @@ import { ShowpostdetailsComponent } from './showpostdetails/showpostdetails.comp
 import { ProfileComponent } from './profile/profile.component';
 
 export const routes: Routes = [
-    { path: "homepage", component: HomepageComponent },
+    { path: "", component: HomepageComponent },
     { path: "authenticate", component: LoginformComponent },
     { path: "register", component: RegisterformComponent },
     { path: "admin", component: AdmindashboardComponent, canActivate: [AdminGuard] },
