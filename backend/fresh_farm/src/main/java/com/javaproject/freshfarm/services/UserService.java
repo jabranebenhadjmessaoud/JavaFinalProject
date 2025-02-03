@@ -1,6 +1,9 @@
 package com.javaproject.freshfarm.services;
 
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Service;
@@ -10,8 +13,7 @@ import com.javaproject.freshfarm.models.Role;
 import com.javaproject.freshfarm.models.User;
 import com.javaproject.freshfarm.repositories.UserRepository;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -57,6 +59,19 @@ public class UserService {
                 .map(this::convertEntityToDto)
                 .collect(Collectors.toList());
     }
+    
+    
+    public User getUserById(Long id) {
+		Optional<User> u=userRepository.findById(id);
+		if(u.isEmpty()) {
+			return null;
+		}
+		return u.get();
+	}
+    
+    
+    
+    
 
     /**
      * Converts a User entity to a UserDTO.

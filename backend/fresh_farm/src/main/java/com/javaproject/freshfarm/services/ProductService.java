@@ -53,6 +53,11 @@ public class ProductService {
 	            if (product.getPrice() != null){
 	            	oldProduct.setPrice(product.getPrice());
 	            }
+	            
+	            if (product.getQuantity() != null){
+	            	oldProduct.setQuantity(product.getQuantity());
+	            }
+	            
 	            if (product.getCategory() != null){
 	            	oldProduct.setCategory(product.getCategory());
 	            }

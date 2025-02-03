@@ -51,12 +51,9 @@ public class User implements UserDetails {
 	@OneToMany(mappedBy = "postUploadedBy", fetch = FetchType.LAZY)
 	private List<Post> createdPosts;
 	
+	@OneToMany(mappedBy = "productcart_id", fetch = FetchType.LAZY)
+	private List<Product> addedprodectstocart;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "cart",
-				joinColumns = @JoinColumn(name = "user_id"),
-				inverseJoinColumns = @JoinColumn(name = "product_id"))  
-	private List<Product> addedproductstocart;
 	
 	
 	

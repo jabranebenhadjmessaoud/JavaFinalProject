@@ -41,6 +41,9 @@ public class Product {
 	@Min(value=0,message="min shoule be")
 	private Double price;
 	
+	@Min(value=0,message="min shoule be")
+	private Integer quantity;
+	
 	@NotEmpty(message = "Description is required!")
 	private String description;
 	
@@ -49,11 +52,9 @@ public class Product {
 	@JoinColumn(name="user_id")
 	private User postedBy;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "cart",
-    			joinColumns = @JoinColumn(name = "product_id"),
-    			inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<User> usersAddedProductToTheirCart;
+	@OneToMany(mappedBy = "usercart_id", fetch = FetchType.LAZY)
+	private List<User> usersAddedProductToTheirCart;
+	
 	
 	
 	@Column(updatable = false)
