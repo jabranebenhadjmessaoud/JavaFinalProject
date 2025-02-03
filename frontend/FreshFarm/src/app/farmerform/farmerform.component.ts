@@ -7,11 +7,12 @@ import { NavbarComponent } from "../navbar/navbar.component";
 import { Product } from '../product';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
+import { ImageUploadComponent } from "../components/image-upload/image-upload.component";
 
 @Component({
   selector: 'app-farmerform',
   standalone: true, // If using standalone components
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, CommonModule, NavbarComponent],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, CommonModule, NavbarComponent, ImageUploadComponent],
   templateUrl: './farmerform.component.html',
   styleUrls: ['./farmerform.component.css']  // Fixed 'styleUrl' to 'styleUrls'
 })
