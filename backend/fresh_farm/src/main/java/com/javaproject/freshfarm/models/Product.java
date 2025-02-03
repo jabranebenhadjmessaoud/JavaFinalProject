@@ -52,8 +52,8 @@ public class Product {
 	@JoinColumn(name="user_id")
 	private User postedBy;
 	
-	@OneToMany(mappedBy = "usercart_id", fetch = FetchType.LAZY)
-	private List<User> usersAddedProductToTheirCart;
+	@OneToMany(mappedBy = "productcart_id", fetch = FetchType.LAZY)
+	private List<ShoppingCart> shoppingCart;
 	
 	
 	

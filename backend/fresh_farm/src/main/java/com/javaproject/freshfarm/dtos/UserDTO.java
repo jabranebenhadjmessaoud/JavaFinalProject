@@ -1,5 +1,6 @@
 package com.javaproject.freshfarm.dtos;
 
+import java.util.Date;
 import java.util.List;
 
 import com.javaproject.freshfarm.models.Post;
@@ -27,6 +28,8 @@ public class UserDTO {
     private List<Product> createdProducts;
 	private List<Post> createdPosts;
 	private List<Product> addedprodectstocart;
+	
+	private Date createdAt;
 
     private Role role;
 }

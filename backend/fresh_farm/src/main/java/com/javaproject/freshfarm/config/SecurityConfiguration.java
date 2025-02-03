@@ -45,6 +45,8 @@ public class SecurityConfiguration {
                 .hasAnyRole("FARMER")
                 .requestMatchers("/api/v1/farmer/**")
                 .hasAnyRole("FARMER","")
+                .requestMatchers("/api/v1/user/showprofile/**")
+                .permitAll()
                 .anyRequest()
                 .authenticated() // Requires authentication for all other requests
                 .and()

@@ -1,18 +1,18 @@
 package com.javaproject.freshfarm.controllers;
 
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.javaproject.freshfarm.dtos.ProductDTO;
 import com.javaproject.freshfarm.dtos.UserDTO;
 import com.javaproject.freshfarm.models.Role;
-import com.javaproject.freshfarm.services.ProductService;
+import com.javaproject.freshfarm.models.User;
 import com.javaproject.freshfarm.services.UserService;
 
-import java.util.List;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Controller for handling user-related requests for the admin API.
@@ -49,4 +49,12 @@ public class UserController {
     public List<UserDTO> getUsersByRole(@PathVariable("role") Role role) {
         return userService.getUsersByRole(role);
     }
+    
+    
+    @GetMapping("/user/showprofile/{id}")
+    public User displayUser(@PathVariable("id")Long id) {    
+		return userService.getUserById(id);
+	}
+    
+    
 }

@@ -51,8 +51,8 @@ public class User implements UserDetails {
 	@OneToMany(mappedBy = "postUploadedBy", fetch = FetchType.LAZY)
 	private List<Post> createdPosts;
 	
-	@OneToMany(mappedBy = "productcart_id", fetch = FetchType.LAZY)
-	private List<Product> addedprodectstocart;
+	@OneToMany(mappedBy = "usercart_id", fetch = FetchType.LAZY)
+	private List<ShoppingCart> shoppingCart;
 	
 	
 	
