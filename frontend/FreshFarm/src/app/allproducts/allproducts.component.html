@@ -4,13 +4,13 @@
     <header>
         <h1>Our Agricultural Products</h1>
         <p>High-quality, fresh, and sustainable products straight from our farms just for you.</p>
+        <h1>Fresh Products</h1>
     </header>
 
     <!-- Search & Filter Section -->
     <div class="search-container mt-5">
         <input type="text" [(ngModel)]="searchQuery" (input)="filterProducts()"
             placeholder="Search by Product Name or Price...">
-
         <!-- Main Filter Dropdown -->
         <select [(ngModel)]="selectedFilter" (change)="filterProducts()">
             <option value="all">All</option>
@@ -18,7 +18,6 @@
             <option value="farming_method">Farming Method</option>
             <option value="location">Location</option>
         </select>
-
         <!-- Category Filter -->
         <select *ngIf="selectedFilter === 'category'" [(ngModel)]="categoryQuery" (change)="filterProducts()">
             <option value="">All</option>
@@ -37,22 +36,30 @@
             <option value="">All</option>
             <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
         </select>
-    </div>
 
-    <!-- Product Grid -->
-    <div class="product-container">
-        <div *ngFor="let product of filteredProducts" class="product-card">
-            <img src="../../assets/vegetable.png" alt="{{product.product_title}}">
-            <h2>{{product.product_title}}</h2>
-            <p>Category: {{product.category}}</p>
-            <p>Farming Method: {{product.farming_method}}</p>
-            <p>Location: {{product.location}}</p>
-            <span class="price">Price: TND{{product.price}}/kg</span>
-            <p>Posted: {{ getTimeAgo(product) }}</p>
-            <button>Add to Cart</button>
+    </div>
+    <!-- Toggle Button to Switch Between Fresh and Older Products -->
+    <div class="text-center">
+        <button (click)=" toggleProductView()" class="btn btn-primary">
+            {{ showOlderProducts ? 'Show Fresh Products' : 'Show Promotion Products' }}
+        </button>
+    </div>
+    <!-- Fresh Products Section -->
+    <div *ngIf="!showOlderProducts" class="fresh-products">
+        <h2>Fresh Products</h2>
+        <div class="product-container">
+            <div *ngFor="let product of filteredProducts" class="product-card">
+                <img src="../../assets/vegetable.png" alt="{{product.product_title}}">
+                <h2>{{product.product_title}}</h2>
+                <p>Category: {{product.category}}</p>
+                <p>Farming Method: {{product.farming_method}}</p>
+                <p>Location: {{product.location}}</p>
+                <span class="price">Price: {{product.price}}TND/kg</span>
+                <p>Posted: {{ getTimeAgo(product) }}</p>
+                <button>Add to Cart</button>
+            </div>
         </div>
     </div>
-
     <!-- Loading Animation -->
     <div *ngIf="products.length == 0" class="product-container d-flex align-items-center justify-content-center">
         <svg style="height: 50px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
@@ -85,4 +92,23 @@
         </svg>
         <h2 class="alert alert-danger mt-3">No Products Found</h2>
     </div>
+
+    <!-- Promotion Products Section -->
+    <div *ngIf="showOlderProducts" class="promotion-products">
+        <h2>Promotion products</h2>
+        <div class="product-container">
+            <div *ngFor="let product of olderProducts" class="product-card">
+                <img src="../../assets/vegetable.png" alt="{{product.product_title}}">
+                <h2>{{product.product_title}}</h2>
+                <p>Category: {{product.category}}</p>
+                <p>Farming Method: {{product.farming_method}}</p>
+                <p>Location: {{product.location}}</p>
+                <span class="price">Price: {{product.price}}TND/kg</span>
+                <p>Posted: {{ getTimeAgo(product) }}</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+
 </body>

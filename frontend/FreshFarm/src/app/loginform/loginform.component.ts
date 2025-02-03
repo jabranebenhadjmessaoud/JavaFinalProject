@@ -31,13 +31,13 @@ export class LoginformComponent {
         verif = true
         console.log(verif)
         if (localStorage.getItem('role') == 'ROLE_FARMER') {
-          this.router.navigate(['/homepage'])
+          this.router.navigate(['/'])
         }
         if (localStorage.getItem('role') == 'ROLE_ADMIN') {
-          this.router.navigate(['/homepage'])
+          this.router.navigate(['/'])
         }
         if (localStorage.getItem('role') == 'ROLE_CLIENT') {
-          this.router.navigate(['/homepage'])
+          this.router.navigate(['/'])
         }
       },
       error: err => this.errMessage = err
