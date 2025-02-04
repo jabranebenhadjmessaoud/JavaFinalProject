@@ -4,7 +4,6 @@ import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { differenceInDays, differenceInMinutes, differenceInHours } from 'date-fns';
-import { CartItem, CartService } from '../cart.service';
 
 @Component({
   selector: 'app-allproducts',
@@ -37,7 +36,7 @@ export class AllproductsComponent {
   // Track whether to show older products or fresh products
   showOlderProducts: boolean = false;
 
-  constructor(private apiService: ApiService,private cartService: CartService) { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     this.apiService.getallproducts().subscribe((data) => {
@@ -112,17 +111,7 @@ export class AllproductsComponent {
 
 
 
-  
 
-  addToCart(product: any): void {
-    const cartItem: CartItem = {
-      id: product.id,
-      name: product.product_title,
-      price: product.price,
-      quantity: 1
-    };
-    this.cartService.addToCart(cartItem);
-  }
 
 
 }
