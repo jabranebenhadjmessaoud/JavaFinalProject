@@ -57,7 +57,11 @@ public class ProductService {
 	            if (product.getQuantity() != null){
 	            	oldProduct.setQuantity(product.getQuantity());
 	            }
-	            
+
+				if (product.getImage_url() != null){
+					oldProduct.setImage_url(product.getImage_url());
+				}
+
 	            if (product.getCategory() != null){
 	            	oldProduct.setCategory(product.getCategory());
 	            }

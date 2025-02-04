@@ -16,6 +16,7 @@ import { ShowpostdetailsComponent } from './showpostdetails/showpostdetails.comp
 import { ProfileComponent } from './profile/profile.component';
 import { NoAuthGuard } from './guards/no-auth.guard';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NotFoundGuard } from './guards/not-found.guard';
 
 export const routes: Routes = [
     { path: "", component: HomepageComponent },
@@ -29,7 +30,9 @@ export const routes: Routes = [
     { path: "farmer-form", component: FarmerformComponent, canActivate: [AuthGuard] },
     { path: "community-form", component: ComunityformComponent, canActivate: [AuthGuard] },
     { path: "all-posts", component: AllpostsComponent, canActivate: [AuthGuard] },
-    { path: "post-details/:id", component: ShowpostdetailsComponent, canActivate: [AuthGuard] },
-    { path: "profile/:id", component: ProfileComponent, canActivate: [AuthGuard] },
+    { path: "post-details/:id", component: ShowpostdetailsComponent, canActivate: [AuthGuard], pathMatch: 'full' },
+    { path: "profile/:id", component: ProfileComponent, canActivate: [AuthGuard], pathMatch: 'full' },
     { path: '**', component: NotFoundComponent },
+    { path: '404', component: NotFoundComponent },
+
 ];

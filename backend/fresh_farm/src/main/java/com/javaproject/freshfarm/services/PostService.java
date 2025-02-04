@@ -54,6 +54,9 @@ public class PostService {
             if (post.getDescription() != null){
             	oldPost.setDescription(post.getDescription());
             }
+            if (post.getImage_url() != null){
+                oldPost.setImage_url(post.getImage_url());
+            }
             
             return convertEntityToDto(postRepository.save(oldPost));
 

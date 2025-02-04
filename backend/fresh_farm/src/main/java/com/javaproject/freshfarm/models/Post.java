@@ -41,7 +41,10 @@ public class Post {
 
 	@NotEmpty(message = "Description is required!")
 	private String description;
-	
+
+	@NotEmpty(message = "Image is required!")
+	private String image_url;
+
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id")

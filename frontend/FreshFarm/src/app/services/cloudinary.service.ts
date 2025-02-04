@@ -22,6 +22,7 @@ export class CloudinaryService {
       const response = await axios.post(url, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
+      console.log(response.data.secure_url);
 
       return response.data.secure_url; // The uploaded image URL
     } catch (error) {
