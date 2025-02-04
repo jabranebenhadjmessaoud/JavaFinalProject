@@ -57,7 +57,9 @@
                 <p>Quantity: {{product.quantity}}kg</p>
                 <span class="price">Price: {{product.price}}TND/kg</span>
                 <p>Posted: {{ getTimeAgo(product) }}</p>
-                <button >Add to Cart</button>
+                <div *ngIf="userRole === 'ROLE_CLIENT'">
+                    <button>Add to Cart</button>
+                </div>
             </div>
         </div>
     </div>

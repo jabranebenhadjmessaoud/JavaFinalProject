@@ -19,6 +19,8 @@ export class AllproductsComponent {
   searchQuery: string = '';
   searchQueryOld: string = '';  // Search query for older products
 
+  userRole = localStorage.getItem('role');
+
   selectedFilter: string = 'all';
   categoryQuery: string = '';
   farmingMethodQuery: string = '';
