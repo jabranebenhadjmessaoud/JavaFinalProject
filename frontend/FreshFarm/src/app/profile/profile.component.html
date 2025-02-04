@@ -29,9 +29,8 @@
                         <div class="post" *ngFor="let product of created_products">
                             <div class="post-content">
                                 <p>{{ product.product_title }}</p>
-                                <!-- <p>{{ product}}</p> -->
                             </div>
-                            <img class="post-image" alt="Post Image">
+                            <img style="height: 250px;" src="{{product.image_url}}" alt="{{product.product_title}}">
                             <div class="post-footer">
                                 <span class="post-date">{{ getTimeAgo(product) }}</span>
                                 <button class="comment-button">💬 123</button>

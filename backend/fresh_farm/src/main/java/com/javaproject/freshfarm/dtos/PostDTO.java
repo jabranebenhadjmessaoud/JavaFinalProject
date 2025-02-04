@@ -20,6 +20,8 @@ public class PostDTO {
 
     private String description;
 
+    private String image_url;
+
     private Date createdAt;
 
 }

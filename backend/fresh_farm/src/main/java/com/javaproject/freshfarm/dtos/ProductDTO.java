@@ -27,7 +27,9 @@ public class ProductDTO {
     private Double price;
     
     private Integer quantity;
-    
+
+    private String image_url;
+
     private String description;
 
     private Date createdAt;

@@ -74,6 +74,7 @@
                                                     data-error="price is required.">
                                             </div>
                                         </div>
+
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -124,7 +125,24 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <app-image-upload></app-image-upload>
+                                        <div class="col-md-6 ">
+                                            <div class="form-group">
+                                                <label for="quantity"><strong>Quantity /Kg*</strong></label>
+                                                <input [(ngModel)]="data.quantity" id="quantity" type="number"
+                                                    name="quantity" class="form-control border border-success"
+                                                    placeholder="Please enter your quantity " required="required"
+                                                    data-error="quantity is required.">
+                                            </div>
+                                        </div>
+                                        <div div class="">
+                                            <div class="col-md-12 mt-3">
+                                                <input class="form-control border border-success" type="file"
+                                                    (change)="onFileSelected($event)" accept="image/*">
+                                                <div *ngIf="isLoading">Uploading...</div>
+                                                <img *ngIf="image_url" [src]="image_url" alt="Uploaded Image"
+                                                    width="200">
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 mt-2">

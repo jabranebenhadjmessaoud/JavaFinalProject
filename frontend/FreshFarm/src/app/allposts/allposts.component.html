@@ -22,7 +22,7 @@
                 <div class="post-content">
                     <p>Description: {{post.description}}</p>
                 </div>
-                <img class="post-image" src="../../assets/vegetable.png" alt="Organic Tomatoes">
+                <img class="post-image" src="{{post.image_url}}" alt="{{post.post_title}}">
                 <div class="post-footer">
                     <button class="comment-button">💬 3</button>
                     <span class="post-date">Posted: {{ getTimeAgo(post) }}</span>

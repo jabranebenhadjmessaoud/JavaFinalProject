@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from "../navbar/navbar.component";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { differenceInMinutes, differenceInHours, differenceInDays } from 'date-fns';
 
@@ -13,7 +13,8 @@ import { differenceInMinutes, differenceInHours, differenceInDays } from 'date-f
 })
 export class ShowpostdetailsComponent {
   post: any = null;
-  constructor(private apiService: ApiService, private route: ActivatedRoute) { }
+  postId: string | null = null;
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
 
 
   //fetch post details
@@ -26,6 +27,12 @@ export class ShowpostdetailsComponent {
           console.log(this.post, "posssssst");
         }
       });
+    }
+    this.postId = this.route.snapshot.paramMap.get('id');
+
+    // Check if the ID is valid (only numbers allowed)
+    if (!this.postId || !/^\d+$/.test(this.postId)) {
+      this.router.navigate(['/404']); // Redirect to 404 if invalid
     }
   }
 
@@ -49,6 +56,7 @@ export class ShowpostdetailsComponent {
       return `${daysAgo} day${daysAgo > 1 ? 's' : ''} ago`;
     }
   }
+
 
 
 }

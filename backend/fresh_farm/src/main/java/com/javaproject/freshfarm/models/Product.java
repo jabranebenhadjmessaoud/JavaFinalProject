@@ -46,6 +46,9 @@ public class Product {
 	
 	@NotEmpty(message = "Description is required!")
 	private String description;
+
+	@NotEmpty(message = "image is required!")
+	private String image_url;
 	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -72,9 +75,9 @@ public class Product {
 	@PreUpdate
 	protected void onUpdate() {
 	    this.updatedAt = new Date();
-	}	
-	
-	
-	
-	
+	}
+
+
+
+
 }
