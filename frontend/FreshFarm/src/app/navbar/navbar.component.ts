@@ -25,6 +25,7 @@ export class NavbarComponent {
   constructor(private apiService: ApiService, private router: Router) { }
   userRole = localStorage.getItem('role');
   userId = localStorage.getItem('user_id');
+  image = localStorage.getItem('image');
 
   async logout(): Promise<void> {
 

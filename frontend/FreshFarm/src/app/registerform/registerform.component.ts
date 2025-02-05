@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { User } from '../user';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { CloudinaryService } from '../services/cloudinary.service';
+import { on } from 'events';
 
 @Component({
   selector: 'app-registerform',
@@ -15,32 +17,53 @@ import { NavbarComponent } from '../navbar/navbar.component';
 export class RegisterformComponent {
   data: User = {}
   errMessage: any = {}
-  constructor(private apiService: ApiService, private router: Router) { }
+  image_url: string | null = null;
+  isLoading: boolean = false;
+  constructor(private apiService: ApiService, private router: Router, private cloudinaryService: CloudinaryService) { }
 
   register(): void {
-    let verif: boolean = false
+    if (this.isLoading) {
+      console.log("Image upload is in progress, please wait...");
+      return;
+    }
+
+
     this.apiService.register(this.data).subscribe({
       next: (res) => {
-        console.log("register")
+        console.log("Registered successfully");
         localStorage.setItem('token', res.token);
         localStorage.setItem('user_id', res.id);
         localStorage.setItem('role', res.role);
         localStorage.setItem('userName', res.fullName);
-        // console.log(res)
-        verif = true
-        console.log(verif, res.role)
-        if (localStorage.getItem('role') == 'ROLE_FARMER') {
-          this.router.navigate(['/'])
-        }
-        if (localStorage.getItem('role') == 'ROLE_ADMIN') {
-          this.router.navigate(['/admin'])
-        }
-        if (localStorage.getItem('role') == 'ROLE_CLIENT') {
-          this.router.navigate(['/'])
+        localStorage.setItem('image', res.image_url);
+
+        const role = res.role;
+        if (role === 'ROLE_FARMER' || role === 'ROLE_CLIENT') {
+          this.router.navigate(['/']);
+        } else if (role === 'ROLE_ADMIN') {
+          this.router.navigate(['/']);
         }
       },
       error: err => this.errMessage = err
-    })
+    });
   }
+
+
+  async onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.isLoading = true;
+      try {
+        // Upload the image and set image_url
+        this.image_url = await this.cloudinaryService.uploadImage(file);
+        this.data.image_url = this.image_url;  // Ensure data object is updated
+        console.log("Image URL:", this.image_url);
+      } catch (error) {
+        console.error('Upload failed', error);
+      }
+      this.isLoading = false;
+    }
+  }
+
 
 }

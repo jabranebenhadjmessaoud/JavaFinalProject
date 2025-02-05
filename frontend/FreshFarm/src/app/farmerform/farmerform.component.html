@@ -136,10 +136,11 @@
                                         </div>
                                         <div div class="">
                                             <div class="col-md-12 mt-3">
-                                                <input class="form-control border border-success" type="file"
+                                                <input class="form-control border border-success mb-3" type="file"
                                                     (change)="onFileSelected($event)" accept="image/*">
                                                 <div *ngIf="isLoading">Uploading...</div>
-                                                <img *ngIf="image_url" [src]="image_url" alt="Uploaded Image"
+                                                <img style="border: solid 1px green; border-radius: 5px;"
+                                                    *ngIf="image_url" [src]="image_url" alt="Uploaded Image"
                                                     width="200">
                                             </div>
                                         </div>

@@ -6,5 +6,6 @@ export interface User {
     role?: string
     password?: string
     confirmPassword?: string
+    image_url?: string | null
     createdAt?: Date
 }
