@@ -51,17 +51,16 @@ public class User implements UserDetails {
 	@OneToMany(mappedBy = "postUploadedBy", fetch = FetchType.LAZY)
 	private List<Post> createdPosts;
 	
-	@OneToMany(mappedBy = "usercart_id", fetch = FetchType.LAZY)
-	private List<ShoppingCart> shoppingCart;
+	@OneToMany(mappedBy = "postCommentedBy", fetch = FetchType.LAZY)
+	private List<Comment> userCommentsOnPosts;
 	
 	
 	
-	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "comments",
-				joinColumns = @JoinColumn(name = "user_id"),
-				inverseJoinColumns = @JoinColumn(name = "post_id"))  
-	private List<Post> postsCommentedByUser;
+	//@ManyToMany(fetch = FetchType.LAZY)
+	//@JoinTable(name = "comments",
+		//		joinColumns = @JoinColumn(name = "user_id"),
+		//		inverseJoinColumns = @JoinColumn(name = "post_id"))  
+	//private List<Post> postsCommentedByUser;
 	
 	
 

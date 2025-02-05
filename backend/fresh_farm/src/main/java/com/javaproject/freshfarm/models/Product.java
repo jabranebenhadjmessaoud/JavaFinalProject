@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
-import java.util.List;
+
 
 @Data
 @NoArgsConstructor
@@ -55,8 +55,7 @@ public class Product {
 	@JoinColumn(name="user_id")
 	private User postedBy;
 	
-	@OneToMany(mappedBy = "productcart_id", fetch = FetchType.LAZY)
-	private List<ShoppingCart> shoppingCart;
+	
 	
 	
 	

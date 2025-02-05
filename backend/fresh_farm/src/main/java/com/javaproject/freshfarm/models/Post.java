@@ -12,9 +12,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -48,14 +48,17 @@ public class Post {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id")
-	private User postUploadedBy;    
+	private User postUploadedBy;   
+	
+	@OneToMany(mappedBy = "postsComments", fetch = FetchType.LAZY)
+	private List<Comment> postsComments ;
 	
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "comments",
-    			joinColumns = @JoinColumn(name = "post_id"),
-    			inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<User> usersCommentedOnPost;
+	//@ManyToMany(fetch = FetchType.LAZY)
+    //@JoinTable(name = "comments",
+    	//		joinColumns = @JoinColumn(name = "post_id"),
+    		//	inverseJoinColumns = @JoinColumn(name = "user_id"))
+    //private List<User> usersCommentedOnPost;
 	
 	
 	
