@@ -67,4 +67,22 @@ export class ApiService {
     return this.http.get(this.baseUrl + `/user/showprofile/${id}`).pipe(
       catchError(this.handleError));
   }
+
+  getallcomments(): Observable<any> {
+    return this.http.get(this.baseUrl + "/farmer/posts/allcomments").pipe(
+      catchError(this.handleError));
+  }
+
+  getOnePostComments(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + `/farmer/posts/comments/${id}`).pipe(
+      catchError(this.handleError));
+  }
+
+
+  createComment(data: Comment,post_id:number): Observable<any> {
+    return this.http.post(this.baseUrl + `/farmer/posts/newcomment/${post_id}`, data).pipe(
+      catchError(this.handleError));
+  }
+
+
 }

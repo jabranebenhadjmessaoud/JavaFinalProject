@@ -27,8 +27,9 @@
             <h3>Comments</h3>
             <div class="comment">
                 <!-- <img class="comment-author-avatar" src="../../assets/user-avatar.png" alt="User Avatar"> -->
-                <div class="comment-content">
-                    <span class="comment-author">Jane Smith</span>
+                <div class="comment-content" *ngFor="let item of comments">
+                    <span class="comment-author">{{item.comment}}</span>
+                    <span class="comment-author">{{item.postCommentedBy.fullName}}</span>
                     <span class="comment-text">Wow, those tomatoes look amazing! Great job!</span>
                     <span class="comment-date">1 hour ago</span>
                 </div>

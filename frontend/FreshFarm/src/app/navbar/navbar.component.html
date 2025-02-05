@@ -20,7 +20,7 @@
         </div>
 
         <span class="spacer"></span>
-        <button mat-icon-button>
+        <button mat-icon-button *ngIf="userId !== null" >
             <a href="/profile/{{userId}}" class="text-dark"><mat-icon><a href="/profile/{{userId}}"
                         class="text-dark"><img style="border-radius: 50%;" src="{{image}}" alt=""></a></mat-icon></a>
         </button>

@@ -3,17 +3,19 @@ import { NavbarComponent } from "../navbar/navbar.component";
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { differenceInMinutes, differenceInHours, differenceInDays } from 'date-fns';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-showpostdetails',
-  imports: [NavbarComponent],
+  imports: [CommonModule, NavbarComponent],
   templateUrl: './showpostdetails.component.html',
   styleUrl: './showpostdetails.component.css'
 })
 export class ShowpostdetailsComponent {
   post: any = null;
   postId: string | null = null;
+  comments:any=null;
   constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
 
 
@@ -34,6 +36,18 @@ export class ShowpostdetailsComponent {
     if (!this.postId || !/^\d+$/.test(this.postId)) {
       this.router.navigate(['/404']); // Redirect to 404 if invalid
     }
+
+    this.apiService.getOnePostComments(Number(postId)).subscribe
+    ({  
+      next:(data)=>{
+        this.comments=data;
+        console.log(data);
+        console.log("************");
+        console.log(this.comments);
+      }
+    })
+
+
   }
 
   getTimeAgo(): string {
