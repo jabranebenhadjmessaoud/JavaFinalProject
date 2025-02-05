@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Data
@@ -54,8 +55,10 @@ public class Product {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id")
 	private User postedBy;
-	
-	
+
+
+	@OneToMany(mappedBy = "productsReports", fetch = FetchType.LAZY)
+	private List<Report> productReports ;
 	
 	
 	

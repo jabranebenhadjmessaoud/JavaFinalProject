@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #eef7f2;
+    background-color: #ffffff;
     color: #333;
     line-height: 1.6;
     margin-top: 60px;
@@ -116,18 +116,57 @@ body {
 /* Comments Section */
 .comments-section {
     margin-top: 2rem;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 2rem auto;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .comments-section h3 {
-    font-size: 1.5rem;
-    color: #1e5631;
+    font-size: 1.6rem;
+    color: #2d2d2d;
+    font-weight: 600;
     margin-bottom: 1.5rem;
+    border-bottom: 2px solid #1e5631;
+    padding-bottom: 0.5rem;
+    text-align: center;
+}
+
+.comment-list {
+    list-style-type: none;
+    padding: 0;
 }
 
 .comment {
     display: flex;
     align-items: flex-start;
+    justify-content: flex-start;
     margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.comment:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .comment-author-avatar {
@@ -135,47 +174,59 @@ body {
     height: 40px;
     border-radius: 50%;
     margin-right: 1rem;
+    object-fit: cover;
+    border: 2px solid #1e5631;
 }
 
 .comment-content {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .comment-author {
+    font-size: 1.1rem;
     font-weight: 600;
     color: #1e5631;
-    font-size: 1rem;
 }
 
 .comment-text {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: #333;
-    margin: 0.5rem 0;
+    margin-bottom: 0.5rem;
 }
 
 .comment-date {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: #777;
 }
 
-/* Add Comment Form */
 .add-comment-form {
+    display: flex;
+    flex-direction: column;
     margin-top: 2rem;
+    gap: 1rem;
 }
 
 .add-comment-form textarea {
-    width: 100%;
     padding: 0.8rem;
-    border: 1px solid #d1e7dd;
     border-radius: 8px;
+    border: 1px solid #d1e7dd;
     font-size: 1rem;
     resize: vertical;
-    margin-bottom: 1rem;
+    width: 100%;
+    min-height: 100px;
+    transition: border-color 0.3s ease;
+}
+
+.add-comment-form textarea:focus {
+    border-color: #1e5631;
+    outline: none;
 }
 
 .add-comment-form button {
     background-color: #1e5631;
-    color: #fff;
+    color: white;
     border: none;
     padding: 0.8rem 1.5rem;
     border-radius: 8px;
@@ -190,44 +241,37 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .post-details-container {
+    .comments-section {
         padding: 1.5rem;
     }
 
-    .post-author-avatar {
-        width: 40px;
-        height: 40px;
+    .comment {
+        flex-direction: column;
+        padding: 1rem;
     }
 
-    .post-author {
-        font-size: 1rem;
-    }
-
-    .post-date {
-        font-size: 0.8rem;
-    }
-
-    .post-content p {
-        font-size: 1rem;
-    }
-
-    .post-interactions button {
-        font-size: 0.9rem;
-    }
-
-    .comments-section h3 {
-        font-size: 1.3rem;
+    .comment-author-avatar {
+        width: 35px;
+        height: 35px;
     }
 
     .comment-author {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .comment-text {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
 
     .comment-date {
-        font-size: 0.75rem;
+        font-size: 0.8rem;
+    }
+
+    .add-comment-form textarea {
+        font-size: 0.95rem;
+    }
+
+    .add-comment-form button {
+        font-size: 1rem;
     }
 }

@@ -4,6 +4,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { User } from './user';
 import { Product } from './product';
 import { Post } from './post';
+import { Comment } from './comment';
 
 
 @Injectable({
@@ -79,7 +80,7 @@ export class ApiService {
   }
 
 
-  createComment(data: Comment,post_id:number): Observable<any> {
+  createComment(data: Comment, post_id: number): Observable<any> {
     return this.http.post(this.baseUrl + `/farmer/posts/newcomment/${post_id}`, data).pipe(
       catchError(this.handleError));
   }

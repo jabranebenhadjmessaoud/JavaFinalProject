@@ -14,7 +14,6 @@ import { differenceInMinutes, differenceInHours, differenceInDays } from 'date-f
 })
 export class AllpostsComponent {
   posts: any[] = [];
-
   constructor(private apiService: ApiService) { }
 
 

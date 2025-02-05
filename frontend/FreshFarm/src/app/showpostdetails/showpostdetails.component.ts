@@ -4,18 +4,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { differenceInMinutes, differenceInHours, differenceInDays } from 'date-fns';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Comment } from '../comment';
 
 
 @Component({
   selector: 'app-showpostdetails',
-  imports: [CommonModule, NavbarComponent],
+  imports: [CommonModule, NavbarComponent, FormsModule],
   templateUrl: './showpostdetails.component.html',
   styleUrl: './showpostdetails.component.css'
 })
 export class ShowpostdetailsComponent {
   post: any = null;
   postId: string | null = null;
-  comments:any=null;
+  comments: any = null;
+  // comment: Comment = '';
+  data: Comment = {};
   constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
 
 
@@ -38,16 +42,25 @@ export class ShowpostdetailsComponent {
     }
 
     this.apiService.getOnePostComments(Number(postId)).subscribe
-    ({  
-      next:(data)=>{
-        this.comments=data;
-        console.log(data);
-        console.log("************");
-        console.log(this.comments);
-      }
-    })
+      ({
+        next: (data) => {
+          this.comments = data;
+          console.log(data);
+          console.log("************");
+          console.log(this.comments);
+        }
+      })
+  }
 
-
+  createComment(): void {
+    console.log(this.data.comment);
+    this.apiService.createComment(this.data, Number(this.postId)).subscribe
+      ({
+        next: (data) => {
+          this.comments.push(data.comment);
+          this.data.comment = '';
+        }
+      })
   }
 
   getTimeAgo(): string {
@@ -70,6 +83,7 @@ export class ShowpostdetailsComponent {
       return `${daysAgo} day${daysAgo > 1 ? 's' : ''} ago`;
     }
   }
+
 
 
 

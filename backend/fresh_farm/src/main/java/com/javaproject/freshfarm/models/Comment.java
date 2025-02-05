@@ -33,7 +33,7 @@ public class Comment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotEmpty(message = "Category is required!")
+	@NotEmpty(message = "Comment is required!")
 	private String comment;
 	
 	

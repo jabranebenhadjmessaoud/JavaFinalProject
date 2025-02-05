@@ -19,26 +19,31 @@
 
         <!-- Post Interactions -->
         <div class="post-interactions">
-            <button class="comment-button">💬 3 Comments</button>
+            <button class="comment-button">💬 {{comments.length}} Comments</button>
         </div>
 
         <!-- Comments Section -->
         <div class="comments-section">
             <h3>Comments</h3>
-            <div class="comment">
-                <!-- <img class="comment-author-avatar" src="../../assets/user-avatar.png" alt="User Avatar"> -->
-                <div class="comment-content" *ngFor="let item of comments">
-                    <span class="comment-author">{{item.comment}}</span>
-                    <span class="comment-author">{{item.postCommentedBy.fullName}}</span>
-                    <span class="comment-text">Wow, those tomatoes look amazing! Great job!</span>
-                    <span class="comment-date">1 hour ago</span>
-                </div>
+            <div class="comment-list">
+                <ul>
+                    <li *ngFor="let item of comments" class="comment">
+                        <img class="comment-author-avatar" src="{{ item.postCommentedBy.image_url }}" alt="User Avatar">
+                        <div class="comment-content">
+                            <span class="comment-author">{{ item.postCommentedBy.fullName }}:</span>
+                            <span class="comment-text">{{ item.comment }}</span>
+                            <span class="comment-date">{{ item.createdAt | date }}</span>
+                        </div>
+                    </li>
+                </ul>
             </div>
             <!-- Add Comment Form -->
-            <form class="add-comment-form">
-                <textarea placeholder="Add a comment..." rows="3"></textarea>
+            <form (ngSubmit)="createComment()" class="add-comment-form">
+                <textarea [(ngModel)]="data.comment" name="comment" placeholder="Add a comment..." rows="3"></textarea>
                 <button type="submit">Post Comment</button>
             </form>
         </div>
+
+
     </div>
 </body>

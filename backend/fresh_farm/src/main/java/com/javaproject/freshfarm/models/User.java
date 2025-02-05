@@ -55,6 +55,9 @@ public class User implements UserDetails {
 	
 	@OneToMany(mappedBy = "postCommentedBy", fetch = FetchType.LAZY)
 	private List<Comment> userCommentsOnPosts;
+
+	@OneToMany(mappedBy = "productReportedBy", fetch = FetchType.LAZY)
+	private List<Report> userReportedOnPosts;
 	
 	
 	
