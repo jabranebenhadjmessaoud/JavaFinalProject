@@ -59,6 +59,7 @@
                 <p>Posted: {{ getTimeAgo(product) }}</p>
                 <div *ngIf="userRole === 'ROLE_CLIENT'">
                     <button>Add to Cart</button>
+                    <a href="/report/{{product.id}}" class="btn btn-danger">Report</a>
                 </div>
             </div>
         </div>
@@ -110,6 +111,7 @@
                 <p>Posted: {{ getTimeAgo(product) }}</p>
                 <div *ngIf="userRole === 'ROLE_CLIENT'">
                     <button>Add to Cart</button>
+                    <a class="btn btn-danger" href="/report/{{product.id}}">Report</a>
                 </div>
             </div>
         </div>

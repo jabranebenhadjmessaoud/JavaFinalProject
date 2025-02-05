@@ -28,7 +28,7 @@ public class ReportController {
 
     // getting one product report :
     @GetMapping("/reports/{id}")
-    public List<ReportDTO> getOneProductComments(@PathVariable("id") Long id) {
+    public List<ReportDTO> getOneProductReport(@PathVariable("id") Long id) {
         return reportService.getOneProductReportsDTO(id);
     }
 
@@ -49,9 +49,9 @@ public class ReportController {
             Long userId = jwtService.extractUserId(token);
             if (userRepository.findById(userId).isPresent()) {
                 User user = userRepository.findById(userId).get();
-                report.setPostReportedBy(user);
+                report.setProductReportedBy(user);
                 if(productRepository.findProductsById(product_id).isPresent()) {
-                    Product product= (Product) productRepository.findProductsById(product_id).get();
+                    Product product = productRepository.findProductsById(product_id).get();
                     report.setProductsReports(product);
                 }
                 return reportService.createReport(report);

@@ -1,0 +1,12 @@
+<app-navbar></app-navbar>
+
+<body>
+    <div class="report-container">
+        <form (ngSubmit)="createReport()">
+            <h2>Report an Issue</h2>
+            <textarea [(ngModel)]="data.reportContent" name="reportContent"
+                placeholder="Please describe the issue or concern in detail..."></textarea>
+            <button type="submit">Submit Report</button>
+        </form>
+    </div>
+</body>

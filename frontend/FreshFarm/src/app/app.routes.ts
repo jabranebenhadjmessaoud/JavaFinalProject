@@ -17,6 +17,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { NoAuthGuard } from './guards/no-auth.guard';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NotFoundGuard } from './guards/not-found.guard';
+import { ReportComponent } from './report/report.component';
 
 export const routes: Routes = [
     { path: "", component: HomepageComponent },
@@ -32,6 +33,7 @@ export const routes: Routes = [
     { path: "all-posts", component: AllpostsComponent, canActivate: [AuthGuard] },
     { path: "post-details/:id", component: ShowpostdetailsComponent, canActivate: [AuthGuard], pathMatch: 'full' },
     { path: "profile/:id", component: ProfileComponent, canActivate: [AuthGuard], pathMatch: 'full' },
+    { path: "report/:id", component: ReportComponent, canActivate: [AuthGuard], pathMatch: 'full' },
     { path: '**', component: NotFoundComponent },
     { path: '404', component: NotFoundComponent },
 

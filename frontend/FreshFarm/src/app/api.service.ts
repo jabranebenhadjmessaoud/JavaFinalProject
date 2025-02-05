@@ -5,6 +5,7 @@ import { User } from './user';
 import { Product } from './product';
 import { Post } from './post';
 import { Comment } from './comment';
+import { Report } from './report';
 
 
 @Injectable({
@@ -85,5 +86,23 @@ export class ApiService {
       catchError(this.handleError));
   }
 
+
+  //fetch reports  
+  getAllReports(): Observable<any> {
+    return this.http.get(this.baseUrl + `/client/products/allreports`).pipe(
+      catchError(this.handleError));
+  }
+
+  //create report
+  createReport(data: Report, product_id: number): Observable<any> {
+    return this.http.post(this.baseUrl + `/client/products/newreport/${product_id}`, data).pipe(
+      catchError(this.handleError));
+  }
+
+  //fetch post details
+  showProductDetails(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + `/farmer/showproduct/{${id}`).pipe(
+      catchError(this.handleError));
+  }
 
 }

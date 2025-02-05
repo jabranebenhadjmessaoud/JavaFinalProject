@@ -15,13 +15,20 @@ import { differenceInDays, differenceInMinutes, differenceInHours } from 'date-f
 export class AdmindashboardComponent {
   users: any[] = [];
   filteredUsers: any[] = [];
+
   products: any[] = [];
   filteredProducts: any[] = [];
+
   posts: any[] = [];
   filteredPosts: any[] = [];
+
+  reports: any[] = [];
+  filteredReports: any[] = [];
+
   userSearchQuery: string = '';
   productSearchQuery: string = '';
   postSearchQuery: string = '';
+  reportSearchQuery: string = '';
 
   constructor(private apiService: ApiService) { }
 
@@ -39,6 +46,12 @@ export class AdmindashboardComponent {
     this.apiService.getallposts().subscribe((data) => {
       this.posts = data;
       this.filteredPosts = data; // Initially display all products
+    });
+
+    this.apiService.getAllReports().subscribe((data) => {
+      this.reports = data;
+      this.filteredReports = data; // Initially display all reports
+      console.log(this.reports);
     });
   }
 
@@ -72,6 +85,16 @@ export class AdmindashboardComponent {
       //add author to post
       // ||
       // post.author.toLowerCase().includes(query)
+    );
+  }
+
+  filterReports() {
+    const query = this.reportSearchQuery.toLowerCase().trim();
+    this.filteredReports = this.reports.filter(report =>
+      report.id.toString().includes(query) ||
+      report.reportContent.toLowerCase().includes(query) ||
+      report.productReportedBy.fullName.toLowerCase().includes(query) ||
+      report.productsReports.product_title.toLowerCase().includes(query)
     );
   }
 
