@@ -49,17 +49,18 @@ public class AuthenticationService {
                     .password(passwordEncoder.encode(request.getPassword()))
 //  Pass the PASSWORD instead of autogenerate
 // .password(passwordEncoder.encode(request.getPassword()))
-                    .role(request.getRole())
+                    .role(request.getRole()).image_url(request.getImage_url())
                     .build();
             userRepository.save(user);
             var jwtToken = jwtService.generateToken(user, user.getId());
             var role = user.getRole();
             var fullName = user.getFullName();
             var email = user.getEmail();
+            var image_url = user.getImage_url();
             //Added user id when you register
             var id = user.getId();
             return new ResponseEntity<>(AuthenticationResponse.builder().role(role)
-                    .fullName(fullName).id(id)
+                    .fullName(fullName).id(id).image_url(image_url)
                     .email(email).token(jwtToken).build(), HttpStatus.OK);
         }
     }
@@ -89,6 +90,7 @@ public class AuthenticationService {
         return AuthenticationResponse.builder().role(role)
                 .fullName(fullName)
                 .id(id)
+                .image_url(user.getImage_url())
                 .email(email).token(jwtToken).build();
     }
 

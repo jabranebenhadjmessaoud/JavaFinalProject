@@ -6,7 +6,10 @@
             <!-- Profile Header -->
             <div class="profile-header" style="margin-top: 150px;">
                 <div class="profile-info">
-                    <!-- <img class="profile-picture" src="../../assets/farmer-avatar.png" alt="Profile Picture"> -->
+                    <img *ngIf="profile.image_url !== null" class="profile-picture" src="{{profile.image_url}}"
+                        alt="Profile Picture">
+                    <img *ngIf="profile.image_url == null" class="profile-picture" src="/assets/noprofilepic.jpg"
+                        alt="Profile Picture">
                     <h1>Full Name: {{profile.fullName}}</h1>
                     <h4 *ngIf="profile.role == 'ROLE_ADMIN'">Account Type: Admin</h4>
                     <h4 *ngIf="profile.role == 'ROLE_CLIENT'">Account Type: Client</h4>
@@ -14,8 +17,8 @@
                     <h4>Email: {{profile.email}}</h4>
                     <div class="profile-stats">
                         <div class="stat">
-                            <span class="stat-number">{{created_products.length}}</span>
-                            <span class="stat-label">Posts</span>
+                            <span class="stat-label">Products Posted </span>
+                            <span class="stat-number">{{created_products.length}} </span>
                         </div>
                     </div>
                 </div>
@@ -28,9 +31,10 @@
                         <!-- Single Post Card -->
                         <div class="post" *ngFor="let product of created_products">
                             <div class="post-content">
-                                <p>{{ product.product_title }}</p>
+                                <p>Title: {{ product.product_title }}</p>
                             </div>
-                            <img style="height: 250px;" src="{{product.image_url}}" alt="{{product.product_title}}">
+                            <img style="height: 250px; margin-bottom: 6px;" src="{{product.image_url}}"
+                                alt="{{product.product_title}}">
                             <div class="post-footer">
                                 <span class="post-date">{{ getTimeAgo(product) }}</span>
                                 <button class="comment-button">💬 123</button>

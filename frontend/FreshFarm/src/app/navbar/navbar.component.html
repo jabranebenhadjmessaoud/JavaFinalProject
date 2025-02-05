@@ -21,7 +21,8 @@
 
         <span class="spacer"></span>
         <button mat-icon-button>
-            <a href="/profile/{{userId}}" class="text-dark"><mat-icon>account_circle</mat-icon></a>
+            <a href="/profile/{{userId}}" class="text-dark"><mat-icon><a href="/profile/{{userId}}"
+                        class="text-dark"><img style="border-radius: 50%;" src="{{image}}" alt=""></a></mat-icon></a>
         </button>
         <div *ngIf="userId !== null">
             <a (click)="logout()" class="text-danger" mat-button> Logout </a>

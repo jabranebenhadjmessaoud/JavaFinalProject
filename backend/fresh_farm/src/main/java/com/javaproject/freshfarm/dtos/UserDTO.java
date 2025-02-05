@@ -25,6 +25,7 @@ public class UserDTO {
     private Long id;
     private String fullName;
     private String email;
+    private String image_url;
     private List<ProductDTO> createdProducts;
 	private List<PostDTO> createdPosts;
 	private List<ProductDTO> addedprodectstocart;

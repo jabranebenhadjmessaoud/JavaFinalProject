@@ -27,6 +27,7 @@ export class LoginformComponent {
         localStorage.setItem('user_id', res.id);
         localStorage.setItem('role', res.role);
         localStorage.setItem('userName', res.fullName);
+        localStorage.setItem('image', res.image_url);
         // console.log(res)
         verif = true
         console.log(verif)

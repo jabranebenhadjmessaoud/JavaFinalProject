@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
 <body>
-    <div class="form-container">
+    <div class="form-container mt-5">
         <h2>Share Your Farming Story</h2>
         <p>Join the community and share your experiences, tips, or questions about agriculture.</p>
         <form id="communityPostForm">
@@ -25,10 +25,12 @@
                     </div>
                     <div div class="form-group">
                         <div class="col-md-12 mt-3">
-                            <input class="form-control border border-success post_title" type="file"
+                            <input class="form-control border border-success post_title mb-3" type="file"
                                 (change)="onFileSelected($event)" accept="image/*">
                             <div *ngIf="isLoading">Uploading...</div>
-                            <img *ngIf="image_url" [src]="image_url" alt="Uploaded Image" width="200">
+                            <img style="border: solid green 1px; border-radius: 5px;" *ngIf="image_url"
+                                [src]="image_url" alt="Uploaded Image" width="200">
+
                         </div>
                     </div>
                     <textarea [(ngModel)]="data.description" id="postContent" name="description"
