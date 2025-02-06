@@ -4,6 +4,7 @@ export interface User {
     fullName?: string
     email?: string
     role?: string
+    user_stat?: string
     password?: string
     confirmPassword?: string
     image_url?: string | null

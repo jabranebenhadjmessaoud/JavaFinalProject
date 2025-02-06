@@ -9,10 +9,10 @@
         <div *ngIf="userRole === 'ROLE_FARMER'">
             <a href="/all-posts" mat-button>🌍 Farmers Community</a>
         </div>
-        <div *ngIf="userRole === 'ROLE_FARMER'">
+        <div *ngIf="userRole === 'ROLE_FARMER' && user_stat === 'ACTIVE'">
             <a href="/farmer-form" mat-button>➕ Create Product</a>
         </div>
-        <div *ngIf="userRole === 'ROLE_FARMER'">
+        <div *ngIf="userRole === 'ROLE_FARMER' && user_stat === 'ACTIVE'">
             <a href="/community-form" mat-button>➕ Create Post</a>
         </div>
         <div *ngIf="userRole === 'ROLE_ADMIN'">

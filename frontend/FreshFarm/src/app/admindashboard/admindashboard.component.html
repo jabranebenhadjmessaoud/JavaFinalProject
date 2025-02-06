@@ -35,12 +35,16 @@
                             <td *ngIf="user.role == 'ROLE_FARMER'" style="color: green;">Farmer</td>
                             <td *ngIf="user.role == 'ROLE_CLIENT'" style="color: cyan;">Client</td>
                             <td *ngIf="user.role == 'ROLE_ADMIN'" style="color: red;">Admin</td>
-                            <td *ngIf="user.role == 'ROLE_FARMER'" style="color: red;">{{user.user_stat}}</td>
+                            <td>{{user.user_stat}}</td>
                             <td>{{ getTimeAgo(user) }}</td>
                             <td>
                                 <button class="btn-view">View</button>
-                                <button (click)="banFarmer(user)" [disabled]="user.banned"
-                                    *ngIf="user.role == 'ROLE_FARMER'" class="btn-delete">Ban</button>
+                                <button (click)="banFarmer(user)"
+                                    *ngIf="user.role == 'ROLE_FARMER' && user.user_stat == 'ACTIVE'"
+                                    class="btn-delete ">Ban</button>
+                                <button (click)="unbanFarmer(user) "
+                                    *ngIf="user.role == 'ROLE_FARMER' && user.user_stat == 'BANNED'"
+                                    class="btn btn-success">Unban</button>
                                 <button class="btn-delete">Delete</button>
                             </td>
                         </tr>

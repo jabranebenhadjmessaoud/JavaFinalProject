@@ -28,16 +28,14 @@ export class LoginformComponent {
         localStorage.setItem('role', res.role);
         localStorage.setItem('userName', res.fullName);
         localStorage.setItem('image', res.image_url);
+        localStorage.setItem('user_stat', res.user_stat);
         // console.log(res)
         verif = true
         console.log(verif)
-        if (localStorage.getItem('role') == 'ROLE_FARMER') {
+        if (localStorage.getItem('user_stat') == 'ACTIVE') {
           this.router.navigate(['/'])
         }
-        if (localStorage.getItem('role') == 'ROLE_ADMIN') {
-          this.router.navigate(['/'])
-        }
-        if (localStorage.getItem('role') == 'ROLE_CLIENT') {
+        if (localStorage.getItem('user_stat') == 'BANNED') {
           this.router.navigate(['/'])
         }
       },

@@ -36,12 +36,13 @@ export class RegisterformComponent {
         localStorage.setItem('role', res.role);
         localStorage.setItem('userName', res.fullName);
         localStorage.setItem('image', res.image_url);
+        localStorage.setItem('user_stat', res.image_url);
 
         const role = res.role;
         if (role === 'ROLE_FARMER' || role === 'ROLE_CLIENT') {
           this.router.navigate(['/']);
         } else if (role === 'ROLE_ADMIN') {
-          this.router.navigate(['/']);
+          this.router.navigate(['/admin']);
         }
       },
       error: err => this.errMessage = err
