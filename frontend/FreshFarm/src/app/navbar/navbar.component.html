@@ -18,6 +18,9 @@
         <div *ngIf="userRole === 'ROLE_ADMIN'">
             <a href="/admin" mat-button>🛡️ Admin</a>
         </div>
+        <div *ngIf="userRole === 'ROLE_CLIENT'">
+            <a routerLink="/cart">Go to Cart</a>
+        </div>
 
         <span class="spacer"></span>
         <button mat-icon-button *ngIf="userId !== null" >

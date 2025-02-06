@@ -58,7 +58,7 @@
                 <span class="price">Price: {{product.price}}TND/kg</span>
                 <p>Posted: {{ getTimeAgo(product) }}</p>
                 <div *ngIf="userRole === 'ROLE_CLIENT'">
-                    <button>Add to Cart</button>
+                    <button (click)="addToCart(product)">Add to Cart</button>
                     <a href="/report/{{product.id}}" class="btn btn-danger">Report</a>
                 </div>
             </div>
@@ -110,7 +110,7 @@
                 <span class="price">Price: {{product.price}}TND/kg</span>
                 <p>Posted: {{ getTimeAgo(product) }}</p>
                 <div *ngIf="userRole === 'ROLE_CLIENT'">
-                    <button>Add to Cart</button>
+                    <button (click)="addToCart(product)" >Add to Cart</button>
                     <a class="btn btn-danger" href="/report/{{product.id}}">Report</a>
                 </div>
             </div>

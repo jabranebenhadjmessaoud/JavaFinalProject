@@ -1,0 +1,47 @@
+<app-navbar></app-navbar>
+
+<body>
+  <header>
+    <h1>Shopping Cart</h1>
+    <p>Your selected products ready for checkout.</p>
+  </header>
+
+  <!-- Shopping Cart Section -->
+  <div class="cart-container mt-5">
+    <div *ngIf="cartItems.length > 0; else emptyCart" class="cart-items">
+      <h2>Your Cart</h2>
+      <div *ngFor="let item of cartItems" class="cart-item">
+        <img [src]="item.image_url" alt="{{ item.name }}" class="cart-item-img">
+        <div class="cart-item-details">
+          <p class="cart-item-name">{{ item.name }}</p>
+          <p>Quantity: {{ item.quantity }}</p>
+          <div *ngIf="isOlderThanThreeDays(item.createdAt)" >
+            <p>Price: ${{ item.price }} +20% Discount : Final Price:${{ item.price -(item.price/100*20) }}  </p>
+          </div>
+          <div *ngIf="!isOlderThanThreeDays(item.createdAt)" >
+            <p>Price: ${{ item.price }}</p>       
+           </div>
+          
+          <button class="remove-btn" (click)="removeItem(item.id)">Remove</button>
+        </div>
+      </div>
+
+      <!-- Clear Cart Button -->
+      <div class="clear-cart-btn">
+        <button class="btn btn-danger" (click)="clearCart()">Clear Cart</button>
+      </div>
+
+      <!-- Checkout Button (Optional) -->
+      <div class="checkout-btn">
+        <button class="btn btn-primary">Proceed to Checkout</button>
+      </div>
+    </div>
+    
+    <ng-template #emptyCart>
+      <div class="empty-cart-message">
+        <p>Your cart is empty. Browse our products and add some to your cart.</p>
+        <button class="btn btn-primary" routerLink="/products">Go to Products</button>
+      </div>
+    </ng-template>
+  </div>
+</body>

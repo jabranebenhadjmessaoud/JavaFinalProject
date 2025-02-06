@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NavbarComponent } from "../navbar/navbar.component";
 import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { differenceInDays, differenceInMinutes, differenceInHours } from 'date-fns';
+import { CartService } from '../cart.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-allproducts',
@@ -38,7 +40,19 @@ export class AllproductsComponent {
   // Track whether to show older products or fresh products
   showOlderProducts: boolean = false;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private cartService:CartService) { }
+
+
+  
+ 
+
+  addToCart(product: any): void {
+    console.log('Product being added:', product);
+    this.cartService.addToCart(product);
+    alert(`${product.product_title} added to cart!`);
+  }
+
+
 
   ngOnInit() {
     this.apiService.getallproducts().subscribe((data) => {
@@ -48,6 +62,7 @@ export class AllproductsComponent {
       this.filterProducts(); // Filter products to show initially
     });
   }
+
 
   // Toggle between fresh and older products
   toggleProductView() {
