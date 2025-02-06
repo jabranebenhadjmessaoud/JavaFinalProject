@@ -39,14 +39,51 @@ public class UserService {
      * @param user The User entity with updated information.
      * @return A UserDTO representing the updated user.
      */
-    public UserDTO updateUserStatusBan(UserDTO user) {
+    //public UserDTO updateUserStatusBan(UserDTO user) {
         // Save the updated user entity to the repository
-        user.setUser_stat("BANNED");
-        UserDTO updatedUser = userRepository.save(user);
+       // user.setUser_stat("BANNED");
+       // UserDTO updatedUser = userRepository.save(user);
 
         // Convert the updated user entity to a UserDTO and return it
-        return (updatedUser);
+       // return (updatedUser);
+   // }
+    
+    
+    public UserDTO banUser(UserDTO u) throws RuntimeException {
+    	System.out.println("before ban in service");	
+     
+    	 u.setUser_stat("BANNED");
+ 
+    	
+    	User user= convertDtoToEntity(u);
+    	 
+    	 User userfromDB=getUserById1(user.getId());
+    	 userfromDB.setUser_stat("BANNED");
+    	 System.out.println("after ban in service"+ userfromDB);
+    	 userRepository.save(userfromDB);
+    	 
+    	 return u ;    
+    
     }
+    
+    public UserDTO unbanUser(UserDTO u) throws RuntimeException {
+  
+     
+    	 u.setUser_stat("ACTIVE");
+ 
+    	
+    	User user= convertDtoToEntity(u);
+    	 
+    	 User userfromDB=getUserById1(user.getId());
+    	 userfromDB.setUser_stat("ACTIVE");
+  
+    	 userRepository.save(userfromDB);
+    	 
+    	 return u ;    
+    
+    }
+    
+    
 
 
     /**
@@ -64,6 +101,17 @@ public class UserService {
     
     public UserDTO getUserById(Long id) {
     	return userRepository.findById(id).map(this::convertEntityToDto) .orElseThrow(() ->new RuntimeException("Doctor not found"));
+
+	}
+    
+    
+    public User getUserById1(Long id) {
+    	Optional <User> u=userRepository.findById(id);
+    	if (u.isPresent()) {
+    		return u.get();
+    	}
+    	return null ;
+    			
 
 	}
     

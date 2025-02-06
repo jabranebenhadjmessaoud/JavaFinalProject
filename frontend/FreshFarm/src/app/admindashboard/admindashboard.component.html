@@ -22,6 +22,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
+                            <th>Status</th>
                             <th>Creation</th>
                             <th>Actions</th>
                         </tr>
@@ -34,6 +35,7 @@
                             <td *ngIf="user.role == 'ROLE_FARMER'" style="color: green;">Farmer</td>
                             <td *ngIf="user.role == 'ROLE_CLIENT'" style="color: cyan;">Client</td>
                             <td *ngIf="user.role == 'ROLE_ADMIN'" style="color: red;">Admin</td>
+                            <td *ngIf="user.role == 'ROLE_FARMER'" style="color: red;">{{user.user_stat}}</td>
                             <td>{{ getTimeAgo(user) }}</td>
                             <td>
                                 <button class="btn-view">View</button>

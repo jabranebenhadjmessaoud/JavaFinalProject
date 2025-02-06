@@ -41,6 +41,8 @@ public class SecurityConfiguration {
                 .permitAll()
                 .requestMatchers("/api/v1/farmer/allproducts")
                 .permitAll()
+                .requestMatchers("/api/v1/admin/**")
+                .hasAnyRole("ADMIN")
                 .requestMatchers("/api/v1/farmer/posts/**")
                 .hasAnyRole("FARMER")
                 .requestMatchers("/api/v1/farmer/**")

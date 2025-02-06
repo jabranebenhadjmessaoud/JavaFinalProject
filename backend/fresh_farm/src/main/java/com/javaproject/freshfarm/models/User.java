@@ -47,7 +47,6 @@ public class User implements UserDetails {
 
 	private String image_url;
 	
-	@Builder.Default
 	private String user_stat = "ACTIVE";
 	
 	@OneToMany(mappedBy = "postedBy", fetch = FetchType.LAZY)

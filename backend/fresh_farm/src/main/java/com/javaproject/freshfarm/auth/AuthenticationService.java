@@ -57,6 +57,7 @@ public class AuthenticationService {
             var fullName = user.getFullName();
             var email = user.getEmail();
             var image_url = user.getImage_url();
+            var user_stat=user.getUser_stat();
             //Added user id when you register
             var id = user.getId();
             return new ResponseEntity<>(AuthenticationResponse.builder().role(role)

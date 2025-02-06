@@ -59,14 +59,41 @@ public class UserController {
 		return ResponseEntity.ok(user) ;      
 	}
 
-    @PutMapping("/admin/ban/{id}")
-    public ResponseEntity<UserDTO> banFarmer(@PathVariable("id") Long id) {
-        UserDTO user1=userService.getUserById(id);
-        user1.setUser_stat("BANNED");
-        userService.updateUserStatusBan(user1);
-        return ResponseEntity.ok(user1);    
+   // @PutMapping("/admin/banaaacsdcSDvdsvSF/{id}")
+   // public ResponseEntity<UserDTO> banFarmer(@PathVariable("id") Long id,
+    	//			@RequestBody UserDTO user) {
+    //    //UserDTO user1=userService.getUserById(id);
+        //user.setUser_stat("BANNED");
+     //   userService.updateUserStatusBan(user);
+     //   return ResponseEntity.ok(user);    
+   // }
+    
+    
+    
+    @GetMapping("/admin/ban/{id}")
+    public UserDTO banUser(@PathVariable("id") Long id) {
+    	System.out.println("before getting user");
+    	UserDTO u=userService.getUserById(id); 
+    	System.out.println(u);
+    	System.out.println("after getting user and ");
+    	userService.banUser(u);
+    	System.out.println("after banning user");
+    	return u;
+    	
     }
+    
 
+    @GetMapping("/admin/unban/{id}")
+    public UserDTO unbanUser(@PathVariable("id") Long id) {
+    	System.out.println("before getting user");
+    	UserDTO u=userService.getUserById(id); 
+    	System.out.println(u);
+    	System.out.println("after getting user and ");
+    	userService.unbanUser(u);
+    	System.out.println("after banning user");
+    	return u;
+    	
+    }
     //@GetMapping("/admin/unban/{id}")
     //public ResponseEntity<User> unbanFarmer(@PathVariable("id") Long id) {
      //   Optional<User> user1=userRepository.findById(id);
