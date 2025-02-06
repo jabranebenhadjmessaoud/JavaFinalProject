@@ -105,4 +105,16 @@ export class ApiService {
       catchError(this.handleError));
   }
 
+  //ban farmer
+  banFarmer(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + `/admin/ban/${id}`).pipe(
+      catchError(this.handleError));
+  }
+
+  //unban farmer
+  unbanFarmer(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + `/admin/unban/${id}`).pipe(
+      catchError(this.handleError));
+  }
+
 }

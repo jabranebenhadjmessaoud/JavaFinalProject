@@ -2,17 +2,17 @@ package com.javaproject.freshfarm.controllers;
 
 import java.util.List;
 
+import com.javaproject.freshfarm.models.User;
+import com.javaproject.freshfarm.repositories.UserRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.javaproject.freshfarm.dtos.UserDTO;
 import com.javaproject.freshfarm.models.Role;
 import com.javaproject.freshfarm.services.UserService;
 
 import lombok.RequiredArgsConstructor;
+
 
 /**
  * Controller for handling user-related requests for the admin API.
@@ -25,6 +25,7 @@ public class UserController {
 	
 
     private final UserService userService;
+    private final UserRepository userRepository;
 
     /**
      * Endpoint to retrieve all users.
@@ -56,7 +57,21 @@ public class UserController {
     	UserDTO user=userService.getUserById(id);
 		return ResponseEntity.ok(user) ;      
 	}
-    
+
+    @GetMapping("/admin/ban/{id}")
+    public ResponseEntity<UserDTO> banFarmer(@PathVariable("id") Long id) {
+        UserDTO user1=userService.getUserById(id);
+        user1.setStatus("BANNED");
+        userService.updateUserStatusBan(user1);
+        return ResponseEntity.ok(user1);
+    }
+
+    @GetMapping("/admin/unban/{id}")
+    public ResponseEntity<User> unbanFarmer(@PathVariable("id") Long id) {
+        User user1=userService.findById(id);
+        user1.setStatus("ACTIVE");
+        return ResponseEntity.ok(user1);
+    }
     
     
 }

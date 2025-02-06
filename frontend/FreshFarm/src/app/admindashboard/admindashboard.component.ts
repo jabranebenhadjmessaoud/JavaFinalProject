@@ -4,6 +4,7 @@ import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { differenceInDays, differenceInMinutes, differenceInHours } from 'date-fns';
+import { AdminusersComponent } from "../adminusers/adminusers.component";
 
 @Component({
   selector: 'app-admindashboard',
@@ -86,6 +87,15 @@ export class AdmindashboardComponent {
       // ||
       // post.author.toLowerCase().includes(query)
     );
+  }
+
+  //ban farmer
+  banFarmer(user: any) {
+    if (confirm(`Are you sure you want to ban ${user.fullName}?`)) {
+      this.apiService.banFarmer(user.id).subscribe(() => {
+        user.banned = true;
+      });
+    }
   }
 
   filterReports() {

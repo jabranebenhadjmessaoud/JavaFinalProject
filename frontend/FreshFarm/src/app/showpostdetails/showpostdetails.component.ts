@@ -57,8 +57,7 @@ export class ShowpostdetailsComponent {
     this.apiService.createComment(this.data, Number(this.postId)).subscribe
       ({
         next: (data) => {
-          this.comments.push(data.comment);
-          this.data.comment = '';
+          this.router.navigate(['/']);
         }
       })
   }
