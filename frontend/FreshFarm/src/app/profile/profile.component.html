@@ -15,7 +15,7 @@
                     <h4 *ngIf="profile.role == 'ROLE_CLIENT'">Account Type: Client</h4>
                     <h4 *ngIf="profile.role == 'ROLE_FARMER'">Account Type: Farmer</h4>
                     <h4>Email: {{profile.email}}</h4>
-                    <div class="profile-stats">
+                    <div class="profile-stats" *ngIf="profile.role == 'ROLE_FARMER'">
                         <div class="stat">
                             <span class="stat-label">Products Posted </span>
                             <span class="stat-number">{{created_products.length}} </span>

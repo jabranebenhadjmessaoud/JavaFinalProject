@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { differenceInDays, differenceInMinutes, differenceInHours } from 'date-fns';
 import { CartService } from '../cart.service';
 import { RouterLink } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-allproducts',
@@ -40,17 +41,27 @@ export class AllproductsComponent {
   // Track whether to show older products or fresh products
   showOlderProducts: boolean = false;
 
-  constructor(private apiService: ApiService, private cartService:CartService) { }
+  constructor(private apiService: ApiService, private cartService: CartService) { }
 
 
-  
- 
+
+
 
   addToCart(product: any): void {
     console.log('Product being added:', product);
     this.cartService.addToCart(product);
-    alert(`${product.product_title} added to cart!`);
+    // Show a beautiful alert
+    Swal.fire({
+      title: 'Added to Cart!',
+      text: `You added ${product.product_title} to your cart.`,
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 2000, // Auto close in 2 seconds
+      toast: true,
+      position: 'top-end' // Appears at the top right
+    });
   }
+
 
 
 

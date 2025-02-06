@@ -117,6 +117,7 @@ header p {
     animation: fadeIn 0.5s ease-out;
 }
 
+
 .product-card button:hover {
     background: linear-gradient(135deg, #45a049, #1b5e20);
     transform: scale(1.05);
@@ -395,6 +396,29 @@ button {
 
 button:hover {
     background: #2E7D32;
+}
+
+.report-button {
+    background: linear-gradient(135deg, #d32f2f, #b71c1c);
+    /* Red gradient */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 25px;
+    margin: 15px 0;
+    transition: background 0.3s ease, transform 0.3s ease;
+    animation: fadeIn 0.5s ease-out;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.report-button:hover {
+    background: linear-gradient(135deg, #c62828, #8e0000);
+    /* Darker red on hover */
+    transform: scale(1.05);
 }
 
 /* Loading and No Products Found Styling */

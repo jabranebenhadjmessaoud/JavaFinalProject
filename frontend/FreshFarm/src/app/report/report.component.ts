@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Report } from '../report';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-report',
@@ -48,6 +49,19 @@ export class ReportComponent {
       ({
         next: (data) => {
           this.router.navigate(['/']);
+          Swal.fire({
+            title: 'Report Sent Successfully!',
+            text: 'Your report has been sent and will be reviewed shortly.',
+            icon: 'info', // Using 'info' icon to indicate it’s an informational message
+            showConfirmButton: false,
+            timer: 3000, // Auto close in 3 seconds
+            toast: true,
+            position: 'top-end', // Appears at the top right
+            customClass: {
+              popup: 'report-toast' // Custom class for styling
+            }
+          });
+
         }
       })
   }
