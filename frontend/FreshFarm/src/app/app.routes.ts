@@ -18,6 +18,7 @@ import { NoAuthGuard } from './guards/no-auth.guard';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NotFoundGuard } from './guards/not-found.guard';
 import { ReportComponent } from './report/report.component';
+import { AdminreportsComponent } from './adminreports/adminreports.component';
 
 export const routes: Routes = [
     { path: "", component: HomepageComponent },
@@ -27,6 +28,7 @@ export const routes: Routes = [
     { path: "admin-users", component: AdminusersComponent, canActivate: [AdminGuard] },
     { path: "admin-products", component: AdminproductsComponent, canActivate: [AdminGuard] },
     { path: "admin-posts", component: AdminpostsComponent, canActivate: [AdminGuard] },
+    { path: "admin-reports", component: AdminreportsComponent, canActivate: [AdminGuard] },
     { path: "all-products", component: AllproductsComponent, canActivate: [AuthGuard] },
     { path: "farmer-form", component: FarmerformComponent, canActivate: [AuthGuard] },
     { path: "community-form", component: ComunityformComponent, canActivate: [AuthGuard] },

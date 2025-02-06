@@ -46,6 +46,8 @@ public class User implements UserDetails {
 	private String password;
 
 	private String image_url;
+
+	private String status = "ACTIVE";
 	
 	@OneToMany(mappedBy = "postedBy", fetch = FetchType.LAZY)
 	private List<Product> createdProducts;

@@ -12,5 +12,5 @@ public enum Role {
 
     ROLE_CLIENT,
     
-    ROLE_FARMER	
+    ROLE_FARMER,
 }

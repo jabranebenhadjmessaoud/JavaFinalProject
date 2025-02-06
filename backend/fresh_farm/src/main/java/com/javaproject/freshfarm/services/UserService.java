@@ -39,8 +39,9 @@ public class UserService {
      * @param user The User entity with updated information.
      * @return A UserDTO representing the updated user.
      */
-    public UserDTO updateUser(User user) {
+    public UserDTO updateUserStatusBan(User user) {
         // Save the updated user entity to the repository
+        user.setStatus("BANNED");
         User updatedUser = userRepository.save(user);
 
         // Convert the updated user entity to a UserDTO and return it
@@ -91,4 +92,5 @@ public class UserService {
     public User convertDtoToEntity(UserDTO userDTO) {
         return modelMapper.map(userDTO, User.class);
     }
+
 }

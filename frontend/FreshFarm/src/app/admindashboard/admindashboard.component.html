@@ -6,7 +6,7 @@
             <a href="/admin-users">Users</a>
             <a href="/admin-products">Products</a>
             <a href="/admin-posts">Posts</a>
-            <a href="#reports">Reports</a>
+            <a href="/admin-reports">Reports</a>
         </nav>
         <main class="dashboard-content">
 
@@ -37,7 +37,8 @@
                             <td>{{ getTimeAgo(user) }}</td>
                             <td>
                                 <button class="btn-view">View</button>
-                                <button class="btn-edit">Edit</button>
+                                <button (click)="banFarmer(user)" [disabled]="user.banned"
+                                    *ngIf="user.role == 'ROLE_FARMER'" class="btn-delete">Ban</button>
                                 <button class="btn-delete">Delete</button>
                             </td>
                         </tr>

@@ -47,8 +47,6 @@ export class ReportComponent {
     this.apiService.createReport(this.data, Number(this.productId)).subscribe
       ({
         next: (data) => {
-          this.reports.push(data.reportContent);
-          this.data.reportContent = "";
           this.router.navigate(['/']);
         }
       })
