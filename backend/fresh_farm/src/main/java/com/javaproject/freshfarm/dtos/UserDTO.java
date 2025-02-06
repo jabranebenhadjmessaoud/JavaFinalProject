@@ -26,7 +26,7 @@ public class UserDTO {
     private String fullName;
     private String email;
     private String image_url;
-    private String status;
+    private String user_stat;
     private List<ProductDTO> createdProducts;
 	private List<PostDTO> createdPosts;
 	private List<ProductDTO> addedprodectstocart;

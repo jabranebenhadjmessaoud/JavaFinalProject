@@ -1,6 +1,7 @@
 package com.javaproject.freshfarm.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.javaproject.freshfarm.models.User;
 import com.javaproject.freshfarm.repositories.UserRepository;
@@ -58,20 +59,20 @@ public class UserController {
 		return ResponseEntity.ok(user) ;      
 	}
 
-    @GetMapping("/admin/ban/{id}")
+    @PutMapping("/admin/ban/{id}")
     public ResponseEntity<UserDTO> banFarmer(@PathVariable("id") Long id) {
         UserDTO user1=userService.getUserById(id);
-        user1.setStatus("BANNED");
+        user1.setUser_stat("BANNED");
         userService.updateUserStatusBan(user1);
-        return ResponseEntity.ok(user1);
+        return ResponseEntity.ok(user1);    
     }
 
-    @GetMapping("/admin/unban/{id}")
-    public ResponseEntity<User> unbanFarmer(@PathVariable("id") Long id) {
-        User user1=userService.findById(id);
-        user1.setStatus("ACTIVE");
-        return ResponseEntity.ok(user1);
+    //@GetMapping("/admin/unban/{id}")
+    //public ResponseEntity<User> unbanFarmer(@PathVariable("id") Long id) {
+     //   Optional<User> user1=userRepository.findById(id);
+     //   user1.setStatus("ACTIVE");
+       // return ResponseEntity.ok(user1);
     }
     
     
-}
+

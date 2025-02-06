@@ -36,4 +36,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @return a list of users with the specified role
      */
     List<User> findByRole(Role role);
+
+	UserDTO save(UserDTO user);
 }
