@@ -3,22 +3,23 @@ import { CartService } from '../cart.service';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { differenceInDays, differenceInMinutes, differenceInHours } from 'date-fns';
+import Swal from 'sweetalert2';
 
 
 @Component({
   selector: 'app-cart',
-  imports: [CommonModule,NavbarComponent],
+  imports: [CommonModule, NavbarComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
-export class CartComponent  implements OnInit {
+export class CartComponent implements OnInit {
   cartItems: any[] = [];
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
     this.loadCart();
-    
+
   }
 
   isOlderThanThreeDays(createdAt: string): boolean {
@@ -44,5 +45,14 @@ export class CartComponent  implements OnInit {
   clearCart(): void {
     this.cartService.clearCart();
     this.loadCart();
+    Swal.fire({
+      title: 'You Cleared the cart!',
+      text: `You cart is empty!.`,
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 2000, // Auto close in 2 seconds
+      toast: true,
+      position: 'top-end' // Appears at the top right
+    });
   }
 }

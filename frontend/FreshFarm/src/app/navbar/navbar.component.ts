@@ -10,6 +10,7 @@ import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { User } from '../user';
 import { ApiService } from '../api.service';
+import { CartService } from '../cart.service';
 @Component({
   selector: 'app-navbar',
   imports: [MatToolbarModule,
@@ -22,11 +23,18 @@ import { ApiService } from '../api.service';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(private apiService: ApiService, private router: Router, private cartService: CartService) { }
   userRole = localStorage.getItem('role');
   userId = localStorage.getItem('user_id');
   image = localStorage.getItem('image');
-
+  cartCount: number = 0;
+  ngOnInit() {
+    // Subscribe to cart count updates
+    this.cartService.cartCount$.subscribe(count => {
+      this.cartCount = count;
+    });
+  }
+  cart = localStorage.getItem('cart');
   async logout(): Promise<void> {
 
     await localStorage.clear();

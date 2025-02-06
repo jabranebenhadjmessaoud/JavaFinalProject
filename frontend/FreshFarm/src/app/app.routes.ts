@@ -21,6 +21,7 @@ import { ReportComponent } from './report/report.component';
 import { CartComponent } from './cart/cart.component';
 import { AdminreportsComponent } from './adminreports/adminreports.component';
 
+
 export const routes: Routes = [
     { path: "", component: HomepageComponent },
     { path: "authenticate", component: LoginformComponent, canActivate: [NoAuthGuard] },
@@ -37,9 +38,9 @@ export const routes: Routes = [
     { path: "post-details/:id", component: ShowpostdetailsComponent, canActivate: [AuthGuard], pathMatch: 'full' },
     { path: "profile/:id", component: ProfileComponent, canActivate: [AuthGuard], pathMatch: 'full' },
     { path: "report/:id", component: ReportComponent, canActivate: [AuthGuard], pathMatch: 'full' },
-    {path:'cart',component:CartComponent, canActivate: [AuthGuard]},
+    { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
     { path: '**', component: NotFoundComponent },
     { path: '404', component: NotFoundComponent }
-    
+
 
 ];
