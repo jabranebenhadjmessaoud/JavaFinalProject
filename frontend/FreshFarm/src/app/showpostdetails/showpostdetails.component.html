@@ -1,29 +1,30 @@
 <app-navbar></app-navbar>
 
 <body>
-    <div class="post-details-container">
+    <div class="post-container">
         <!-- Post Header -->
         <div class="post-header">
-            <!-- <img class="post-author-avatar" src="../../assets/farmer-avatar.png" alt="Farmer Avatar"> -->
             <div class="post-author-info">
                 <span class="post-author">Title: {{post.post_title}}</span>
-                <span class="post-date">{{ getTimeAgo() }}</span>
             </div>
         </div>
 
         <!-- Post Content -->
         <div class="post-content">
-            <p>Description: {{post.description}}</p>
+            <p><strong>Description:</strong> {{post.description}}</p>
             <img class="post-image" src="{{post.image_url}}" alt="{{post.title}}">
+            Posted:<span class="post-date">{{ getTimeAgo() }}</span>
         </div>
 
-        <!-- Post Interactions -->
-        <div class="post-interactions">
-            <button class="comment-button">💬 {{comments.length}} Comments</button>
+        <!-- Toggle Comments Button -->
+        <div class="comments-toggle">
+            <button (click)="toggleComments()">
+                {{ showComments ? 'Hide Comments' : 'Show Comments' }}
+            </button>
         </div>
 
         <!-- Comments Section -->
-        <div class="comments-section">
+        <div class="comments-section" *ngIf="showComments">
             <h3>Comments</h3>
             <div class="comment-list">
                 <ul>
@@ -37,13 +38,12 @@
                     </li>
                 </ul>
             </div>
+
             <!-- Add Comment Form -->
             <form (ngSubmit)="createComment()" class="add-comment-form">
-                <textarea [(ngModel)]="data.comment" name="comment" placeholder="Add a comment..." rows="3"></textarea>
+                <textarea [(ngModel)]="data.comment" name="comment" placeholder="Add a comment..." rows="2"></textarea>
                 <button type="submit">Post Comment</button>
             </form>
         </div>
-
-
     </div>
 </body>

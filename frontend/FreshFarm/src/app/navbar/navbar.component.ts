@@ -27,6 +27,7 @@ export class NavbarComponent {
   userRole = localStorage.getItem('role');
   userId = localStorage.getItem('user_id');
   image = localStorage.getItem('image');
+  user_stat = localStorage.getItem('user_stat');
   cartCount: number = 0;
   ngOnInit() {
     // Subscribe to cart count updates

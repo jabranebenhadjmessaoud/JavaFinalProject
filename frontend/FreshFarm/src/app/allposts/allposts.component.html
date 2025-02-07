@@ -9,14 +9,12 @@
         <h1>Freshka Community</h1>
         <p>Connect, share, and grow with fellow farmers.</p>
 
-        <!-- Post Feed -->
         <div class="post-feed">
             <div class="post" *ngFor="let post of posts">
                 <div class="post-header">
                     <div class="post-author-info">
                         <span class="post-author">Title: <a
                                 href="/post-details/{{post.id}}">{{post.post_title}}</a></span>
-
                     </div>
                 </div>
                 <div class="post-content">
@@ -27,8 +25,6 @@
                     <span class="post-date">Posted: {{ getTimeAgo(post) }}</span>
                 </div>
             </div>
-
-            <!-- Repeat more posts here -->
         </div>
     </div>
 </body>

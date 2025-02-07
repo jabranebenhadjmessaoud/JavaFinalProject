@@ -61,7 +61,7 @@ public class AuthenticationService {
             //Added user id when you register
             var id = user.getId();
             return new ResponseEntity<>(AuthenticationResponse.builder().role(role)
-                    .fullName(fullName).id(id).image_url(image_url)
+                    .fullName(fullName).id(id).image_url(image_url).user_stat(user_stat)
                     .email(email).token(jwtToken).build(), HttpStatus.OK);
         }
     }
@@ -88,10 +88,12 @@ public class AuthenticationService {
         var email = user.getEmail();
         //Added user id when you login
         var id = user.getId();
+        var user_stat = user.getUser_stat();
         return AuthenticationResponse.builder().role(role)
                 .fullName(fullName)
                 .id(id)
                 .image_url(user.getImage_url())
+                .user_stat(user_stat)
                 .email(email).token(jwtToken).build();
     }
 

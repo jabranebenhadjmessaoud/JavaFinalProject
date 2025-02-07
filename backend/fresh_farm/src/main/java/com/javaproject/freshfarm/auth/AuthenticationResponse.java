@@ -22,5 +22,6 @@ public class AuthenticationResponse {
     private String fullName;
     private String email;
     private String image_url;
+    private String user_stat;
     private Role role;
 }
