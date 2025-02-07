@@ -45,8 +45,9 @@ public class User implements UserDetails {
 	@Size(min=8, max=128, message ="Password must be between 8 and 128 characters")
 	private String password;
 
-	private String image_url;
+	private String image_url;    
 	
+	@Builder.Default
 	private String user_stat = "ACTIVE";
 	
 	@OneToMany(mappedBy = "postedBy", fetch = FetchType.LAZY)
