@@ -38,7 +38,6 @@
                             <td>{{user.user_stat}}</td>
                             <td>{{ getTimeAgo(user) }}</td>
                             <td>
-                                <button class="btn-view">View</button>
                                 <button (click)="banFarmer(user)"
                                     *ngIf="user.role == 'ROLE_FARMER' && user.user_stat == 'ACTIVE'"
                                     class="btn-delete ">Ban</button>
@@ -91,8 +90,6 @@
                             <td>{{product.farming_method}}</td>
                             <td>{{ getTimeAgo(product) }}</td>
                             <td>
-                                <button class="btn-view">View</button>
-                                <button class="btn-edit">Edit</button>
                                 <button class="btn-delete">Delete</button>
                             </td>
                         </tr>
@@ -137,7 +134,6 @@
                             <td>
                                 <button class="btn-view"><a style=" color: white; text-decoration: none;"
                                         href="/post-details/{{post.id}}">View </a></button>
-                                <button class="btn-edit">Edit</button>
                                 <button class="btn-delete">Delete</button>
                             </td>
                         </tr>
@@ -184,8 +180,6 @@
                             <td>{{report.productReportedBy.fullName}}</td>
                             <td>{{report.createdAt | date}}</td>
                             <td>
-                                <button class="btn-view">View</button>
-                                <button class="btn-edit">Edit</button>
                                 <button class="btn-delete">Delete</button>
                             </td>
                         </tr>

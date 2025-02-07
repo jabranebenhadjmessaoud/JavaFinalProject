@@ -6,6 +6,7 @@ import { differenceInMinutes, differenceInHours, differenceInDays } from 'date-f
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Comment } from '../comment';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -52,15 +53,45 @@ export class ShowpostdetailsComponent {
       })
   }
 
-  createComment(): void {
-    console.log(this.data.comment);
-    this.apiService.createComment(this.data, Number(this.postId)).subscribe
-      ({
-        next: (data) => {
-          this.router.navigate(['/']);
-        }
-      })
+  loadComments() {
+    this.apiService.getOnePostComments(Number(this.postId)).subscribe((data) => {
+      this.comments = data;
+    });
   }
+
+
+  createComment(): void {
+    if (!this.data.comment) return; // Prevent empty comments from being posted
+
+    this.apiService.createComment(this.data, Number(this.postId)).subscribe({
+      next: (data) => {
+        this.data.comment = ''; // Clear the input field
+        this.loadComments(); // Reload comments after successful post
+
+        // Show a SweetAlert toast notification
+        Swal.fire({
+          toast: true,
+          position: 'bottom-left',
+          icon: 'success',
+          title: 'Your comment has been sent!',
+          showConfirmButton: false,
+          timer: 2000 // Auto close after 2 seconds
+        });
+      },
+      error: (err) => {
+        console.error("Error posting comment:", err);
+      }
+    });
+  }
+
+
+  showComments = false; // Initially hide comments
+
+  toggleComments() {
+    this.showComments = !this.showComments; // Toggle visibility
+  }
+
+
 
   getTimeAgo(): string {
     if (!this.post || !this.post.createdAt) return 'Unknown';

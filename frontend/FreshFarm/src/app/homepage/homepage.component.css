@@ -43,18 +43,24 @@
 
 /* Individual Slide Backgrounds */
 .slide1 {
-    background-image: url('../../../public/images/image1.jpg');
+    background-image: url('../../../public/images/pexels-tomfisk-1483880.jpg');
     animation-delay: 0s;
 }
 
 .slide2 {
-    background-image: url('../../../public/images/bg.jpg');
+    background-image: url('../../../public/images/pexels-pixabay-219794.jpg');
     animation-delay: 4s;
     /* Adjusted delay for smoother transitions */
 }
 
 .slide3 {
-    background-image: url('../../../public/images/image2.jpg');
+    background-image: url('../../../public/images/pexels-polina-kovaleva-7511800.jpg');
+    animation-delay: 8s;
+    /* Adjusted delay for smoother transitions */
+}
+
+.slide5 {
+    background-image: url('../../../public/images/pexels-nc-farm-bureau-mark-2252584.jpg');
     animation-delay: 8s;
     /* Adjusted delay for smoother transitions */
 }
@@ -115,10 +121,6 @@
     /* Show caption on hover */
 }
 
-.slide4 {
-    background-image: url('../../../public/images/image3.jpg');
-    animation-delay: 6.5s;
-}
 
 /* About Us Section */
 .about {
@@ -518,7 +520,7 @@ footer p {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('../../../public/images/farmer-with-tablet-close-up.jpg');
+    background-image: url('../../../public/images/pexels-quang-nguyen-vinh-222549-2132250.jpg');
     /* Background image */
     background-size: cover;
     /* Ensures the image covers the whole area */

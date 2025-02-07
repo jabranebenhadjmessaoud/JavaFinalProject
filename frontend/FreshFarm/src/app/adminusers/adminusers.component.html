@@ -6,7 +6,7 @@
 
             <!-- Users Table -->
             <section class="card users">
-                <h2> All Users: {{filteredUsers.length}}</h2>
+                <h2>All Users: {{filteredUsers.length}} </h2>
                 <input type="text" [(ngModel)]="userSearchQuery" (input)="filterUsers()"
                     placeholder="Search users by ID, Name, Email, or Role..." class="search-bar">
                 <table>
@@ -16,6 +16,8 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
+                            <th>Status</th>
+                            <th>Creation</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -24,10 +26,18 @@
                             <td>{{user.id}}</td>
                             <td>{{user.fullName}}</td>
                             <td>{{user.email}}</td>
-                            <td>{{user.role}}</td>
+                            <td *ngIf="user.role == 'ROLE_FARMER'" style="color: green;">Farmer</td>
+                            <td *ngIf="user.role == 'ROLE_CLIENT'" style="color: cyan;">Client</td>
+                            <td *ngIf="user.role == 'ROLE_ADMIN'" style="color: red;">Admin</td>
+                            <td>{{user.user_stat}}</td>
+                            <td>{{ user.createdAt }}</td>
                             <td>
-                                <button class="btn-view">View</button>
-                                <button class="btn-edit">Edit</button>
+                                <button (click)="banFarmer(user)"
+                                    *ngIf="user.role == 'ROLE_FARMER' && user.user_stat == 'ACTIVE'"
+                                    class="btn-delete ">Ban</button>
+                                <button (click)="unbanFarmer(user) "
+                                    *ngIf="user.role == 'ROLE_FARMER' && user.user_stat == 'BANNED'"
+                                    class="btn btn-success">Unban</button>
                                 <button class="btn-delete">Delete</button>
                             </td>
                         </tr>

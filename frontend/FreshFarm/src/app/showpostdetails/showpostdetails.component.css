@@ -6,58 +6,37 @@
 }
 
 body {
+    padding: 5px;
     font-family: 'Poppins', sans-serif;
-    background-color: #ffffff;
     color: #333;
     line-height: 1.6;
     margin-top: 60px;
 }
 
-.post-details-container {
-    max-width: 800px;
+/* Full Page Post */
+.post-container {
+    width: 90%;
+    max-width: 1200px;
     margin: 2rem auto;
     padding: 2rem;
-    background-color: #ffffff;
+    background-color: #fff;
     border-radius: 16px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.6s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 /* Post Header */
 .post-header {
     display: flex;
     align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.post-author-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 1rem;
-}
-
-.post-author-info {
-    display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
 .post-author {
     font-weight: 600;
     color: #1e5631;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 
 .post-date {
@@ -71,82 +50,55 @@ body {
 }
 
 .post-content p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #333;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .post-image {
     width: 100%;
+    height: 80vh;
     border-radius: 12px;
 }
 
-/* Post Interactions */
-.post-interactions {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
+/* Toggle Comments Button */
+.comments-toggle {
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
-.post-interactions button {
-    background: none;
+.comments-toggle button {
+    background-color: #1e5631;
+    color: white;
     border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
     font-size: 1rem;
-    color: #777;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
-.post-interactions button:hover {
-    color: #1e5631;
-}
-
-.like-button:hover {
-    color: #ff4757;
-}
-
-.comment-button:hover {
-    color: #2ed573;
-}
-
-.share-button:hover {
-    color: #1e90ff;
+.comments-toggle button:hover {
+    background-color: #164325;
 }
 
 /* Comments Section */
 .comments-section {
-    margin-top: 2rem;
-    padding: 2rem;
-    background-color: #f9f9f9;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 900px;
-    margin: 2rem auto;
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .comments-section h3 {
-    font-size: 1.6rem;
-    color: #2d2d2d;
+    font-size: 1.4rem;
+    color: #1e5631;
     font-weight: 600;
-    margin-bottom: 1.5rem;
-    border-bottom: 2px solid #1e5631;
-    padding-bottom: 0.5rem;
     text-align: center;
+    margin-bottom: 1rem;
 }
 
+/* Comments List */
 .comment-list {
     list-style-type: none;
     padding: 0;
@@ -154,69 +106,64 @@ body {
 
 .comment {
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-    background-color: #fff;
+    align-items: center;
+    gap: 10px;
+    padding: 0.8rem;
+    background-color: #fafafa;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 8px;
+    transition: transform 0.2s ease-in-out;
 }
 
 .comment:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
 }
 
 .comment-author-avatar {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    margin-right: 1rem;
-    object-fit: cover;
     border: 2px solid #1e5631;
+    object-fit: cover;
 }
 
 .comment-content {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    font-size: 0.9rem;
 }
 
 .comment-author {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: bold;
     color: #1e5631;
 }
 
 .comment-text {
-    font-size: 1rem;
-    color: #333;
-    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: #444;
+    margin: 2px 0;
 }
 
 .comment-date {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     color: #777;
 }
 
+/* Comment Input */
 .add-comment-form {
     display: flex;
-    flex-direction: column;
-    margin-top: 2rem;
-    gap: 1rem;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 .add-comment-form textarea {
-    padding: 0.8rem;
-    border-radius: 8px;
-    border: 1px solid #d1e7dd;
-    font-size: 1rem;
-    resize: vertical;
-    width: 100%;
-    min-height: 100px;
-    transition: border-color 0.3s ease;
+    flex: 1;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 0.9rem;
+    resize: none;
+    transition: border 0.3s ease;
 }
 
 .add-comment-form textarea:focus {
@@ -228,9 +175,9 @@ body {
     background-color: #1e5631;
     color: white;
     border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    font-size: 1rem;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -241,34 +188,33 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .comments-section {
+    .post-container {
+        width: 95%;
         padding: 1.5rem;
     }
 
+    .comments-toggle button {
+        font-size: 0.9rem;
+    }
+
     .comment {
-        flex-direction: column;
-        padding: 1rem;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
     }
 
     .comment-author-avatar {
-        width: 35px;
-        height: 35px;
+        width: 32px;
+        height: 32px;
     }
 
-    .comment-author {
-        font-size: 1rem;
-    }
-
-    .comment-text {
-        font-size: 0.95rem;
-    }
-
-    .comment-date {
-        font-size: 0.8rem;
+    .add-comment-form {
+        flex-direction: column;
+        gap: 5px;
     }
 
     .add-comment-form textarea {
-        font-size: 0.95rem;
+        min-height: 80px;
     }
 
     .add-comment-form button {
