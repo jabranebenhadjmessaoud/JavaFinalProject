@@ -1,14 +1,32 @@
-:host {
+.content {
+    margin-top: 60px;
     display: flex;
-    flex-direction: column;
-    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url("../../../public/images/farmerformbg.jpg") no-repeat center center/cover;
 }
 
-.content {
-    margin-top: 62px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    background-image: url("../../../public/images/farmerformbg.jpg");
-    background-size: cover;
+.card {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 8px rgba(40, 167, 69, 0.3);
+}
+
+.btn-success {
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
 }

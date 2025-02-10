@@ -13,34 +13,40 @@ import { NavbarComponent } from "../navbar/navbar.component";
   styleUrl: './loginform.component.css'
 })
 export class LoginformComponent {
+  data: User = {};
+  errMessage: string = "";
+  submitted: boolean = false; // Track if form was submitted
 
-  data: User = {}
-  errMessage: any = {}
   constructor(private apiService: ApiService, private router: Router) { }
 
   authenticate(): void {
-    let verif: boolean = false
+    this.submitted = true; // Mark as submitted
+
+    if (!this.data.email || !this.data.password) {
+      this.errMessage = "Email/Password is wrong!";
+      return;
+    }
+
     this.apiService.authenticate(this.data).subscribe({
       next: (res) => {
-        console.log("logIn")
-        localStorage.setItem('token', res.token);
-        localStorage.setItem('user_id', res.id);
-        localStorage.setItem('role', res.role);
-        localStorage.setItem('userName', res.fullName);
-        localStorage.setItem('image', res.image_url);
-        localStorage.setItem('user_stat', res.user_stat);
-        // console.log(res)
-        verif = true
-        console.log(verif)
-        if (localStorage.getItem('user_stat') == 'ACTIVE') {
-          this.router.navigate(['/'])
+        console.log("logIn");
+        localStorage.setItem("token", res.token);
+        localStorage.setItem("user_id", res.id);
+        localStorage.setItem("role", res.role);
+        localStorage.setItem("userName", res.fullName);
+        localStorage.setItem("image", res.image_url);
+        localStorage.setItem("user_stat", res.user_stat);
+
+        if (localStorage.getItem("user_stat") == "ACTIVE") {
+          this.router.navigate(["/"]);
         }
-        if (localStorage.getItem('user_stat') == 'BANNED') {
-          this.router.navigate(['/'])
+        if (localStorage.getItem("user_stat") == "BANNED") {
+          this.router.navigate(["/"]);
         }
       },
-      error: err => this.errMessage = err
-    })
+      error: (err) => {
+        this.errMessage = err.error?.message || "Email/Password is wrong!";
+      },
+    });
   }
-
 }

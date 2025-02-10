@@ -7,7 +7,7 @@
 body {
     padding: 5px;
     font-family: 'Poppins', sans-serif;
-    background-color: #eef7f2;
+    background: linear-gradient(to right, #4CAF50, #73e677);
     color: #333;
     line-height: 1.6;
     margin-top: 60px;
@@ -19,20 +19,33 @@ body {
     padding: 2rem;
     background-color: #ffffff;
     border-radius: 16px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 h1 {
     font-size: 3rem;
     color: #1e5631;
-    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     margin-bottom: 1rem;
 }
 
 p {
     font-size: 1.2rem;
     color: #444;
-    text-align: center;
     margin-bottom: 2.5rem;
 }
 
@@ -43,26 +56,35 @@ p {
 }
 
 .post {
-    background-color: #f8faf8;
-    border: 1px solid #d1e7dd;
+    background: #f8faf8;
     border-radius: 12px;
     padding: 1.5rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     min-height: 400px;
-    /* Ensures all posts have the same height */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .post:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.post-title {
+    font-weight: bold;
+    color: #1e5631;
+    text-decoration: none;
+}
+
+.post-title:hover {
+    text-decoration: underline;
+    color: #145428;
 }
 
 .post-content {
     flex-grow: 1;
-    /* Makes description take available space */
 }
 
 .post-image {
@@ -71,12 +93,14 @@ p {
     margin: auto;
     max-height: 200px;
     object-fit: cover;
-    /* Ensures images maintain uniform height */
 }
 
 .post-footer {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #777;
 }
 
 /* Responsive Design */

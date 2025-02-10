@@ -3,7 +3,7 @@
         <span class="logo"><img style="height: 100px;" src="/assets/freskhabg.png" alt=""></span>
         <span class="spacer"></span>
         <a style="margin-left: 100px;" href="/" mat-button>🏠 Home</a>
-        <div *ngIf="userId !== null">
+        <div *ngIf="userId !== null && userRole !== 'ROLE_FARMER' ">
             <a href="/all-products" mat-button>📦 All Products</a>
         </div>
         <div *ngIf="userRole === 'ROLE_FARMER'">
@@ -11,9 +11,6 @@
         </div>
         <div *ngIf="userRole === 'ROLE_FARMER' && user_stat === 'ACTIVE'">
             <a href="/farmer-form" mat-button>➕ Create Product</a>
-        </div>
-        <div *ngIf="userRole === 'ROLE_FARMER' && user_stat === 'ACTIVE'">
-            <a href="/community-form" mat-button>➕ Create Post</a>
         </div>
         <div *ngIf="userRole === 'ROLE_ADMIN'">
             <a href="/admin" mat-button>🛡️ Admin</a>

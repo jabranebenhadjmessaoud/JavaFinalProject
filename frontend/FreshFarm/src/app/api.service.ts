@@ -37,6 +37,11 @@ export class ApiService {
       catchError(this.handleError));
   }
 
+  getOneProduct(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + `/farmer/showproduct/${id}`).pipe(
+      catchError(this.handleError));
+  }
+
 
   private handleError(err: any): Observable<any> {
     console.error('an error occurred!', err.error.msg)
@@ -99,9 +104,9 @@ export class ApiService {
       catchError(this.handleError));
   }
 
-  //fetch post details
+  //fetch poduct details
   showProductDetails(id: number): Observable<any> {
-    return this.http.get(this.baseUrl + `/farmer/showproduct/{${id}`).pipe(
+    return this.http.get(this.baseUrl + `/farmer/showproduct/${id}`).pipe(
       catchError(this.handleError));
   }
 

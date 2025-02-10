@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+
+<body>
+    <div class="container">
+        <div class="grid">
+            <!-- Product Image -->
+            <div class="product-image">
+                <img src="{{product.image_url}}" alt="Product">
+            </div>
+
+            <!-- Product Details -->
+            <div class="product-details">
+                <h1>Title: {{product.product_title}}</h1>
+                <h1>Category: {{product.category}}</h1>
+                <p>{{product.description}}</p>
+                <p class="price">TND {{product.price}} / kg</p>
+
+                <!-- Farmer Details -->
+                <div class="farmer-info">
+                    <h2>Farming Method: {{product.category}}</h2>
+                    <p>Location: {{product.location}}</p>
+                    <p>📅 Posted: {{getTimeAgo()}}</p>
+                </div>
+
+                <!-- Call to Action
+                <a href="#" class="button">Contact Farmer</a> -->
+            </div>
+        </div>
+    </div>
+</body>

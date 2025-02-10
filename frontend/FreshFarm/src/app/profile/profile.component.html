@@ -1,46 +1,36 @@
 <app-navbar></app-navbar>
 
 <body>
-    <div style="margin-top: 65px;">
-        <div class="profile-container">
-            <!-- Profile Header -->
-            <div class="profile-header" style="margin-top: 150px;">
-                <div class="profile-info">
-                    <img *ngIf="profile.image_url !== null" class="profile-picture" src="{{profile.image_url}}"
-                        alt="Profile Picture">
-                    <img *ngIf="profile.image_url == null" class="profile-picture" src="/assets/noprofilepic.jpg"
-                        alt="Profile Picture">
-                    <h1>Full Name: {{profile.fullName}}</h1>
-                    <h4 *ngIf="profile.role == 'ROLE_ADMIN'">Account Type: Admin</h4>
-                    <h4 *ngIf="profile.role == 'ROLE_CLIENT'">Account Type: Client</h4>
-                    <h4 *ngIf="profile.role == 'ROLE_FARMER'">Account Type: Farmer</h4>
-                    <h4>Email: {{profile.email}}</h4>
-                    <div class="profile-stats" *ngIf="profile.role == 'ROLE_FARMER'">
-                        <div class="stat">
-                            <span class="stat-label">Products Posted </span>
-                            <span class="stat-number">{{created_products.length}} </span>
-                        </div>
+    <div class="profile-container">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="profile-info">
+                <img *ngIf="profile.image_url !== null" class="profile-picture" src="{{profile.image_url}}"
+                    alt="Profile Picture">
+                <img *ngIf="profile.image_url == null" class="profile-picture" src="/assets/noprofilepic.jpg"
+                    alt="Profile Picture">
+                <h1>{{profile.fullName}}</h1>
+                <h4>{{profile.role == 'ROLE_ADMIN' ? 'Admin' : profile.role == 'ROLE_CLIENT' ? 'Client' : 'Farmer'}}
+                </h4>
+                <h4>{{profile.email}}</h4>
+                <div class="profile-stats" *ngIf="profile.role == 'ROLE_FARMER'">
+                    <div class="stat">
+                        <span class="stat-label">Products Posted: </span>
+                        <span class="stat-number">{{created_products.length}}</span>
                     </div>
                 </div>
             </div>
-            <!-- Tab Content -->
-            <div class="tab-content">
-                <!-- Posts Tab -->
-                <div id="posts" class="tab-pane active">
-                    <div class="posts-container">
-                        <!-- Single Post Card -->
-                        <div class="post" *ngFor="let product of created_products">
-                            <div class="post-content">
-                                <p>Title: {{ product.product_title }}</p>
-                            </div>
-                            <img style="height: 250px; margin-bottom: 6px;" src="{{product.image_url}}"
-                                alt="{{product.product_title}}">
-                            <div class="post-footer">
-                                <span class="post-date">{{ getTimeAgo(product) }}</span>
-                                <button class="comment-button">💬 123</button>
-                            </div>
-                        </div>
-                        <!-- Repeat for more posts -->
+        </div>
+
+        <!-- Posts Section -->
+        <div class="posts-container">
+            <div class="post" *ngFor="let product of created_products">
+                <img class="post-image" src="{{product.image_url}}" alt="{{product.product_title}}">
+                <div class="post-content">
+                    <h3><a style="text-decoration: none;" href="/product-details/{{product.id}}">{{
+                            product.product_title}}</a></h3>
+                    <div class="post-footer">
+                        <span class="post-date">📅 Posted:{{ getTimeAgo(product) }}</span>
                     </div>
                 </div>
             </div>

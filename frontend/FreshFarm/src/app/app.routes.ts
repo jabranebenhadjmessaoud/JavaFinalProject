@@ -20,6 +20,7 @@ import { NotFoundGuard } from './guards/not-found.guard';
 import { ReportComponent } from './report/report.component';
 import { CartComponent } from './cart/cart.component';
 import { AdminreportsComponent } from './adminreports/adminreports.component';
+import { ProductdetailsComponent } from './productdetails/productdetails.component';
 
 
 export const routes: Routes = [
@@ -36,6 +37,7 @@ export const routes: Routes = [
     { path: "community-form", component: ComunityformComponent, canActivate: [AuthGuard] },
     { path: "all-posts", component: AllpostsComponent, canActivate: [AuthGuard] },
     { path: "post-details/:id", component: ShowpostdetailsComponent, canActivate: [AuthGuard], pathMatch: 'full' },
+    { path: "product-details/:id", component: ProductdetailsComponent, canActivate: [AuthGuard], pathMatch: 'full' },
     { path: "profile/:id", component: ProfileComponent, canActivate: [AuthGuard], pathMatch: 'full' },
     { path: "report/:id", component: ReportComponent, canActivate: [AuthGuard], pathMatch: 'full' },
     { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },

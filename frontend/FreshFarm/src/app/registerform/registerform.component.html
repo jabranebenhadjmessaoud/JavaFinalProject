@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-md-12 mt-3">
                         <input class="input100 mb-3" type="file" (change)="onFileSelected($event)" accept="image/*">
-                        <div *ngIf="isLoading">Uploading...</div>
+                        <div class="mb-4" *ngIf="isLoading">Uploading...</div>
                         <img *ngIf="image_url" [src]="image_url" alt="Uploaded Image"
                             style="border: solid 1px green; border-radius: 5px; margin-bottom: 25px;" width="200">
                     </div>
@@ -43,6 +43,9 @@
                             <option name="ROLE_FARMER" value="ROLE_FARMER">Farmer</option>
                         </select>
                         <span class="label-input100">Account Type</span>
+                    </div>
+                    <div *ngIf="submitted && errMessage" class="error-message mb-2">
+                        {{ errMessage }}
                     </div>
 
                     <div>
