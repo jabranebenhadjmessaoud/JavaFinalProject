@@ -1,6 +1,7 @@
 package com.javaproject.freshfarm.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Service;
 import com.javaproject.freshfarm.config.JwtService;
 import com.javaproject.freshfarm.dtos.OrderDTO;
 import com.javaproject.freshfarm.models.Order;
+import com.javaproject.freshfarm.models.Product;
 import com.javaproject.freshfarm.repositories.OrderRepository;
+import com.javaproject.freshfarm.repositories.ProductRepository;
 import com.javaproject.freshfarm.repositories.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -20,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class OrderService {
 	private final ModelMapper modelMapper ;
 	private final OrderRepository orderRepository;
+	private final ProductRepository productRepository;
 	private final UserRepository userRepository;
 	private final JwtService jwtService ;
 	
@@ -31,6 +35,11 @@ public class OrderService {
 	
 	public OrderDTO createOrder(Order order) {
 		System.out.println(order.getProductsOrdered());
+		for (Product proditem:order.getProductsOrdered()) {
+			Product productfromDB=productRepository.findProductsById(proditem.getId());
+			productfromDB.setQuantity(productfromDB.getQuantity()-proditem.getQuantity());
+			}
+			
 		Order newOrder=orderRepository.save(order);
 		return convertEntityToDto(newOrder);
 	}
