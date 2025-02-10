@@ -50,8 +50,8 @@ public class ReportController {
             if (userRepository.findById(userId).isPresent()) {
                 User user = userRepository.findById(userId).get();
                 report.setProductReportedBy(user);
-                if(productRepository.findProductsById(product_id).isPresent()) {
-                    Product product = productRepository.findProductsById(product_id).get();
+                if(productRepository.findProductsById(product_id)!=null) {
+                    Product product = productRepository.findProductsById(product_id);
                     report.setProductsReports(product);
                 }
                 return reportService.createReport(report);
