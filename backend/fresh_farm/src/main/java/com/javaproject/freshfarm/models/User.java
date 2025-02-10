@@ -64,13 +64,10 @@ public class User implements UserDetails {
 	@OneToMany(mappedBy = "productReportedBy", fetch = FetchType.LAZY)
 	private List<Report> userReportedOnPosts;
 	
+	@OneToMany(mappedBy = "orderedBy", fetch = FetchType.LAZY)
+	private List<Order> userOrders;
 	
 	
-	//@ManyToMany(fetch = FetchType.LAZY)
-	//@JoinTable(name = "comments",
-		//		joinColumns = @JoinColumn(name = "user_id"),
-		//		inverseJoinColumns = @JoinColumn(name = "post_id"))  
-	//private List<Post> postsCommentedByUser;
 	
 	
 

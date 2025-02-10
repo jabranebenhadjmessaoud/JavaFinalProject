@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { differenceInDays, differenceInMinutes, differenceInHours } from 'date-fns';
 import Swal from 'sweetalert2';
+import { Order } from '../order';
+import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,14 +16,41 @@ import Swal from 'sweetalert2';
   styleUrl: './cart.component.css'
 })
 export class CartComponent implements OnInit {
+  order_data:Order={};
+  productsList:any[]=[];
   cartItems: any[] = [];
+  total:number=0 ;
+  errMessage: any = {};
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService,private apiService: ApiService,private router: Router) { }
 
   ngOnInit(): void {
     this.loadCart();
-
+    for(let i=0;i<this.cartItems.length;i++){
+      this.total= this.total + (parseFloat(this.cartItems[i].price)*parseInt(this.cartItems[i].quantity))
+    }
   }
+
+// create order 
+createOrder(): void{
+
+  // for(let i in this.cartItems){
+
+  // }
+
+
+  this.order_data.productsOrdered=this.cartItems;
+  this.order_data.amount=this.total;
+  this.apiService.createOrder(this.order_data).subscribe({
+    next: (res) => {
+      this.clearCart();
+      this.router.navigate(['/']);
+    },
+    error: err => this.errMessage = err
+  });
+}
+
+
 
   isOlderThanThreeDays(createdAt: string): boolean {
     const createdAtObj = new Date(createdAt); // Parse the string into a Date object
@@ -35,6 +65,7 @@ export class CartComponent implements OnInit {
 
   loadCart(): void {
     this.cartItems = this.cartService.getCart();
+    console.log(this.cartItems);
   }
 
   removeItem(productId: number): void {
