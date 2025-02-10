@@ -3,7 +3,7 @@ package com.javaproject.freshfarm.dtos;
 import java.util.Date;
 import java.util.List;
 
-import com.javaproject.freshfarm.models.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,9 +23,10 @@ public class OrderDTO {
 	 
 	 private Double amount;
 	 
-	 private UserDTO orderedBy;
+	 private UserNoOrderDTO orderedBy;
 	 
-	 private List<ProductDTO> productsOrdered;
+	 
+//	 private List<ProductDTO> productsOrdered;
 	 
 	private Date createdAt;
 

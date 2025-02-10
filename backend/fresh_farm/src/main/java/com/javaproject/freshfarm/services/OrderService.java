@@ -30,6 +30,7 @@ public class OrderService {
 	   
 	
 	public OrderDTO createOrder(Order order) {
+		System.out.println(order.getProductsOrdered());
 		Order newOrder=orderRepository.save(order);
 		return convertEntityToDto(newOrder);
 	}

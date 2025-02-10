@@ -50,7 +50,12 @@ public class OrderController {
 	            Long userId = jwtService.extractUserId(token);
 	            if (userRepository.findById(userId).isPresent()) {
 	                User user = userRepository.findById(userId).get();
+	                System.out.println(user.getFullName());
+	                
+
 	                order.setOrderedBy(user);
+	                System.out.println(order.getAmount());
+	                System.out.println(order.getOrderedBy().getFullName());
 	                return orderService.createOrder(order);
 	            }
 	            throw new RuntimeException("User not found");
