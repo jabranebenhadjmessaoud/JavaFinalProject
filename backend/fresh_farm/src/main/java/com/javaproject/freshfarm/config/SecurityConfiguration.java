@@ -39,6 +39,8 @@ public class SecurityConfiguration {
                 .permitAll() // Allows unrestricted access to authentication endpoints
                 .requestMatchers("/api/v1/**")
                 .permitAll()
+                .requestMatchers("/api/v1/orders/**")
+                .permitAll()
                 .requestMatchers("/api/v1/farmer/allproducts")
                 .permitAll()
                 .requestMatchers("/api/v1/admin/**")

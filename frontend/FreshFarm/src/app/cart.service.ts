@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -38,7 +39,11 @@ export class CartService {
     if (index > -1) {
       cart[index].quantity += 1; // Increment quantity if already in cart
     } else {
-      cart.push({ ...product, quantity: 1 });
+      let p2={...product}
+      if(this.isOlderThanThreeDays(p2.createdAt)){
+        p2.price=p2.price - (p2.price / 100 * 20)
+      }
+      cart.push({ ...p2, quantity: 1 });
     }
 
     localStorage.setItem(this.cartKey, JSON.stringify(cart));
@@ -57,5 +62,17 @@ export class CartService {
   clearCart(): void {
     localStorage.removeItem(this.cartKey);
     this.cartCountSubject.next(0); // Reset count
+  }
+  
+  
+
+
+  isOlderThanThreeDays(createdAt: string): boolean {
+    const createdAtObj = new Date(createdAt); // Parse the string into a Date object
+    const currentDate = new Date(); // Get the current date
+    const timeDifference = currentDate.getTime() - createdAtObj.getTime(); // Get the time difference in milliseconds
+    const daysDifference = timeDifference / (1000 * 3600 * 24); // Convert to days
+
+    return daysDifference > 3; // Return true if more than 3 days have passed
   }
 }

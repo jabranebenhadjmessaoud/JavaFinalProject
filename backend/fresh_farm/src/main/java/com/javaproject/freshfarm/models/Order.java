@@ -1,12 +1,9 @@
 package com.javaproject.freshfarm.models;
 
-
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,89 +15,70 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import lombok.ToString;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="products")
-public class Product {
-
-	
-	
+@Table(name = "orders")
+public class Order {
 	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotEmpty(message = "Title is required!")
-	private String product_title;
-	
-	@NotEmpty(message = "Category is required!")
-	private String category;
-	
-	private String farming_method;
-	
-	@NotEmpty(message = "Location is required!")
-	private String location;
-	
-	@Min(value=0,message="min shoule be")
-	private Double price;
-	
-	@Min(value=0,message="min shoule be")
-	private Integer quantity;
-	
-	@NotEmpty(message = "Description is required!")
-	private String description;
-
-	@NotEmpty(message = "image is required!")
-	private String image_url;
+	@Builder.Default
+	private String order_stat = "PENDING";
 	
 	
+	private Double amount;
+	
+	@ToString.Exclude
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id")
-	private User postedBy;
+	private User orderedBy;
 	
-
-	@OneToMany(mappedBy = "productsReports", fetch = FetchType.LAZY)
-	private List<Report> productReports ;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "products_orders",
-	joinColumns = @JoinColumn(name = "product_id"),
-	inverseJoinColumns = @JoinColumn(name = "order_id"))  
-	private List<Order> ordersOfProducts;
+	joinColumns = @JoinColumn(name = "order_id"),
+	inverseJoinColumns = @JoinColumn(name = "product_id"))  
+	private List<Product> productsOrdered;
+	
+	
 	
 	
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
-	
+
+	/**
+	 * Sets the createdAt field to the current date before persisting the entity.
+	 */
 	@PrePersist
 	protected void onCreate() {
-	    this.createdAt = new Date();
+		this.createdAt = new Date();
 	}
-	
+
+	/**
+	 * Sets the updatedAt field to the current date before updating the entity.
+	 */
 	@PreUpdate
 	protected void onUpdate() {
-	    this.updatedAt = new Date();
+		this.updatedAt = new Date();
 	}
-
-
-
 
 }

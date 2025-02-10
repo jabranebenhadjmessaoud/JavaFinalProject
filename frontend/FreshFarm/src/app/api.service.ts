@@ -6,6 +6,7 @@ import { Product } from './product';
 import { Post } from './post';
 import { Comment } from './comment';
 import { Report } from './report';
+import { Order } from './order';
 
 
 @Injectable({
@@ -119,6 +120,14 @@ export class ApiService {
   //unban farmer
   unbanFarmer(id: number): Observable<any> {
     return this.http.get(this.baseUrl + `/admin/unban/${id}`).pipe(
+      catchError(this.handleError));
+  }
+
+
+  // create new Order
+
+  createOrder(data: Order): Observable<any> {
+    return this.http.post(this.baseUrl + "/orders/neworder", data).pipe(
       catchError(this.handleError));
   }
 

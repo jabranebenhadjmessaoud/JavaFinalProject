@@ -1,12 +1,17 @@
 package com.javaproject.freshfarm.dtos;
 
 
+import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -31,8 +36,11 @@ public class ProductDTO {
     private String image_url;
 
     private String description;
+    
+   
 
     private Date createdAt;
+	private Date updatedAt;
 
 
 }

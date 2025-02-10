@@ -32,7 +32,7 @@ public class ProductService {
 		    }
 
 	
-		public List<ProductDTO> getAllProductsDTO(){   
+		public List<ProductDTO> getAllProductsDTO(){      
 	        return productRepository.findAll().stream().map(this::convertEntityToDto).collect(Collectors.toList());
 	    }
 		

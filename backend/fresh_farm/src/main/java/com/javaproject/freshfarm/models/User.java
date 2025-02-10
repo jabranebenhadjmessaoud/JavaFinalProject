@@ -45,7 +45,9 @@ public class User implements UserDetails {
 	@Size(min=8, max=128, message ="Password must be between 8 and 128 characters")
 	private String password;
 
-	private String image_url;
+
+	private String image_url;    
+	
 
 	@Builder.Default
 	private String user_stat = "ACTIVE";
@@ -62,13 +64,10 @@ public class User implements UserDetails {
 	@OneToMany(mappedBy = "productReportedBy", fetch = FetchType.LAZY)
 	private List<Report> userReportedOnPosts;
 	
+	@OneToMany(mappedBy = "orderedBy", fetch = FetchType.LAZY)
+	private List<Order> userOrders;
 	
 	
-	//@ManyToMany(fetch = FetchType.LAZY)
-	//@JoinTable(name = "comments",
-		//		joinColumns = @JoinColumn(name = "user_id"),
-		//		inverseJoinColumns = @JoinColumn(name = "post_id"))  
-	//private List<Post> postsCommentedByUser;
 	
 	
 

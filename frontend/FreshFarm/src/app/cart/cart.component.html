@@ -15,18 +15,21 @@
           <p class="cart-item-name">{{ item.name }}</p>
           <p>Quantity: {{ item.quantity }}</p>
           <div *ngIf="isOlderThanThreeDays(item.createdAt)">
-            <p>Price: ${{ item.price }} +20% Discount : Final Price: ${{ item.price - (item.price / 100 * 20) }} </p>
+            <p>Price: ${{ item.price }} /per Kg including 20% Discount </p>
           </div>
           <div *ngIf="!isOlderThanThreeDays(item.createdAt)">
-            <p>Price: ${{ item.price }}</p>
+            <p>Price: ${{ item.price }} /per Kg</p>
           </div>
           <button class="remove-btn" (click)="removeItem(item.id)">Remove</button>
         </div>
       </div>
 
+
       <div class="cart-actions">
         <button class="btn btn-danger" (click)="clearCart()">Clear Cart</button>
-        <button class="btn btn-primary">Proceed to Checkout</button>
+        <h2>Total is: {{total}}</h2>
+        <button class="btn btn-primary" (click)="createOrder()" >Proceed to Checkout</button>
+        
       </div>
     </div>
 

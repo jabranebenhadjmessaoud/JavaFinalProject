@@ -3,6 +3,7 @@ package com.javaproject.freshfarm.dtos;
 import java.util.Date;
 import java.util.List;
 
+import com.javaproject.freshfarm.models.Order;
 import com.javaproject.freshfarm.models.Post;
 import com.javaproject.freshfarm.models.Product;
 import com.javaproject.freshfarm.models.Role;
@@ -30,6 +31,7 @@ public class UserDTO {
     private List<ProductDTO> createdProducts;
 	private List<PostDTO> createdPosts;
 	private List<ProductDTO> addedprodectstocart;
+	private List<OrderDTO> userOrders;
 	
 	private Date createdAt;
 

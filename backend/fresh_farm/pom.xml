@@ -114,6 +114,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
+		<!--	Stripe Payment	-->
+		<dependency>
+        <groupId>com.stripe</groupId>
+        <artifactId>stripe-java</artifactId>
+        <version>22.0.0</version>
+    </dependency>
 
 	</dependencies>
 
