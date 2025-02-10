@@ -21,6 +21,7 @@ import { ReportComponent } from './report/report.component';
 import { CartComponent } from './cart/cart.component';
 import { AdminreportsComponent } from './adminreports/adminreports.component';
 import { ProductdetailsComponent } from './productdetails/productdetails.component';
+import { AmdminordersComponent } from './amdminorders/amdminorders.component';
 
 
 export const routes: Routes = [
@@ -32,6 +33,7 @@ export const routes: Routes = [
     { path: "admin-products", component: AdminproductsComponent, canActivate: [AdminGuard] },
     { path: "admin-posts", component: AdminpostsComponent, canActivate: [AdminGuard] },
     { path: "admin-reports", component: AdminreportsComponent, canActivate: [AdminGuard] },
+    { path: "admin-orders", component: AmdminordersComponent, canActivate: [AdminGuard] },
     { path: "all-products", component: AllproductsComponent, canActivate: [AuthGuard] },
     { path: "farmer-form", component: FarmerformComponent, canActivate: [AuthGuard] },
     { path: "community-form", component: ComunityformComponent, canActivate: [AuthGuard] },

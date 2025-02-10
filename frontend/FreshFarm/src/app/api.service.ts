@@ -131,4 +131,10 @@ export class ApiService {
       catchError(this.handleError));
   }
 
+  //get all orders
+  getAllOrders(): Observable<any> {
+    return this.http.get(this.baseUrl + `/orders/all`).pipe(
+      catchError(this.handleError));
+  }
+
 }
