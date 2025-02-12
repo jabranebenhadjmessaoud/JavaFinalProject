@@ -1,28 +1,25 @@
 <app-navbar></app-navbar>
 
-
-
-<app-navbar></app-navbar>
-
 <body>
     <div class="community-container">
-        <h1>Freshka Community</h1>
-        <p>Connect, share, and grow with fellow farmers.</p>
+        <h1>🌿 Freshka Farmers Community 🌾</h1>
+        <a href="/community-form" class="btn btn-success p-2 mb-2" mat-button>➕ Create Post</a>
+        <p>Join the movement! Connect, share, and grow with fellow farmers worldwide.</p>
 
         <div class="post-feed">
             <div class="post" *ngFor="let post of posts">
                 <div class="post-header">
                     <div class="post-author-info">
-                        <span class="post-author">Title: <a
-                                href="/post-details/{{post.id}}">{{post.post_title}}</a></span>
+                        <span class="post-author">🚜 Title: <a href="/post-details/{{post.id}}"
+                                class="post-title">{{post.post_title}}</a></span>
                     </div>
                 </div>
                 <div class="post-content">
-                    <p>Description: {{post.description}}</p>
+                    <p>📝 Description: {{post.description}}</p>
                 </div>
                 <img class="post-image" src="{{post.image_url}}" alt="{{post.post_title}}">
                 <div class="post-footer">
-                    <span class="post-date">Posted: {{ getTimeAgo(post) }}</span>
+                    <span class="post-date">📅 Posted: {{ getTimeAgo(post) }}</span>
                 </div>
             </div>
         </div>

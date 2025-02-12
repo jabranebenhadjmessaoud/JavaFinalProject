@@ -1,0 +1,55 @@
+<app-navbar></app-navbar>
+
+<body>
+    <div class="payment-container">
+        <h2>Secure Payment</h2>
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="cardNumber">Card Number</label>
+                <div class="card-input">
+                    <input type="text" id="cardNumber" name="cardNumber" [(ngModel)]="cardNumber" required
+                        minlength="16" maxlength="16" placeholder="1234 5678 9012 3456" />
+                    <img src="assets/card-icon.png" alt="Card" class="card-icon">
+                </div>
+                <div *ngIf="submitted && !cardNumber" class="error">Card number is required.</div>
+                <div *ngIf="submitted && (cardNumber?.length ?? 0) < 16" class="error">Card number must be 16 digits.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group half-width">
+                    <label for="expiry">Expiry Date</label>
+                    <input type="text" id="expiry" name="expiry" [(ngModel)]="expiry" required placeholder="MM/YY" />
+                    <div *ngIf="submitted && !expiry" class="error">Expiry date is required.</div>
+                </div>
+
+                <div class="form-group half-width">
+                    <label for="cvc">CVC</label>
+                    <input type="text" id="cvc" name="cvc" [(ngModel)]="cvc" required minlength="3" maxlength="3"
+                        placeholder="123" />
+                    <div *ngIf="submitted && !cvc" class="error">CVC is required.</div>
+                    <div *ngIf="submitted && (cvc?.length ?? 0) < 3" class="error">CVC must be 3 digits.</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Cardholder Name</label>
+                <input type="text" id="name" name="name" [(ngModel)]="name" required placeholder="John Doe" />
+                <div *ngIf="submitted && !name" class="error">Cardholder name is required.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" [(ngModel)]="email" required
+                    placeholder="example@example.com" />
+                <div *ngIf="submitted && !email" class="error">Email address is required.</div>
+            </div>
+
+            <button type="submit">Pay Now</button>
+        </form>
+
+        <div *ngIf="paymentSuccess" class="success">
+            ✅ Payment Successful! Thank you for your order.
+        </div>
+    </div>
+</body>

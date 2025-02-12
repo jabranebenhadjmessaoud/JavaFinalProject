@@ -16,39 +16,42 @@ import { Router } from '@angular/router';
   styleUrl: './cart.component.css'
 })
 export class CartComponent implements OnInit {
-  order_data:Order={};
-  productsList:any[]=[];
+  order_data: Order = {};
+  productsList: any[] = [];
   cartItems: any[] = [];
-  total:number=0 ;
+  total: number = 0;
   errMessage: any = {};
 
-  constructor(private cartService: CartService,private apiService: ApiService,private router: Router) { }
+  constructor(private cartService: CartService, private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
     this.loadCart();
-    this.total=this.cartService.getCartTotal();
-   // for(let i=0;i<this.cartItems.length;i++){
-     // this.total= this.total + (parseFloat(this.cartItems[i].price)*parseInt(this.cartItems[i].quantity))
-   // }
+    this.total = this.cartService.getCartTotal();
+    // for(let i=0;i<this.cartItems.length;i++){
+    // this.total= this.total + (parseFloat(this.cartItems[i].price)*parseInt(this.cartItems[i].quantity))
+    // }
   }
 
-// create order 
-createOrder(): void{
+  // create order 
+  createOrder(): void {
+
+    // for(let i in this.cartItems){
+
+    // }
 
 
-
-  this.order_data.orderProducts=this.cartItems;
-  this.order_data.amount=this.total;
-  console.log(this.order_data);
-  this.apiService.createOrder(this.order_data).subscribe({
-    next: (res) => {
-      console.log(res);
-    },
-    error: err => this.errMessage = err
-  });
-  this.clearCart();
-  this.router.navigate(['/']);
-}
+    this.order_data.orderProducts = this.cartItems;
+    this.order_data.amount = this.total;
+    console.log(this.order_data);
+    this.apiService.createOrder(this.order_data).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: err => this.errMessage = err
+    });
+    this.clearCart2();
+    this.router.navigate(['/']);
+  }
 
 
 
@@ -79,6 +82,19 @@ createOrder(): void{
     Swal.fire({
       title: 'You Cleared the cart!',
       text: `You cart is empty!.`,
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 2000, // Auto close in 2 seconds
+      toast: true,
+      position: 'top-end' // Appears at the top right
+    });
+  }
+  clearCart2(): void {
+    this.cartService.clearCart();
+    this.loadCart();
+    Swal.fire({
+      title: 'Order Successful!',
+      text: 'Your order has been placed successfully.',
       icon: 'success',
       showConfirmButton: false,
       timer: 2000, // Auto close in 2 seconds

@@ -28,10 +28,14 @@ export class AdmindashboardComponent {
   reports: any[] = [];
   filteredReports: any[] = [];
 
+  orders: any[] = [];
+  filteredOrders: any[] = [];
+
   userSearchQuery: string = '';
   productSearchQuery: string = '';
   postSearchQuery: string = '';
   reportSearchQuery: string = '';
+  ordersSearchQuery: string = '';
 
   constructor(private apiService: ApiService, private router: Router) { }
 
@@ -56,7 +60,15 @@ export class AdmindashboardComponent {
       this.filteredReports = data; // Initially display all reports
       console.log(this.reports);
     });
+
+    this.apiService.getAllOrders().subscribe((data) => {
+      this.orders = data;
+      this.filteredOrders = data;
+      console.log(this.orders);
+    })
+
   }
+
 
   filterUsers() {
     const query = this.userSearchQuery.toLowerCase().trim();
@@ -144,6 +156,17 @@ export class AdmindashboardComponent {
       report.productsReports.product_title.toLowerCase().includes(query)
     );
   }
+
+  filterOrder() {
+    const query = this.ordersSearchQuery.toLowerCase().trim();
+    this.filteredOrders = this.orders.filter(order =>
+      order.id?.toString().includes(query) ||
+      order.amount?.toString().includes(query) ||
+      order.order_stat?.toLowerCase().includes(query) ||
+      order.orderedBy?.fullName?.toLowerCase().includes(query)
+    );
+  }
+
 
   getTimeAgo(post: any): string {
     const now = new Date();

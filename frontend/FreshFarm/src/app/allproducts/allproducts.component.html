@@ -1,14 +1,13 @@
 <app-navbar></app-navbar>
 
-<body>
+<body class="mt-5">
     <header>
         <h1>Our Agricultural Products</h1>
         <p>High-quality, fresh, and sustainable products straight from our farms just for you.</p>
-        <h1>Fresh Products</h1>
     </header>
 
     <!-- Search & Filter Section -->
-    <div class="search-container mt-5">
+    <div class="search-container">
         <input type="text" [(ngModel)]="searchQuery" (input)="filterProducts()"
             placeholder="Search by Product Name or Price...">
         <!-- Main Filter Dropdown -->
@@ -20,116 +19,64 @@
         </select>
         <!-- Category Filter -->
         <select *ngIf="selectedFilter === 'category'" [(ngModel)]="categoryQuery" (change)="filterProducts()">
-            <option value="">All</option>
+            <option value="">All Categories</option>
             <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
         </select>
 
         <!-- Farming Method Filter -->
         <select *ngIf="selectedFilter === 'farming_method'" [(ngModel)]="farmingMethodQuery"
             (change)="filterProducts()">
-            <option value="">All</option>
+            <option value="">All Methods</option>
             <option *ngFor="let method of farmingMethods" [value]="method">{{ method }}</option>
         </select>
 
         <!-- Location Filter -->
         <select *ngIf="selectedFilter === 'location'" [(ngModel)]="locationQuery" (change)="filterProducts()">
-            <option value="">All</option>
+            <option value="">All Locations</option>
             <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
         </select>
-
     </div>
-    <!-- Toggle Button to Switch Between Fresh and Older Products -->
-    <div class="text-center">
-        <button (click)=" toggleProductView()" class="btn btn-primary">
-            {{ showOlderProducts ? 'Show Fresh Products' : 'Show Promotion Products' }}
+
+    <!-- Products View Toggle -->
+    <div class="view-toggle">
+        <button (click)="toggleProductView()" [class.active]="!showOlderProducts">
+            {{ showOlderProducts ? 'Fresh Products' : 'Promotion Products' }}
         </button>
     </div>
-    <!-- Fresh Products Section -->
-    <div *ngIf="!showOlderProducts" class="fresh-products">
-        <h2>Fresh Products</h2>
-        <div class="product-container">
-            <div *ngFor="let product of filteredProducts" class="product-card">
-                <img src="{{product.image_url}}" alt="{{product.product_title}}">
-                <h2>{{product.product_title}}</h2>
-                <p>Category: {{product.category}}</p>
-                <p>Farming Method: {{product.farming_method}}</p>
-                <p>Location: {{product.location}}</p>
-                <p>Quantity: {{product.quantity}}kg</p>
-                <span class="price">Price: {{product.price}}TND/kg</span>
-                <p>Posted: {{ getTimeAgo(product) }}</p>
-                <div *ngIf="userRole === 'ROLE_CLIENT'">
-                    <button (click)="addToCart(product)">Add to Cart</button>
-                    <a class="report-button" style="margin-left: 5px;" href="/report/{{product.id}}">Report</a>
+
+    <!-- Products Section -->
+    <section [class]="showOlderProducts ? 'promotion-section' : 'fresh-section'">
+        <h2 class="section-title">{{ showOlderProducts ? 'Promotion Products' : 'Fresh Products' }}</h2>
+
+        <!-- Loading State -->
+        <div *ngIf="products.length === 0" class="loading-container">
+            <div class="loader"></div>
+            <p>Loading Products...</p>
+        </div>
+
+        <!-- No Products State -->
+        <div *ngIf="(showOlderProducts ? olderProducts : filteredProducts).length === 0 && products.length > 0"
+            class="no-products">
+            <i class="no-results-icon"></i>
+            <p>No Products Found</p>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="product-container" *ngIf="(showOlderProducts ? olderProducts : filteredProducts).length > 0">
+            <div class="product-card" *ngFor="let product of (showOlderProducts ? olderProducts : filteredProducts)">
+                <div class="product-image">
+                    <img [src]="product.image_url" [alt]="product.product_title">
+                </div>
+                <div class="product-content">
+                    <h3><a [href]="'/product-details/' + product.id">{{product.product_title}}</a></h3>
+                    <span class="price">{{product.price}} TND/kg</span>
+                    <p class="posted-time">Posted: {{ getTimeAgo(product) }}</p>
+                    <div class="product-actions" *ngIf="userRole === 'ROLE_CLIENT'">
+                        <button class="add-to-cart" (click)="addToCart(product)">Add to Cart</button>
+                        <a class="report-button" [href]="'/report/' + product.id">Report</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Loading Animation -->
-    <div *ngIf="products.length == 0" class="product-container d-flex align-items-center justify-content-center">
-        <svg style="height: 50px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-            <circle fill="#4CAF50" stroke="#4CAF50" stroke-width="15" r="15" cx="40" cy="100">
-                <animate attributeName="opacity" calcMode="spline" dur="2" values="1;0;1;" keySplines=".5 0 .5 1"
-                    repeatCount="indefinite" begin="-.4"></animate>
-            </circle>
-            <circle fill="#4CAF50" stroke="#4CAF50" stroke-width="15" r="15" cx="100" cy="100">
-                <animate attributeName="opacity" calcMode="spline" dur="2" values="1;0;1;" keySplines=".5 0 .5 1"
-                    repeatCount="indefinite" begin="-.2"></animate>
-            </circle>
-            <circle fill="#4CAF50" stroke="#4CAF50" stroke-width="15" r="15" cx="160" cy="100">
-                <animate attributeName="opacity" calcMode="spline" dur="2" values="1;0;1;" keySplines=".5 0 .5 1"
-                    repeatCount="indefinite" begin="0"></animate>
-            </circle>
-        </svg>
-        <h2 class="alert alert-danger mt-3">Products are Loading</h2>
-    </div>
-
-    <!-- No Products Found Message -->
-    <div *ngIf="filteredProducts.length == 0"
-        class="product-container d-flex align-items-center justify-content-center">
-        <svg style="height: 55px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150">
-            <path fill="none" stroke="#368B3A" stroke-width="15" stroke-linecap="round" stroke-dasharray="300 385"
-                stroke-dashoffset="0"
-                d="M275 75c0 31-27 50-50 50-58 0-92-100-150-100-28 0-50 22-50 50s23 50 50 50c58 0 92-100 150-100 24 0 50 19 50 50Z">
-                <animate attributeName="stroke-dashoffset" calcMode="spline" dur="2" values="685;-685"
-                    keySplines="0 0 1 1" repeatCount="indefinite"></animate>
-            </path>
-        </svg>
-        <h2 class="alert alert-danger mt-3">No Products Found</h2>
-    </div>
-
-    <!-- Promotion Products Section -->
-    <div *ngIf="showOlderProducts" class="promotion-products">
-        <h2>Promotion products</h2>
-        <div class="product-container">
-            <div *ngFor="let product of olderProducts" class="product-card">
-                <img src="{{product.image_url}}" alt="{{product.product_title}}">
-                <h2>{{product.product_title}}</h2>
-                <p>Category: {{product.category}}</p>
-                <p>Farming Method: {{product.farming_method}}</p>
-                <p>Location: {{product.location}}</p>
-                <span class="price">Price: {{product.price}}TND/kg</span>
-                <p>Posted: {{ getTimeAgo(product) }}</p>
-                <div *ngIf="userRole === 'ROLE_CLIENT'">
-                    <button (click)="addToCart(product)">Add to Cart</button>
-                    <a class="btn btn-danger" href="/report/{{product.id}}">Report</a>
-                </div>
-            </div>
-        </div>
-        <!-- No Products Found Message -->
-        <div *ngIf="olderProducts.length == 0"
-            class="product-container d-flex align-items-center justify-content-center">
-            <svg style="height: 55px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150">
-                <path fill="none" stroke="#368B3A" stroke-width="15" stroke-linecap="round" stroke-dasharray="300 385"
-                    stroke-dashoffset="0"
-                    d="M275 75c0 31-27 50-50 50-58 0-92-100-150-100-28 0-50 22-50 50s23 50 50 50c58 0 92-100 150-100 24 0 50 19 50 50Z">
-                    <animate attributeName="stroke-dashoffset" calcMode="spline" dur="2" values="685;-685"
-                        keySplines="0 0 1 1" repeatCount="indefinite"></animate>
-                </path>
-            </svg>
-            <h2 class="alert alert-danger mt-3">No Products Found</h2>
-        </div>
-    </div>
-
-
-
+    </section>
 </body>

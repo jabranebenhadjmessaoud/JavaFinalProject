@@ -1,169 +1,98 @@
 <app-navbar></app-navbar>
 <div class="content">
-    <div class="container mt-5 p-5">
-        <div class="row">
-            <div class="col-lg-7 mx-auto">
-                <div style="background-color: #E6D6BD;" class="card mt-2 mx-auto p-4 ">
-                    <div style="background-color: #E6D6BD;" class="card-body ">
-                        <div class="container">
-                            <form id="contact-form" role="form" (ngSubmit)="createProduct()">
-                                <div class="controls">
-                                    <div class="row">
-                                        <div class="text-center  mb-4 ">
-                                            <h1 style="color: green;">Welcome, {{userName}}</h1>
-                                            <h2>Create a new product</h2>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="form_need"><strong>Specify the product category *</strong>
-                                                </label>
-                                                <select [ngModelOptions]="{standalone: true}"
-                                                    [(ngModel)]="data.category" id="form_need" name="category"
-                                                    class="form-control border border-success" required="required"
-                                                    data-error="Please specify the product category.">
-                                                    <option value="--Select Product Category--" selected disabled>
-                                                        --Select Product Category--
-                                                    </option>
-                                                    <option name="Vegetables" value="Vegetables">Vegetables</option>
-                                                    <option name="Fruits" value="Fruits">Fruits</option>
-                                                    <option name="Meat" value="Meat">Meat</option>
-                                                    <option name="Dairy" value="Dairy">Dairy</option>
-                                                    <option name="Herbs" value="Herbs">Herbs</option>
-                                                    <option name="Other" value="Other">Other</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="farming_method"><strong>Please specify the Farming Method
-                                                        *</strong></label>
-                                                <select [ngModelOptions]="{standalone: true}"
-                                                    [(ngModel)]="data.farming_method" id="farming_method"
-                                                    name="farming_method" class="form-control border border-success"
-                                                    required="required" data-error="Please specify the Farming Method.">
-                                                    <option value="--Select Your Farming Method--" selected disabled>
-                                                        --Select Your Farming Method--
-                                                    </option>
-                                                    <option name="Subsistence" value="Subsistence">Subsistence Farming
-                                                    </option>
-                                                    <option name="Plantation" value="Plantation">Plantation Farming
-                                                    </option>
-                                                    <option name="Dryland" value="Dryland">Dryland Farming</option>
-                                                    <option name="Wetland" value="Wetland">Wetland Farming</option>
-                                                    <option name="Mixed" value="Mixed">Mixed Farming</option>
-                                                    <option name="Organic" value="Organic">Organic Farming</option>
-                                                    <option name="Others" value="Others">Others</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mt-2">
-                                            <div class="form-group">
-                                                <label for="product_title"><strong>Prodcut Title *</strong></label>
-                                                <input [(ngModel)]="data.product_title" id="product_title" type="text"
-                                                    name="product_title" class="form-control border border-success"
-                                                    placeholder="Please enter your Product Title " required="required"
-                                                    data-error="Product Title is required.">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mt-2">
-                                            <div class="form-group">
-                                                <label for="price"><strong>Price TND/Kg *</strong></label>
-                                                <input [(ngModel)]="data.price" id="price" type="number" step="0.01"
-                                                    name="price" class="form-control border border-success"
-                                                    placeholder="Please enter your price " required="required"
-                                                    data-error="price is required.">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="farming_method"><strong>Please specify the Location
-                                                        *</strong></label>
-                                                <select [ngModelOptions]="{standalone: true}"
-                                                    [(ngModel)]="data.location" id="location" name="location"
-                                                    class="form-control border border-success" required="required"
-                                                    data-error="Please specify the location.">
-                                                    <option value="--Select location--" selected disabled>
-                                                        --location--
-                                                    </option>
-                                                    <option name="Tunis" value="Tunis">Tunis
-                                                    </option>
-                                                    <option name="Sfax" value="Sfax">Sfax
-                                                    </option>
-                                                    <option name="Sousse" value="Sousse">Sousse</option>
-                                                    <option name="Ettadhamen" value="Ettadhamen">Ettadhamen</option>
-                                                    <option name="Kairouan" value="Kairouan">Kairouan</option>
-                                                    <option name="Gabès" value="Gabès">Gabès</option>
-                                                    <option name="Bizerte" value="Bizerte">Bizerte</option>
-                                                    <option name="Ariana" value="Ariana">Ariana</option>
-                                                    <option name="Gafsa" value="Gafsa">Gafsa</option>
-                                                    <option name="Monastir" value="Monastir">Monastir</option>
-                                                    <option name="Ben Arous
-                                                    " value="Ben Arous
-                                                    ">Ben Arous
-                                                    </option>
-                                                    <option name="La_Marsa
-                                                " value="La_Marsa
-                                                ">La Marsa
-                                                    </option>
-                                                    <option name="Medenine" value="Medenine">Medenine</option>
-                                                    <option name="Nabeul" value="Medenine">Nabeul</option>
-                                                    <option name="Tataouine" value="Tataouine">Tataouine</option>
-                                                    <option name="Tozeur" value="Tozeur">Tozeur</option>
-                                                    <option name="Zarzis" value="Zarzis">Zarzis</option>
-                                                    <option name="Hammamet" value="Hammamet">Hammamet</option>
-                                                    <option name="Kelibia" value="Kelibia">Kelibia</option>
-                                                    <option name="Beja
-                                                    " value="Beja
-                                                    ">Beja
-                                                    </option>
-                                                    <option name="Jendouba" value="Jendouba">Jendouba</option>
-                                                    <option name="Kebili" value="Kebili">Kebili</option>
-                                                    <option name="Siliana" value="Siliana">Siliana</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 ">
-                                            <div class="form-group">
-                                                <label for="quantity"><strong>Quantity /Kg*</strong></label>
-                                                <input [(ngModel)]="data.quantity" id="quantity" type="number"
-                                                    name="quantity" class="form-control border border-success"
-                                                    placeholder="Please enter your quantity " required="required"
-                                                    data-error="quantity is required.">
-                                            </div>
-                                        </div>
-                                        <div div class="">
-                                            <div class="col-md-12 mt-3">
-                                                <input class="form-control border border-success mb-3" type="file"
-                                                    (change)="onFileSelected($event)" accept="image/*">
-                                                <div *ngIf="isLoading">Uploading...</div>
-                                                <img style="border: solid 1px green; border-radius: 5px;"
-                                                    *ngIf="image_url" [src]="image_url" alt="Uploaded Image"
-                                                    width="200">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12 mt-2">
-                                            <div class="form-group">
-                                                <label for="description"><strong>More Details About the product
-                                                        *</strong></label>
-                                                <textarea [(ngModel)]="data.description" id="description"
-                                                    name="description" class="form-control border border-success"
-                                                    placeholder="Write your description here." rows="4"
-                                                    required="required"
-                                                    data-error="Please, leave us more details"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <button class="btn btn-success btn-send mt-2">Create</button>
-                                        </div>
+    <div class="container mt-5 p-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow-lg border-0 rounded-3 p-4" style="background-color: #FAF3E0;">
+                    <div class="card-body">
+                        <div class="text-center mb-4">
+                            <h1 class="text-success">Welcome, {{userName}}</h1>
+                            <h2>Create a New Product</h2>
+                        </div>
+                        <form id="product-form" role="form" (ngSubmit)="createProduct()">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label><strong>Product Category *</strong></label>
+                                        <select [(ngModel)]="data.category" name="category"
+                                            class="form-select border-success" required>
+                                            <option disabled selected>--Select Product Category--</option>
+                                            <option
+                                                *ngFor="let category of ['Vegetables', 'Fruits', 'Meat', 'Dairy', 'Herbs', 'Other']"
+                                                [value]="category">{{category}}</option>
+                                        </select>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label><strong>Farming Method *</strong></label>
+                                        <select [(ngModel)]="data.farming_method" name="farming_method"
+                                            class="form-select border-success" required>
+                                            <option disabled selected>--Select Your Farming Method--</option>
+                                            <option
+                                                *ngFor="let method of ['Subsistence', 'Plantation', 'Dryland', 'Wetland', 'Mixed', 'Organic', 'Others']"
+                                                [value]="method">{{method}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label><strong>Product Title *</strong></label>
+                                        <input [(ngModel)]="data.product_title" type="text" name="product_title"
+                                            class="form-control border-success" placeholder="Enter Product Title"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label><strong>Price (TND/Kg) *</strong></label>
+                                        <input [(ngModel)]="data.price" type="number" step="0.01" name="price"
+                                            class="form-control border-success" placeholder="Enter Price" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label><strong>Location *</strong></label>
+                                        <select [(ngModel)]="data.location" name="location"
+                                            class="form-select border-success" required>
+                                            <option disabled selected>--Select Location--</option>
+                                            <option
+                                                *ngFor="let city of ['Tunis', 'Sfax', 'Sousse', 'Ettadhamen', 'Kairouan', 'Gabès', 'Bizerte', 'Ariana', 'Gafsa', 'Monastir', 'Ben Arous', 'La Marsa', 'Medenine', 'Nabeul', 'Tataouine', 'Tozeur', 'Zarzis', 'Hammamet', 'Kelibia', 'Beja', 'Jendouba', 'Kebili', 'Siliana']"
+                                                [value]="city">{{city}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label><strong>Quantity (Kg) *</strong></label>
+                                        <input [(ngModel)]="data.quantity" type="number" name="quantity"
+                                            class="form-control border-success" placeholder="Enter Quantity" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group mb-3">
+                                        <label><strong>Product Image *</strong></label>
+                                        <input class="form-control border-success" type="file"
+                                            (change)="onFileSelected($event)" accept="image/*">
+                                        <div *ngIf="isLoading" class="text-warning mt-2">Uploading...</div>
+                                        <img *ngIf="image_url" [src]="image_url" class="mt-3 border rounded"
+                                            alt="Uploaded Image" width="200">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group mb-3">
+                                        <label><strong>More Details *</strong></label>
+                                        <textarea [(ngModel)]="data.description" name="description"
+                                            class="form-control border-success"
+                                            placeholder="Provide additional product details" rows="4"
+                                            required></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <button class="btn btn-success btn-lg px-4">Create Product</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
