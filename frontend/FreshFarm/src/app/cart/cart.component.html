@@ -1,40 +1,90 @@
-<div class="cart-page">
-  <app-navbar></app-navbar>
-  
-  <div class="cart-header">
-    <h1>Shopping Cart</h1>
-    <p>Your selected products are ready for checkout.</p>
-  </div>
+<app-navbar></app-navbar>
+<body class="modern-farm-body">
+  <header class="modern-header">
+    <div class="header-content">
+      <div class="header-title">
+        <i class="fas fa-leaf leaf-icon"></i>
+        <h1>Fresh Market</h1>
+      </div>
+      <p>Your Sustainable Shopping Experience</p>
+      <div class="header-decoration"></div>
+    </div>
+  </header>
 
-  <div class="container">
+  <div class="cart-container">
     @if (cartItems.length > 0) {
-      <h2>Your Cart</h2>
-      @for (item of cartItems; track item.product.id) {
-        <div class="cart-item">
-          <img [src]="item.product.image_url" [alt]="item.product.product_title" class="cart-item-img">
-          <div class="cart-item-details">
-            <h3>{{ item.product.product_title }}</h3>
-            <p>Quantity: {{ item.quantity }}</p>
-            @if (isOlderThanThreeDays(item.product.createdAt)) {
-              <p>Price: ${{ item.product.price }} /per Kg including 20% Discount</p>
-            } @else {
-              <p>Price: ${{ item.product.price }} /per Kg</p>
-            }
-            <button class="remove-btn" (click)="removeItem(item.product.id)">Remove</button>
+      <div class="section-title">
+        <i class="fas fa-shopping-cart title-icon"></i>
+        <h2>Your Cart</h2>
+      </div>
+
+      <div class="cart-grid">
+        @for (item of cartItems; track item.product.id) {
+          <div class="cart-card">
+            <div class="card-media">
+              <img [src]="item.product.image_url" [alt]="item.product.product_title" class="card-img">
+              <button class="remove-btn" (click)="removeItem(item.product.id)">
+                <i class="fas fa-times"></i>
+              </button>
+              <div class="status-badge">
+                <i class="fas fa-check badge-icon"></i>
+                In Stock
+              </div>
+            </div>
+            
+            <div class="card-content">
+              <h3 class="product-name">{{ item.product.product_title }}</h3>
+              <div class="product-meta">
+                <div class="quantity-badge">
+                  <i class="fas fa-box"></i>
+                  Quantity: {{ item.quantity }}
+                </div>
+                
+                @if (isOlderThanThreeDays(item.product.createdAt)) {
+                  <div class="price-tag">
+                    <div class="discount-wrapper">
+                      <span class="original-price">${{ item.product.price }}/kg</span>
+                      <span class="final-price">${{ item.product.price * 0.8 }}/kg</span>
+                      <span class="discount-pill">20% OFF</span>
+                    </div>
+                  </div>
+                } @else {
+                  <div class="price-tag">
+                    <span class="regular-price">${{ item.product.price }}/kg</span>
+                  </div>
+                }
+              </div>
+            </div>
           </div>
+        }
+      </div>
+
+      <div class="cart-footer">
+        <button class="btn-secondary" (click)="clearCart()">
+          <i class="fas fa-trash"></i>
+          Clear Cart
+        </button>
+        
+        <div class="total-display">
+          <div class="total-label">Total Amount</div>
+          <div class="total-value">${{ total }}</div>
         </div>
-      }
-      
-      <div class="cart-actions">
-        <button class="btn btn-danger" (click)="clearCart()">Clear Cart</button>
-        <h2>Total: ${{ total }}</h2>
-        <button class="btn btn-primary" (click)="createOrder()">Proceed to Checkout</button>
+
+        <button class="btn-primary" (click)="createOrder()">
+          <i class="fas fa-check"></i>
+          Proceed to Checkout
+        </button>
       </div>
     } @else {
-      <div class="empty-cart-message">
-        <p>Your cart is empty. Browse our products and add some to your cart.</p>
-        <a class="btn btn-success" href="/all-products">Go to Products</a>
+      <div class="empty-state">
+        <i class="fas fa-shopping-basket empty-illustration"></i>
+        <h2>Your Cart is Empty</h2>
+        <p>Browse our products and add some to your cart</p>
+        <a class="btn-primary" href="/all-products">
+          <i class="fas fa-store"></i>
+          Go to Products
+        </a>
       </div>
     }
   </div>
-</div>
+</body>
