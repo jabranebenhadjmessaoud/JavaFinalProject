@@ -1,10 +1,11 @@
+import { OrderProduct } from "./order-product"
 import { Product } from "./product"
 
 export interface Order {
 
-    _id?: string
+    id?: string
     amount?:number
-    productsOrdered?:any
+    orderProducts?:OrderProduct[]
     createdAt?: Date
     OrderedBy?:any
 }

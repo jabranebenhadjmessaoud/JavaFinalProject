@@ -1,6 +1,6 @@
 export interface Product {
 
-    _id?: string
+    id?: string
     product_title?: string
     category?: string
     farming_method?: string
