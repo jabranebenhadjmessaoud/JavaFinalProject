@@ -94,21 +94,21 @@ public class OrderController {
         }
     }
 
-    @GetMapping("/order/{id}")
-    public ResponseEntity<?> getOrder(@PathVariable Long id, HttpServletRequest request) {
-        try {
-            // Authorization check similar to create order
-            String authHeader = request.getHeader("Authorization");
-            if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-                return ResponseEntity.badRequest().body("Authorization header is missing or invalid");
-            }
-
-            OrderDTO order = orderService.getOrderById(id);
-            return ResponseEntity.ok(order);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
+//    @GetMapping("/order/{id}")
+//    public ResponseEntity<?> getOrder(@PathVariable Long id, HttpServletRequest request) {
+//        try {
+//            // Authorization check similar to create order
+//            String authHeader = request.getHeader("Authorization");
+//            if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+//                return ResponseEntity.badRequest().body("Authorization header is missing or invalid");
+//            }
+//
+//            OrderDTO order = orderService.getOrderById(id);
+//            return ResponseEntity.ok(order);
+//        } catch (RuntimeException e) {
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
+//    }
 
     @GetMapping("/orders")
     public ResponseEntity<?> getUserOrders(HttpServletRequest request) {
