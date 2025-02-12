@@ -26,9 +26,10 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCart();
-    for (let i = 0; i < this.cartItems.length; i++) {
-      this.total = this.total + (parseFloat(this.cartItems[i].price) * parseInt(this.cartItems[i].quantity))
-    }
+    this.total = this.cartService.getCartTotal();
+    // for(let i=0;i<this.cartItems.length;i++){
+    // this.total= this.total + (parseFloat(this.cartItems[i].price)*parseInt(this.cartItems[i].quantity))
+    // }
   }
 
   // create order 
@@ -39,15 +40,17 @@ export class CartComponent implements OnInit {
     // }
 
 
-    this.order_data.productsOrdered = this.cartItems;
+    this.order_data.orderProducts = this.cartItems;
     this.order_data.amount = this.total;
+    console.log(this.order_data);
     this.apiService.createOrder(this.order_data).subscribe({
       next: (res) => {
-        this.clearCart2();
-        this.router.navigate(['/']);
+        console.log(res);
       },
       error: err => this.errMessage = err
     });
+    this.clearCart2();
+    this.router.navigate(['/']);
   }
 
 
