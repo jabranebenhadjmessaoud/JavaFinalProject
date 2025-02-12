@@ -76,11 +76,15 @@ public class Product {
 	@OneToMany(mappedBy = "productsReports", fetch = FetchType.LAZY)
 	private List<Report> productReports ;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "products_orders",
-	joinColumns = @JoinColumn(name = "product_id"),
-	inverseJoinColumns = @JoinColumn(name = "order_id"))  
-	private List<Order> ordersOfProducts;
+	
+	@OneToMany(mappedBy = "product")
+	private List<OrderProduct> orderProducts;
+	
+//	@ManyToMany(fetch = FetchType.LAZY)
+//	@JoinTable(name = "products_orders",
+//	joinColumns = @JoinColumn(name = "product_id"),
+//	inverseJoinColumns = @JoinColumn(name = "order_id"))  
+//	private List<Order> ordersOfProducts;
 	
 	
 	@Column(updatable = false)
