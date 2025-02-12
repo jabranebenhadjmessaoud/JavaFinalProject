@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { User } from '../user';
@@ -29,6 +29,7 @@ export class NavbarComponent {
   image = localStorage.getItem('image');
   user_stat = localStorage.getItem('user_stat');
   cartCount: number = 0;
+
   ngOnInit() {
     // Subscribe to cart count updates
     this.cartService.cartCount$.subscribe(count => {

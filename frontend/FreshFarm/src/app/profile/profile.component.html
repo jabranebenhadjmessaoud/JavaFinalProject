@@ -10,8 +10,10 @@
                 <img *ngIf="profile.image_url == null" class="profile-picture" src="/assets/noprofilepic.jpg"
                     alt="Profile Picture">
                 <h1>{{profile.fullName}}</h1>
-                <h4>{{profile.role == 'ROLE_ADMIN' ? 'Admin' : profile.role == 'ROLE_CLIENT' ? 'Client' : 'Farmer'}}
-                </h4>
+                <h4 *ngIf="profile.role === 'ROLE_ADMIN'">Admin</h4>
+                <h4 *ngIf="profile.role === 'ROLE_CLIENT'">Client</h4>
+                <h4 *ngIf="profile.role === 'ROLE_FARMER'">Farmer</h4>
+
                 <h4>{{profile.email}}</h4>
                 <div class="profile-stats" *ngIf="profile.role == 'ROLE_FARMER'">
                     <div class="stat">

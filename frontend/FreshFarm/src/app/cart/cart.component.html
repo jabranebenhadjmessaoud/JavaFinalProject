@@ -1,42 +1,88 @@
 <app-navbar></app-navbar>
 
-<body>
-  <header>
-    <h1>Shopping Cart</h1>
-    <p>Your selected products are ready for checkout.</p>
+<body class="modern-farm-body">
+  <header class="modern-header">
+    <div class="header-content">
+      <div class="header-title">
+        <i class="fas fa-leaf leaf-icon"></i>
+        <h1>Fresh Market</h1>
+      </div>
+      <p>Your Sustainable Shopping Experience</p>
+      <div class="header-decoration"></div>
+    </div>
   </header>
 
   <div class="cart-container">
     <div *ngIf="cartItems.length > 0; else emptyCart" class="cart-items">
-      <h2>Your Cart</h2>
-      <div *ngFor="let item of cartItems" class="cart-item">
-        <img [src]="item.image_url" alt="{{ item.name }}" class="cart-item-img">
-        <div class="cart-item-details">
-          <p class="cart-item-name">{{ item.name }}</p>
-          <p>Quantity: {{ item.quantity }}</p>
-          <div *ngIf="isOlderThanThreeDays(item.createdAt)">
-            <p>Price: ${{ item.price }} /per Kg including 20% Discount </p>
+      <div class="section-title">
+        <span class="title-icon">🧺</span>
+        <h2>Shopping Basket</h2>
+      </div>
+
+      <div class="cart-grid">
+        <div *ngFor="let item of cartItems" class="cart-card">
+          <div class="card-media">
+            <img [src]="item.image_url" alt="{{ item.name }}" class="card-img">
+            <div *ngIf="!isOlderThanThreeDays(item.createdAt)" class="status-badge">
+              <span class="badge-icon">🌱</span>
+              Fresh Pick
+            </div>
+            <button class="remove-btn" (click)="removeItem(item.id)">
+              <i class="fas fa-times">❌</i>
+            </button>
           </div>
-          <div *ngIf="!isOlderThanThreeDays(item.createdAt)">
-            <p>Price: ${{ item.price }} /per Kg</p>
+
+          <div class="card-content">
+            <h3 class="product-name">{{ item.name }}</h3>
+
+            <div class="product-meta">
+              <div class="quantity-badge">
+                <i class="fas fa-balance-scale"></i>
+                {{ item.quantity }}kg
+              </div>
+
+              <div class="price-tag" [class.discounted]="isOlderThanThreeDays(item.createdAt)">
+                <div *ngIf="isOlderThanThreeDays(item.createdAt)" class="discount-wrapper">
+                  <span class="original-price">TND{{ item.price }}</span>
+                  <span class="final-price">TND{{ item.price * 0.8 }}/kg</span>
+                  <div class="discount-pill">-20%</div>
+                </div>
+                <div *ngIf="!isOlderThanThreeDays(item.createdAt)" class="regular-price">
+                  TND{{ item.price }}/kg
+                </div>
+              </div>
+            </div>
           </div>
-          <button class="remove-btn" (click)="removeItem(item.id)">Remove</button>
         </div>
       </div>
 
+      <div class="cart-footer">
+        <button class="btn-secondary" (click)="clearCart()">
+          <i class="fas fa-broom"></i>
+          <span>Clear All</span>
+        </button>
 
-      <div class="cart-actions">
-        <button class="btn btn-danger" (click)="clearCart()">Clear Cart</button>
-        <h2>Total is: {{total}}</h2>
-        <button class="btn btn-primary" (click)="createOrder()" >Proceed to Checkout</button>
-        
+        <div class="total-display">
+          <div class="total-label">Total Amount</div>
+          <div class="total-value">TND{{total}}</div>
+        </div>
+
+        <button class="btn-primary" (click)="createOrder()">
+          <span>Checkout</span>
+          <i class="fas fa-arrow-right"></i>
+        </button>
       </div>
     </div>
 
     <ng-template #emptyCart>
-      <div class="empty-cart-message">
-        <p>Your cart is empty. Browse our products and add some to your cart.</p>
-        <a class="btn btn-success" href="/all-products">Go to Products</a>
+      <div class="empty-state">
+        <div class="empty-illustration">🌾</div>
+        <h2>Your basket is empty</h2>
+        <p>Ready to fill it with fresh, sustainable produce?</p>
+        <a href="/all-products" class="btn-primary" style="text-decoration: none;">
+          <i class="fas fa-seedling"></i>
+          <span>Explore Products</span>
+        </a>
       </div>
     </ng-template>
   </div>

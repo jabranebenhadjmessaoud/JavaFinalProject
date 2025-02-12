@@ -1,30 +1,68 @@
 <app-navbar></app-navbar>
 
-<body>
-    <div class="container">
-        <div class="grid">
-            <!-- Product Image -->
-            <div class="product-image">
-                <img src="{{product.image_url}}" alt="Product">
-            </div>
-
-            <!-- Product Details -->
-            <div class="product-details">
-                <h1>Title: {{product.product_title}}</h1>
-                <h1>Category: {{product.category}}</h1>
-                <p>{{product.description}}</p>
-                <p class="price">TND {{product.price}} / kg</p>
-
-                <!-- Farmer Details -->
-                <div class="farmer-info">
-                    <h2>Farming Method: {{product.category}}</h2>
-                    <p>Location: {{product.location}}</p>
-                    <p>📅 Posted: {{getTimeAgo()}}</p>
-                </div>
-
-                <!-- Call to Action
-                <a href="#" class="button">Contact Farmer</a> -->
+<div class="page-container">
+    <div class="product-container">
+        <!-- Product Gallery Section -->
+        <div class="product-gallery">
+            <div class="image-container">
+                <img [src]="product.image_url" alt="Product" class="product-image">
             </div>
         </div>
+
+        <!-- Product Information Section -->
+        <div class="product-info">
+            <div class="product-header">
+                <div class="badges">
+                    <span class="category-badge">{{product.category}}</span>
+                    <span class="time-badge">
+                        <i class="far fa-clock"></i>
+                        {{getTimeAgo()}}
+                    </span>
+                </div>
+                <h1 class="product-title">{{product.product_title}}</h1>
+                <div class="price-tag">
+                    <span class="currency">TND</span>
+                    <span class="amount">{{product.price}}</span>
+                    <span class="unit">/kg</span>
+                </div>
+            </div>
+
+            <div class="product-description">
+                <h3>About this product</h3>
+                <p>{{product.description}}</p>
+            </div>
+
+            <div class="product-specs">
+                <div class="spec-item">
+                    <div class="spec-icon">🌾</div>
+                    <div class="spec-details">
+                        <span class="spec-label">Farming Method</span>
+                        <span class="spec-value">{{product.category}}</span>
+                    </div>
+                </div>
+
+                <div class="spec-item">
+                    <div class="spec-icon">⚖️</div>
+                    <div class="spec-details">
+                        <span class="spec-label">Available Quantity</span>
+                        <span class="spec-value">{{product.quantity}} Kg</span>
+                    </div>
+                </div>
+
+                <div class="spec-item">
+                    <div class="spec-icon">📍</div>
+                    <div class="spec-details">
+                        <span class="spec-label">Location</span>
+                        <span class="spec-value">{{product.location}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <button class="cta-button">
+                <span class="button-text">Contact Farmer</span>
+                <span class="button-icon">→</span>
+            </button>
+        </div>
     </div>
-</body>
+</div>
