@@ -9,6 +9,7 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Service;
 
 import com.javaproject.freshfarm.dtos.UserDTO;
+import com.javaproject.freshfarm.dtos.UserNoOrderDTO;
 import com.javaproject.freshfarm.models.Role;
 import com.javaproject.freshfarm.models.User;
 import com.javaproject.freshfarm.repositories.UserRepository;
@@ -22,14 +23,15 @@ public class UserService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
+
     /**
      * Retrieves all users from the repository and maps them to UserDTOs.
      *
      * @return List of UserDTOs representing all users
      */
-    public List<UserDTO> getAllUsers() {
+    public List<UserNoOrderDTO> getAllUsers() {
         return userRepository.findAll().stream()
-                .map(this::convertEntityToDto)
+                .map(this::convertEntityToUserNoOrderDto)
                 .collect(Collectors.toList());
     }
 
@@ -49,20 +51,24 @@ public class UserService {
    // }
     
     
-    public UserDTO banUser(UserDTO u) throws RuntimeException {
+    public UserDTO banUser(Long id) throws RuntimeException {
     	System.out.println("before ban in service");	
-     
-    	 u.setUser_stat("BANNED");
- 
     	
-    	User user= convertDtoToEntity(u);
+    	//User user=userRepository.getOne(id);
     	 
-    	 User userfromDB=getUserById1(user.getId());
+    	//user.setUser_stat("BANNED");
+    	
+    	 UserDTO userfromDB=userRepository.findById(id).map(this::convertEntityToDto) .orElseThrow(() ->new RuntimeException("Doctor not found"));
+    	 
+    	 System.out.println(userfromDB);
+    	 System.out.println("before ban in service");
     	 userfromDB.setUser_stat("BANNED");
     	 System.out.println("after ban in service"+ userfromDB);
-    	 userRepository.save(userfromDB);
+    	 User uuu=convertDtoToEntity(userfromDB);
+    	 userRepository.save(uuu);
     	 
-    	 return u ;    
+    	 
+    	 return userfromDB ;    
     
     }
     
@@ -100,7 +106,7 @@ public class UserService {
     
     
     public UserDTO getUserById(Long id) {
-    	return userRepository.findById(id).map(this::convertEntityToDto) .orElseThrow(() ->new RuntimeException("Doctor not found"));
+    	return userRepository.findById(id).map(this::convertEntityToDto) .orElseThrow(() ->new RuntimeException("User not found"));
 
 	}
     
@@ -141,4 +147,17 @@ public class UserService {
         return modelMapper.map(userDTO, User.class);
     }
 
+    private UserNoOrderDTO convertEntityToUserNoOrderDto(User user) {
+        return UserNoOrderDTO.builder()
+                .id(user.getId())
+                .fullName(user.getFullName())
+                .email(user.getEmail())
+                .image_url(user.getImage_url())
+                .user_stat(user.getUser_stat())
+                .createdAt(user.getCreatedAt())
+                .role(user.getRole())
+                .build();
+    }
+    
+    
 }

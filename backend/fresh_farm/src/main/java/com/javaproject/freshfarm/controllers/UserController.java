@@ -1,15 +1,17 @@
 package com.javaproject.freshfarm.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.javaproject.freshfarm.models.User;
-import com.javaproject.freshfarm.repositories.UserRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.javaproject.freshfarm.dtos.UserDTO;
+import com.javaproject.freshfarm.dtos.UserNoOrderDTO;
 import com.javaproject.freshfarm.models.Role;
+import com.javaproject.freshfarm.repositories.UserRepository;
 import com.javaproject.freshfarm.services.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -34,7 +36,7 @@ public class UserController {
      * @return List of UserDTO containing details of all users
      */
     @GetMapping("/admin/allusers")
-    public List<UserDTO> getAllUsersDTO() {
+    public List<UserNoOrderDTO> getAllUsersDTO() {
         return userService.getAllUsers();
     }
     
@@ -73,10 +75,9 @@ public class UserController {
     @GetMapping("/admin/ban/{id}")
     public UserDTO banUser(@PathVariable("id") Long id) {
     	System.out.println("before getting user");
-    	UserDTO u=userService.getUserById(id); 
-    	System.out.println(u);
     	System.out.println("after getting user and ");
-    	userService.banUser(u);
+    	
+    	UserDTO u=userService.banUser(id);
     	System.out.println("after banning user");
     	return u;
     	
