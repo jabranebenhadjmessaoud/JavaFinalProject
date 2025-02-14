@@ -136,6 +136,7 @@
                                 <button class="btn-view"><a style=" color: white; text-decoration: none;"
                                         href="/post-details/{{post.id}}">View </a></button>
                                 <button class="btn-delete">Delete</button>
+
                             </td>
                         </tr>
                     </tbody>
@@ -210,7 +211,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Ordred By</th>
+                            <!-- <th>Ordred By</th> -->
                             <th>Order Status</th>
                             <th>Amount</th>
                             <th>Creation</th>
@@ -220,11 +221,13 @@
                     <tbody>
                         <tr *ngFor="let order of filteredOrders">
                             <td>{{order.id}}</td>
-                            <td>{{order.orderedBy.fullName}}</td>
+                            <!-- <td>{{order.orderedBy.fullName}}</td> -->
                             <td>{{order.order_stat}}</td>
                             <td>{{order.amount}}</td>
                             <td>{{ getTimeAgo(order) }}</td>
                             <td>
+                                <button class="btn-view"><a style=" color: white; text-decoration: none;"
+                                        href="/order/{{order.id}}">View</a></button>
                                 <button class="btn-delete">Delete</button>
                             </td>
                         </tr>

@@ -1,32 +1,136 @@
-.content {
-    margin-top: 60px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url("../../../public/images/farmerformbg.jpg") no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background: url("../../../public/images/farmerformbg.jpg") no-repeat center center/cover;
+    height: 100vh;
+    margin: 0;
 }
 
-.card {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: transform 0.2s ease-in-out;
+.form-container {
+    background: rgba(255, 255, 255, 0.9);
+    /* Slight transparency for readability */
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.card:hover {
-    transform: translateY(-5px);
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.form-control:focus,
-.form-select:focus {
-    border-color: #28a745;
-    box-shadow: 0 0 8px rgba(40, 167, 69, 0.3);
+h2 {
+    font-size: 1.8rem;
+    color: #2c6e49;
+    margin-bottom: 1rem;
 }
 
-.btn-success {
-    transition: background-color 0.3s ease, transform 0.2s;
+p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
 }
 
-.btn-success:hover {
-    background-color: #218838;
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    text-align: left;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #d1e7dd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #f8faf8;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
+.uploaded-image {
+    width: 100%;
+    max-height: 200px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.cancel-btn,
+.submit-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.cancel-btn {
+    background: #f0f0f0;
+    color: #555;
+}
+
+.cancel-btn:hover {
+    background: #e0e0e0;
     transform: translateY(-2px);
+}
+
+.submit-btn {
+    background: #4caf50;
+    color: white;
+}
+
+.submit-btn:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
 }

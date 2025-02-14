@@ -1,29 +1,37 @@
+/* Global Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Body Styling */
 body {
-    padding: 5px;
+
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to right, #4CAF50, #73e677);
     color: #333;
     line-height: 1.6;
     margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    line-height: 1.6;
+    background: linear-gradient(135deg, rgba(22, 163, 74, 0.05) 0%, rgba(37, 99, 235, 0.05) 100%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2316a34a' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    min-height: 100vh;
 }
 
+/* Community Container */
 .community-container {
     max-width: 1200px;
     margin: 3rem auto;
-    padding: 2rem;
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    padding: 2.5rem;
     text-align: center;
     animation: fadeIn 0.6s ease-in-out;
 }
 
+/* Fade-in Animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -36,46 +44,79 @@ body {
     }
 }
 
+/* Heading Styling */
 h1 {
+    margin-top: 60px;
     font-size: 3rem;
     color: #1e5631;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     margin-bottom: 1rem;
 }
 
+/* Community Description */
 p {
     font-size: 1.2rem;
     color: #444;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
 }
 
+/* Create Post Button */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #4CAF50;
+    color: #fff;
+    font-weight: 700;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+.btn:hover {
+    background: #388e3c;
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.5);
+}
+
+/* Post Grid */
 .post-feed {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+    /* Ensures 4 posts per row */
+    gap: 1.5rem;
+    margin-top: 1.5rem;
 }
 
+/* Modern Card Styling */
 .post {
-    background: #f8faf8;
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    /* White but slightly transparent */
+    border-radius: 16px;
     padding: 1.5rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
     min-height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(200, 200, 200, 0.3);
 }
 
 .post:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Post Title */
 .post-title {
     font-weight: bold;
     color: #1e5631;
     text-decoration: none;
+    font-size: 1.4rem;
 }
 
 .post-title:hover {
@@ -83,24 +124,31 @@ p {
     color: #145428;
 }
 
+/* Post Content */
 .post-content {
     flex-grow: 1;
+    font-size: 1rem;
+    color: #555;
 }
 
+/* Post Image */
 .post-image {
     width: 100%;
     border-radius: 12px;
-    margin: auto;
+    margin-top: 10px;
     max-height: 200px;
     object-fit: cover;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
+/* Post Footer */
 .post-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 0.9rem;
     color: #777;
+    margin-top: 10px;
 }
 
 /* Responsive Design */
@@ -114,7 +162,7 @@ p {
     }
 
     .post-feed {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 }
 
@@ -129,5 +177,32 @@ p {
 
     .post-feed {
         grid-template-columns: 1fr;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .post-feed {
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 posts per row for medium screens */
+    }
+}
+
+@media (max-width: 992px) {
+    .post-feed {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 posts per row for smaller screens */
+    }
+}
+
+@media (max-width: 600px) {
+    .post-feed {
+        grid-template-columns: 1fr;
+        /* 1 post per row for mobile */
     }
 }

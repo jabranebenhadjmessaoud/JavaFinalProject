@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ApiService } from '../api.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { NavbarComponent } from "../navbar/navbar.component";
 import { differenceInDays, differenceInHours, differenceInMinutes } from 'date-fns';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-productdetails',
-  imports: [NavbarComponent],
+  imports: [NavbarComponent, CommonModule],
   templateUrl: './productdetails.component.html',
   styleUrl: './productdetails.component.css'
 })
@@ -15,6 +16,9 @@ export class ProductdetailsComponent {
   productId: string | null = null;
 
   constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
+
+  @Input() prodId: number = 0;
+
 
   ngOnInit(): void {
     const productId = this.route.snapshot.paramMap.get('id');
