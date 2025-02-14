@@ -19,6 +19,7 @@ import com.javaproject.freshfarm.models.OrderObject;
 import com.javaproject.freshfarm.models.OrderProduct;
 import com.javaproject.freshfarm.models.User;
 import com.javaproject.freshfarm.repositories.OrderProductsRepository;
+import com.javaproject.freshfarm.repositories.OrderRepository;
 import com.javaproject.freshfarm.repositories.ProductRepository;
 import com.javaproject.freshfarm.repositories.UserRepository;
 import com.javaproject.freshfarm.services.OrderService;
@@ -32,11 +33,27 @@ import lombok.RequiredArgsConstructor;
 public class OrderController {
 	private final ProductRepository productRepository;
 	private final UserRepository userRepository;
+	private final OrderRepository orderRepository; 
 	private final OrderService orderService;
     private final JwtService jwtService;
     private final OrderProductsRepository orderProductsRepository ;
 	
+    
+    @GetMapping("/order/settodeliver/{id}")
+    public void setOrderToDeliver(@PathVariable("id") Long id) {
+    	
+    	orderService.setToDelivering(id);
+  	
+    }
+    @GetMapping("/order/settodelivered/{id}")
+    public void setOrderToDelivered(@PathVariable("id") Long id) {
+    	
+    	orderService.setToDeliverd(id);
+  	
+    }
+    
 	
+    
 	
     @PostMapping("/neworder")
     public ResponseEntity<?> createOrder(@RequestBody OrderObject orderobj, HttpServletRequest request) {

@@ -145,6 +145,17 @@ public class OrderService {
 		return null;
 	}
 	
+	public void setToDelivering(Long id) {
+		Order theOrder=orderRepository.findById(id).get();
+		theOrder.setOrder_stat("ON_Delivery");
+		orderRepository.save(theOrder);
+		}
+	public void setToDeliverd(Long id) {
+		Order theOrder=orderRepository.findById(id).get();
+		theOrder.setOrder_stat("Delivered");
+		orderRepository.save(theOrder);
+		}
+	
 	
 	
 	
