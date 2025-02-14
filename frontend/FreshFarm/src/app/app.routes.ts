@@ -23,6 +23,7 @@ import { AdminreportsComponent } from './adminreports/adminreports.component';
 import { ProductdetailsComponent } from './productdetails/productdetails.component';
 import { AmdminordersComponent } from './amdminorders/amdminorders.component';
 import { PayementComponent } from './payement/payement.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 
 export const routes: Routes = [
@@ -44,6 +45,7 @@ export const routes: Routes = [
     { path: "product-details/:id", component: ProductdetailsComponent, canActivate: [AuthGuard], pathMatch: 'full' },
     { path: "profile/:id", component: ProfileComponent, canActivate: [AuthGuard], pathMatch: 'full' },
     { path: "report/:id", component: ReportComponent, canActivate: [AuthGuard], pathMatch: 'full' },
+    { path: "order/:id", component: OrderDetailComponent, canActivate: [AuthGuard], pathMatch: 'full' },
     { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
     { path: '**', component: NotFoundComponent },
     { path: '404', component: NotFoundComponent }

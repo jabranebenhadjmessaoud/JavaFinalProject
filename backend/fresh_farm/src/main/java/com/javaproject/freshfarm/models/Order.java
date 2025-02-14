@@ -65,14 +65,7 @@ public class Order {
 	    orderProducts.add(orderProduct);
 	}    
 	
-	
-	
-	
-//	@ManyToMany(fetch = FetchType.LAZY)
-//	@JoinTable(name = "products_orders",
-//	joinColumns = @JoinColumn(name = "order_id"),
-//	inverseJoinColumns = @JoinColumn(name = "product_id"))  
-//	private List<Product> productsOrdered;
+
 	
 	
 	

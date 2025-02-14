@@ -18,6 +18,7 @@ import com.javaproject.freshfarm.models.Order;
 import com.javaproject.freshfarm.models.OrderObject;
 import com.javaproject.freshfarm.models.OrderProduct;
 import com.javaproject.freshfarm.models.User;
+import com.javaproject.freshfarm.repositories.OrderProductsRepository;
 import com.javaproject.freshfarm.repositories.ProductRepository;
 import com.javaproject.freshfarm.repositories.UserRepository;
 import com.javaproject.freshfarm.services.OrderService;
@@ -33,7 +34,7 @@ public class OrderController {
 	private final UserRepository userRepository;
 	private final OrderService orderService;
     private final JwtService jwtService;
-
+    private final OrderProductsRepository orderProductsRepository ;
 	
 	
 	
@@ -128,7 +129,12 @@ public class OrderController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
     
+  // @GetMapping("order/{id}")
+   // public List<OrderProduct> getOneOrder(@PathVariable("id") Long id) {
+	   //		return orderProductsRepository.getorderWhereId(id);    
+   		//}    
     
     @GetMapping("/all")
     public ResponseEntity<?> getAllOrders(HttpServletRequest request) {
