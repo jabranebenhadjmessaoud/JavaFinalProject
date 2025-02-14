@@ -177,10 +177,10 @@
                         <tr *ngFor="let report of filteredReports">
                             <td>{{report.id}}</td>
                             <td>{{report.reportContent}}</td>
-                            <td>{{report.productsReports.product_title}}</td>
-                            <td>{{report.productsReports.id}}</td>
+                            <td>{{report.productReported.product_title}}</td>
+                            <td>{{report.productReported.id}}</td>
                             <td>{{report.productReportedBy.fullName}}</td>
-                            <td>{{getTimeAgo(report)}}</td>
+                            <td>{{report.createdAt}}</td>
                             <td>
                                 <button class="btn-delete">Delete</button>
                             </td>
