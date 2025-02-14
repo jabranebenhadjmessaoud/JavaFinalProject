@@ -228,6 +228,15 @@
                             <td>
                                 <button class="btn-view"><a style=" color: white; text-decoration: none;"
                                         href="/order/{{order.id}}">View</a></button>
+                                <button *ngIf="order.order_stat === 'PENDING'" class="delivering-btn"
+                                    (click)="setOrderToDelivering(order)">
+                                    Delivering
+                                </button>
+                                <button *ngIf="order.order_stat === 'ON_Delivery'" class="delivered-btn"
+                                    (click)="setOrderToDelivered(order)">
+                                    Delivered
+                                </button>
+
                                 <button class="btn-delete">Delete</button>
                             </td>
                         </tr>

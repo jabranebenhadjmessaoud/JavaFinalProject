@@ -137,4 +137,15 @@ export class ApiService {
       catchError(this.handleError));
   }
 
+  //order set to delivering 
+  setOrderToDelivering(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + `/orders/order/settodelivering/${id}`).pipe(
+      catchError(this.handleError));
+  }
+  //order set to delivred
+  setOrderToDelivered(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + `/orders/order/settodelivered/${id}`).pipe(
+      catchError(this.handleError));
+  }
+
 }

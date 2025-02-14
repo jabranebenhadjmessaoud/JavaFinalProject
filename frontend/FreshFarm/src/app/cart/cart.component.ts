@@ -26,6 +26,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCart();
+    console.log(this.productsList);
     this.total = this.cartService.getCartTotal();
     // for(let i=0;i<this.cartItems.length;i++){
     // this.total= this.total + (parseFloat(this.cartItems[i].price)*parseInt(this.cartItems[i].quantity))
