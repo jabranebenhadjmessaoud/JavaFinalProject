@@ -210,7 +210,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Ordred By</th>
+                            <!-- <th>Ordred By</th> -->
                             <th>Order Status</th>
                             <th>Amount</th>
                             <th>Creation</th>
@@ -220,7 +220,7 @@
                     <tbody>
                         <tr *ngFor="let order of filteredOrders">
                             <td>{{order.id}}</td>
-                            <td>{{order.orderedBy.fullName}}</td>
+                            <!-- <td>{{order.orderedBy.fullName}}</td> -->
                             <td>{{order.order_stat}}</td>
                             <td>{{order.amount}}</td>
                             <td>{{ getTimeAgo(order) }}</td>

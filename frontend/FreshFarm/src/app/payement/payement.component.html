@@ -14,6 +14,8 @@
                 <div *ngIf="submitted && !cardNumber" class="error">Card number is required.</div>
                 <div *ngIf="submitted && (cardNumber?.length ?? 0) < 16" class="error">Card number must be 16 digits.
                 </div>
+                <div *ngIf="invalidCardType" class="error">Please enter a valid Visa or MasterCard number.</div>
+                <!-- Error message for invalid card type -->
             </div>
 
             <div class="row">
@@ -47,9 +49,5 @@
 
             <button type="submit">Pay Now</button>
         </form>
-
-        <div *ngIf="paymentSuccess" class="success">
-            ✅ Payment Successful! Thank you for your order.
-        </div>
     </div>
 </body>

@@ -50,7 +50,7 @@ export class CartComponent implements OnInit {
       error: err => this.errMessage = err
     });
     this.clearCart2();
-    this.router.navigate(['/']);
+    this.router.navigate(['/payment']);
   }
 
 
@@ -92,14 +92,5 @@ export class CartComponent implements OnInit {
   clearCart2(): void {
     this.cartService.clearCart();
     this.loadCart();
-    Swal.fire({
-      title: 'Order Successful!',
-      text: 'Your order has been placed successfully.',
-      icon: 'success',
-      showConfirmButton: false,
-      timer: 2000, // Auto close in 2 seconds
-      toast: true,
-      position: 'top-end' // Appears at the top right
-    });
   }
 }
