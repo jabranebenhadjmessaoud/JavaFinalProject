@@ -39,8 +39,8 @@ public class OrderController {
     private final OrderProductsRepository orderProductsRepository ;
 	
     
-    @GetMapping("/order/settodeliver/{id}")
-    public void setOrderToDeliver(@PathVariable("id") Long id) {
+    @GetMapping("/order/settodelivering/{id}")
+    public void setOrderToDelivering(@PathVariable("id") Long id) {
     	
     	orderService.setToDelivering(id);
   	

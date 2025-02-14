@@ -189,3 +189,34 @@ button {
     background-color: #34495e;
     border-radius: 5px;
 }
+
+/* Custom button styles */
+.delivering-btn {
+    background-color: #ffc107;
+    /* Custom yellow */
+    color: white;
+    border: none;
+    padding: 7px 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.delivered-btn {
+    background-color: #28a745;
+    /* Custom green */
+    color: white;
+    border: none;
+    padding: 7px 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.delivering-btn:hover {
+    background-color: #e0a800;
+    /* Darker yellow on hover */
+}
+
+.delivered-btn:hover {
+    background-color: #218838;
+    /* Darker green on hover */
+}

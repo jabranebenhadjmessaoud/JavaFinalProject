@@ -147,6 +147,38 @@ export class AdmindashboardComponent {
     }
   }
 
+  // set Order to delivering
+  setOrderToDelivering(order: any) {
+    this.apiService.setOrderToDelivering(order.id).subscribe(() => {
+      // Update the order's status locally
+      order.order_stat = 'ON_Delivery';  // Assuming 'order_stat' is the property for status
+      order.delivering = true;
+
+      // Optional: If you want to update the UI immediately without re-fetching all orders
+      // this.orders = [...this.orders];  // Trigger change detection
+    });
+  }
+
+  // set Order to delivered
+  setOrderToDelivered(order: any) {
+    this.apiService.setOrderToDelivered(order.id).subscribe(() => {
+      // Update the order's status locally
+      order.order_stat = 'Delivered';  // Assuming 'order_stat' is the property for status
+      order.delivered = true;
+
+      // Optional: If you want to update the UI immediately without re-fetching all orders
+      // this.orders = [...this.orders];  // Trigger change detection
+    });
+  }
+
+  // Load orders (initial load)
+  loadOrders() {
+    this.apiService.getAllOrders().subscribe((data) => {
+      this.orders = data;
+      this.filteredOrders = data;
+    });
+  }
+
   filterReports() {
     const query = this.reportSearchQuery.toLowerCase().trim();
     this.filteredReports = this.reports.filter(report =>
