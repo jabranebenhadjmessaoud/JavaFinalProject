@@ -5,10 +5,9 @@ import { ApiService } from '../api.service';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
-import { ProductdetailsComponent } from "../productdetails/productdetails.component";
 @Component({
   selector: 'app-homepage',
-  imports: [NavbarComponent, CommonModule, ProductdetailsComponent],
+  imports: [NavbarComponent, CommonModule],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css'
 })

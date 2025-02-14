@@ -1,101 +1,83 @@
 <app-navbar></app-navbar>
-<div class="content">
-    <div class="container mt-5 p-4">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="card shadow-lg border-0 rounded-3 p-4" style="background-color: #FAF3E0;">
-                    <div class="card-body">
-                        <div class="text-center mb-4">
-                            <h1 class="text-success">Welcome, {{userName}}</h1>
-                            <h2>Create a New Product</h2>
-                        </div>
-                        <form id="product-form" role="form" (ngSubmit)="createProduct()">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label><strong>Product Category *</strong></label>
-                                        <select [(ngModel)]="data.category" name="category"
-                                            class="form-select border-success" required>
-                                            <option disabled selected>--Select Product Category--</option>
-                                            <option
-                                                *ngFor="let category of ['Vegetables', 'Fruits', 'Meat', 'Dairy', 'Herbs', 'Other']"
-                                                [value]="category">{{category}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label><strong>Farming Method *</strong></label>
-                                        <select [(ngModel)]="data.farming_method" name="farming_method"
-                                            class="form-select border-success" required>
-                                            <option disabled selected>--Select Your Farming Method--</option>
-                                            <option
-                                                *ngFor="let method of ['Subsistence', 'Plantation', 'Dryland', 'Wetland', 'Mixed', 'Organic', 'Others']"
-                                                [value]="method">{{method}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label><strong>Product Title *</strong></label>
-                                        <input [(ngModel)]="data.product_title" type="text" name="product_title"
-                                            class="form-control border-success" placeholder="Enter Product Title"
-                                            required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label><strong>Price (TND/Kg) *</strong></label>
-                                        <input [(ngModel)]="data.price" type="number" step="0.01" name="price"
-                                            class="form-control border-success" placeholder="Enter Price" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label><strong>Location *</strong></label>
-                                        <select [(ngModel)]="data.location" name="location"
-                                            class="form-select border-success" required>
-                                            <option disabled selected>--Select Location--</option>
-                                            <option
-                                                *ngFor="let city of ['Tunis', 'Sfax', 'Sousse', 'Ettadhamen', 'Kairouan', 'Gabès', 'Bizerte', 'Ariana', 'Gafsa', 'Monastir', 'Ben Arous', 'La Marsa', 'Medenine', 'Nabeul', 'Tataouine', 'Tozeur', 'Zarzis', 'Hammamet', 'Kelibia', 'Beja', 'Jendouba', 'Kebili', 'Siliana']"
-                                                [value]="city">{{city}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label><strong>Quantity (Kg) *</strong></label>
-                                        <input [(ngModel)]="data.quantity" type="number" name="quantity"
-                                            class="form-control border-success" placeholder="Enter Quantity" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group mb-3">
-                                        <label><strong>Product Image *</strong></label>
-                                        <input class="form-control border-success" type="file"
-                                            (change)="onFileSelected($event)" accept="image/*">
-                                        <div *ngIf="isLoading" class="text-warning mt-2">Uploading...</div>
-                                        <img *ngIf="image_url" [src]="image_url" class="mt-3 border rounded"
-                                            alt="Uploaded Image" width="200">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group mb-3">
-                                        <label><strong>More Details *</strong></label>
-                                        <textarea [(ngModel)]="data.description" name="description"
-                                            class="form-control border-success"
-                                            placeholder="Provide additional product details" rows="4"
-                                            required></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 text-center">
-                                    <button class="btn btn-success btn-lg px-4">Create Product</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+
+<body>
+    <div class="form-container" style="margin-top: 40px;">
+        <h2>Sell Your Fresh Products</h2>
+        <p>Join the marketplace and share your farm products with the community.</p>
+
+        <form id="product-form" role="form" (ngSubmit)="createProduct()" class="product-form">
+            <div class="text-center mb-4">
+                <h1 class="welcome-text">Welcome, {{userName}}</h1>
+                <h2>Create a New Product</h2>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label><strong>Product Category *</strong></label>
+                    <select [(ngModel)]="data.category" name="category" class="form-control" required>
+                        <option disabled selected>--Select Product Category--</option>
+                        <option *ngFor="let category of ['Vegetables', 'Fruits', 'Meat', 'Dairy', 'Herbs', 'Other']"
+                            [value]="category">{{category}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label><strong>Farming Method *</strong></label>
+                    <select [(ngModel)]="data.farming_method" name="farming_method" class="form-control" required>
+                        <option disabled selected>--Select Your Farming Method--</option>
+                        <option
+                            *ngFor="let method of ['Subsistence', 'Plantation', 'Dryland', 'Wetland', 'Mixed', 'Organic', 'Others']"
+                            [value]="method">{{method}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label><strong>Product Title *</strong></label>
+                    <input [(ngModel)]="data.product_title" type="text" name="product_title" class="form-control"
+                        placeholder="Enter Product Title" required>
+                </div>
+
+                <div class="form-group">
+                    <label><strong>Price (TND/Kg) *</strong></label>
+                    <input [(ngModel)]="data.price" type="number" step="0.01" name="price" class="form-control"
+                        placeholder="Enter Price" required>
+                </div>
+
+                <div class="form-group">
+                    <label><strong>Location *</strong></label>
+                    <select [(ngModel)]="data.location" name="location" class="form-control" required>
+                        <option disabled selected>--Select Location--</option>
+                        <option
+                            *ngFor="let city of ['Tunis', 'Sfax', 'Sousse', 'Ettadhamen', 'Kairouan', 'Gabès', 'Bizerte', 'Ariana', 'Gafsa', 'Monastir', 'Ben Arous', 'La Marsa', 'Medenine', 'Nabeul', 'Tataouine', 'Tozeur', 'Zarzis', 'Hammamet', 'Kelibia', 'Beja', 'Jendouba', 'Kebili', 'Siliana']"
+                            [value]="city">{{city}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label><strong>Quantity (Kg) *</strong></label>
+                    <input [(ngModel)]="data.quantity" type="number" name="quantity" class="form-control"
+                        placeholder="Enter Quantity" required>
+                </div>
+
+                <div class="form-group full-width">
+                    <label><strong>Product Image *</strong></label>
+                    <input class="form-control file-input" type="file" (change)="onFileSelected($event)"
+                        accept="image/*">
+                    <div *ngIf="isLoading" class="loading-text">Uploading...</div>
+                    <img *ngIf="image_url" [src]="image_url" class="uploaded-image" alt="Uploaded Image">
+                </div>
+
+                <div class="form-group full-width">
+                    <label><strong>More Details *</strong></label>
+                    <textarea [(ngModel)]="data.description" name="description" class="form-control post-textarea"
+                        placeholder="Provide additional product details" rows="4" required></textarea>
                 </div>
             </div>
-        </div>
+
+            <div class="form-actions">
+                <a href="/" class="cancel-btn">Cancel</a>
+                <button type="submit" class="submit-btn">Create Product</button>
+            </div>
+        </form>
     </div>
-</div>
+</body>

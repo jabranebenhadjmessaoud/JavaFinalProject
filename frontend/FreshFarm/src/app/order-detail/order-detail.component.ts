@@ -8,15 +8,16 @@ import { MatTableModule } from '@angular/material/table';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { NavbarComponent } from "../navbar/navbar.component";
 
 
 @Component({
   selector: 'app-order-detail',
-  imports: [CommonModule,MatCardModule,
+  imports: [CommonModule, MatCardModule,
     MatTableModule,
     MatProgressBarModule,
     MatIconModule,
-    MatDividerModule],
+    MatDividerModule, NavbarComponent],
   templateUrl: './order-detail.component.html',
   styleUrl: './order-detail.component.css'
 })
@@ -29,7 +30,7 @@ export class OrderDetailComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -61,7 +62,7 @@ export class OrderDetailComponent implements OnInit {
   }
 
   getTotalCost(): number {
-    return this.orderDetails.reduce((total, item) => 
+    return this.orderDetails.reduce((total, item) =>
       total + (item.price * item.quantity), 0);
   }
 }

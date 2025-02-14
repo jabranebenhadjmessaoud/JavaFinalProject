@@ -1,13 +1,16 @@
-<div class="order-container">
+<app-navbar style="margin-bottom: 60px;"></app-navbar>
+
+<body>
+  <div class="order-container">
     <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
-  
+
     <mat-card *ngIf="error" class="error-card">
       <mat-card-content>
         <mat-icon color="warn">error</mat-icon>
         {{ error }}
       </mat-card-content>
     </mat-card>
-  
+
     <div *ngIf="!loading && !error && orderDetails.length > 0" class="order-content">
       <mat-card class="order-card">
         <mat-card-header>
@@ -18,7 +21,7 @@
             </div>
           </mat-card-subtitle>
         </mat-card-header>
-  
+
         <mat-card-content>
           <table mat-table [dataSource]="orderDetails" class="order-table">
             <!-- Product Column -->
@@ -26,8 +29,7 @@
               <th mat-header-cell *matHeaderCellDef> Product </th>
               <td mat-cell *matCellDef="let item">
                 <div class="product-info">
-                  <img [src]="item.product.image_url" [alt]="item.product.product_title"
-                       class="product-image">
+                  <img [src]="item.product.image_url" [alt]="item.product.product_title" class="product-image">
                   <div class="product-details">
                     <h3>{{item.product.product_title}}</h3>
                     <p>Category: {{item.product.category}}</p>
@@ -37,37 +39,38 @@
                 </div>
               </td>
             </ng-container>
-  
+
             <!-- Price Column -->
             <ng-container matColumnDef="price">
               <th mat-header-cell *matHeaderCellDef> Price </th>
-              <td mat-cell *matCellDef="let item"> ${{item.price}} </td>
+              <td mat-cell *matCellDef="let item"> TND {{item.price}}/Kg </td>
             </ng-container>
-  
+
             <!-- Quantity Column -->
             <ng-container matColumnDef="quantity">
               <th mat-header-cell *matHeaderCellDef> Quantity </th>
               <td mat-cell *matCellDef="let item"> {{item.quantity}} </td>
             </ng-container>
-  
+
             <!-- Subtotal Column -->
             <ng-container matColumnDef="subtotal">
               <th mat-header-cell *matHeaderCellDef> Subtotal </th>
-              <td mat-cell *matCellDef="let item"> 
-                ${{calculateSubtotal(item.price, item.quantity)}} 
+              <td mat-cell *matCellDef="let item">
+                TND{{calculateSubtotal(item.price, item.quantity)}}
               </td>
             </ng-container>
-  
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
-  
+
           <mat-divider></mat-divider>
-  
+
           <div class="total-section">
-            <h3>Total Amount: ${{getTotalCost()}}</h3>
+            <h3>Total Amount: TND{{getTotalCost()}}</h3>
           </div>
         </mat-card-content>
       </mat-card>
     </div>
   </div>
+</body>

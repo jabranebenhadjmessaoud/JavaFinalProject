@@ -136,6 +136,7 @@
                                 <button class="btn-view"><a style=" color: white; text-decoration: none;"
                                         href="/post-details/{{post.id}}">View </a></button>
                                 <button class="btn-delete">Delete</button>
+
                             </td>
                         </tr>
                     </tbody>
@@ -225,6 +226,8 @@
                             <td>{{order.amount}}</td>
                             <td>{{ getTimeAgo(order) }}</td>
                             <td>
+                                <button class="btn-view"><a style=" color: white; text-decoration: none;"
+                                        href="/order/{{order.id}}">View</a></button>
                                 <button class="btn-delete">Delete</button>
                             </td>
                         </tr>
