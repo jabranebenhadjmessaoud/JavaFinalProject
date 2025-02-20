@@ -37,7 +37,7 @@
                     <div class="spec-icon">🌾</div>
                     <div class="spec-details">
                         <span class="spec-label">Farming Method</span>
-                        <span class="spec-value">{{product.category}}</span>
+                        <span class="spec-value">{{product.farming_method}}</span>
                     </div>
                 </div>
 
@@ -59,8 +59,8 @@
             </div>
 
             <!-- Call to Action -->
-            <button class="cta-button">
-                <span class="button-text">Contact Farmer</span>
+            <button [routerLink]="['/all-products']" routerLinkActive="router-link-active"  class="cta-button">
+                <span class="button-text">Go Back</span>
                 <span class="button-icon">→</span>
             </button>
         </div>

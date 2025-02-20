@@ -53,6 +53,7 @@ export class AdmindashboardComponent {
     this.apiService.getallposts().subscribe((data) => {
       this.posts = data;
       this.filteredPosts = data; // Initially display all products
+      console.log(this.filteredPosts);
     });
 
     this.apiService.getAllReports().subscribe((data) => {

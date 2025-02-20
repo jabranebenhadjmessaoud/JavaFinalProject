@@ -32,11 +32,7 @@ export class AllproductsComponent {
   categories: string[] = ["Vegetables", "Fruits", "Meat", "Dairy", "Herbs", "Other"];
   farmingMethods: string[] = ["Subsistence", "Plantation", "Dryland", "Wetland", "Mixed", "Organic", "Others"];
   locations: string[] = [
-    "Tunis", "Sfax", "Sousse", "Ettadhamen", "Kairouan", "Gabès", "Bizerte",
-    "Ariana", "Gafsa", "Monastir", "Ben Arous", "La Marsa", "Mahdia",
-    "Medenine", "Nabeul", "Tataouine", "Tozeur", "Zarzis", "Hammamet",
-    "Kelibia", "Beja", "Jendouba", "Kebili", "Siliana"
-  ];
+    'Ariana', 'Béja'  ,  'Ben Arous' ,  'Bizerte','El Kef' , 'Gabes', 'Gafsa','Jendouba' , 'Kairouan', 'Kesserine' ,'Kebili', 'Mahdia', 'Manouba', 'Medenine','Monastir','Nabeul', 'Sfax','Sidi Bouzid', 'Siliana','Sousse','Tataouine', 'Tozeur', 'Tunis','Zaghouan'];
 
   // Track whether to show older products or fresh products
   showOlderProducts: boolean = false;

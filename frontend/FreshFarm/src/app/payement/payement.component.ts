@@ -46,7 +46,7 @@ export class PayementComponent {
       this.router.navigate(['/']);
       Swal.fire({
         title: 'Payment Successful!',
-        text: 'Your payment has been processed and your order has been placed successfully.',
+        text: 'Your payment has been processed and your order will be delivered soon.',
         icon: 'success',
         showConfirmButton: false, // Do not show the confirm button
         timer: 2000, // Auto close in 2 seconds

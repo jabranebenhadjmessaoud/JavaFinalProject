@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-productdetails',
-  imports: [NavbarComponent, CommonModule],
+  imports: [NavbarComponent, CommonModule,RouterLink],
   templateUrl: './productdetails.component.html',
   styleUrl: './productdetails.component.css'
 })

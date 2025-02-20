@@ -121,7 +121,6 @@
                         <tr>
                             <th>ID</th>
                             <th>Title</th>
-                            <th>Author</th>
                             <th>Date</th>
                             <th>Actions</th>
                         </tr>
@@ -130,7 +129,6 @@
                         <tr *ngFor="let post of filteredPosts">
                             <td>{{post.id}}</td>
                             <td>{{post.post_title}}</td>
-                            <td>John Doe</td>
                             <td>{{ getTimeAgo(post) }}</td>
                             <td>
                                 <button class="btn-view"><a style=" color: white; text-decoration: none;"
